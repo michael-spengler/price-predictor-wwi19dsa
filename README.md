@@ -1,2 +1,2 @@
 # price-predictor
-ferdi was here
+ferdi was not here
