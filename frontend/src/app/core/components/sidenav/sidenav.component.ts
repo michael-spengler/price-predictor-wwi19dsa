@@ -9,8 +9,7 @@ import { map, shareReplay } from 'rxjs/operators';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent {
-
-  public test: string = "Testen";
+  public isDarkTheme: boolean = true;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -19,4 +18,16 @@ export class SidenavComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
+  ngOnInit() {
+    this.isDarkTheme = localStorage.getItem('theme') === 'Light' ? false : true;
+  }
+
+  toggleTheme() {
+    this.isDarkTheme = !this.isDarkTheme;
+    this.storeThemeSelection();
+  }
+
+  storeThemeSelection() {
+    localStorage.setItem('theme', this.isDarkTheme ? "Dark" : "Light")
+  }
 }
