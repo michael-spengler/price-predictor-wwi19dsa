@@ -34,7 +34,7 @@
         <mat-icon *ngIf="isDarkTheme">brightness_2</mat-icon>
         <mat-icon *ngIf="!isDarkTheme">brightness_7</mat-icon>
       </button>
-      <button mat-icon-button (click)="login()">
+      <button mat-icon-button routerLink="/auth/login">
         <mat-icon>person</mat-icon>
       </button>
     </mat-toolbar>
