@@ -11,7 +11,7 @@
 /frontend/node_modules
 
 #cached python files
-API/__pycache__
+API/__pycache__/*
 
 # profiling files
 chrome-profiler-events*.json
