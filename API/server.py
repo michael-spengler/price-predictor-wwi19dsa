@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_restful import Api, Resource, reqparse, abort
-from passwordShit import createHashAndSalt, matchingPassword
+from functions import createHashAndSalt, matchingPassword, createToken, verifyToken
 
 app = Flask(__name__)
 api = Api(app)
@@ -16,6 +16,9 @@ user_signin_args.add_argument("password", type=str, help="password missing", req
 user_signup_args = reqparse.RequestParser()
 user_signup_args.add_argument("email", type=str, help="email missing", required=True)
 user_signup_args.add_argument("password", type=str, help="password missing", required=True)
+
+user_args = reqparse.RequestParser()
+user_args.add_argument("token", type=str, help="token missing", required=True)
 
 #Abort functions
 def abortIfUserNotExisting(email):
@@ -35,7 +38,8 @@ class SignIn(Resource):
         if not matchingPassword(storedKey, args.password):
             abort(404, message="Password incorrect")
         else:
-            return {"token" : "sometoken"}, 201
+            token = createToken(args.email)
+            return {"token" : token}, 201
 
 class SignUp(Resource):
     def post(self):
@@ -44,8 +48,18 @@ class SignUp(Resource):
         args.password = createHashAndSalt(args.password)
         users[args.email] = args
         return args.email + " has been successfully added to the DB", 201
+
+class CheckToken(Resource):
+    def post(self):
+        args = user_args.parse_args()
+        if verifyToken(args.token):
+            return {"message" : "worked"}, 201
+        else:
+            return {"message" : "Token invalid"}, 404
+
 api.add_resource(SignIn, "/signin")
 api.add_resource(SignUp, "/signup")
+api.add_resource(CheckToken, "/checkToken")
 
 
 if __name__ == "__main__":
