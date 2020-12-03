@@ -1,32 +1,52 @@
 from flask import Flask
 from flask_restful import Api, Resource, reqparse, abort
+from passwordShit import createHashAndSalt, matchingPassword
 
 app = Flask(__name__)
 api = Api(app)
 
+#Loading Users
+users = {"demo@demo.de" : {'password': 'Test1', "email" : "demo@demo.de"}}
 
-video_put_args = reqparse.RequestParser()
-video_put_args.add_argument("name", type=str, help="Name missing", required=True)
-video_put_args.add_argument("view", type=int, help="Views missing", required=True)
-video_put_args.add_argument("likes", type=int, help="Likes missing", required=True)
+#Args that need to be provided per request
+user_signin_args = reqparse.RequestParser()
+user_signin_args.add_argument("email", type=str, help="email missing", required=True)
+user_signin_args.add_argument("password", type=str, help="password missing", required=True)
 
-videos = {}
+user_signup_args = reqparse.RequestParser()
+user_signup_args.add_argument("email", type=str, help="email missing", required=True)
+user_signup_args.add_argument("password", type=str, help="password missing", required=True)
 
-def abortIfVideoIdNotExist(video_id):
-    if video_id not in videos:
-        abort(404, message="Video ID is not valid...")
+#Abort functions
+def abortIfUserNotExisting(email):
+    if email not in users:
+        abort(404, message="Email not found")
+def abortIfUserExisting(email):
+    if email in users:
+        abort(404, message="Email already exists")
 
-class HelloWorld(Resource):
-    def get(self, video_id):
-        abortIfVideoIdNotExist(video_id)
-        return videos[video_id]
 
-    def put(self, video_id):
-        args = video_put_args.parse_args()
-        videos[video_id]=args
-        return videos[video_id], 201
 
-api.add_resource(HelloWorld, "/video/<int:video_id>")
+class SignIn(Resource):
+    def post(self):
+        args = user_signin_args.parse_args() #reading args from json
+        abortIfUserNotExisting(args.email)
+        storedKey = users[args.email]["password"] #loading stored Key
+        if not matchingPassword(storedKey, args.password):
+            abort(404, message="Password incorrect")
+        else:
+            return {"token" : "sometoken"}, 201
+
+class SignUp(Resource):
+    def post(self):
+        args = user_signup_args.parse_args()
+        abortIfUserExisting(args.email)
+        args.password = createHashAndSalt(args.password)
+        users[args.email] = args
+        return args.email + " has been successfully added to the DB", 201
+api.add_resource(SignIn, "/signin")
+api.add_resource(SignUp, "/signup")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
