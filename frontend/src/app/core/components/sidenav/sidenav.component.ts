@@ -19,7 +19,13 @@ export class SidenavComponent {
   constructor(private breakpointObserver: BreakpointObserver) {}
 
   ngOnInit() {
-    this.isDarkTheme = localStorage.getItem('theme') === 'Light' ? false : true;
+    const userPrefersLocal = localStorage.getItem('prefers-color-scheme'); //=== 'Light' ? false : true;
+    const userPrefersLightBrowser = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    if (userPrefersLocal) {
+      this.isDarkTheme = userPrefersLocal === 'light' ? false : true;
+    } else {
+      this.isDarkTheme = !userPrefersLightBrowser
+    }
   }
 
   toggleTheme() {
@@ -28,6 +34,6 @@ export class SidenavComponent {
   }
 
   storeThemeSelection() {
-    localStorage.setItem('theme', this.isDarkTheme ? "Dark" : "Light")
+    localStorage.setItem('prefers-color-scheme', this.isDarkTheme ? "dark" : "light")
   }
 }
