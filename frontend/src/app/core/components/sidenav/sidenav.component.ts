@@ -36,4 +36,8 @@ export class SidenavComponent {
   storeThemeSelection() {
     localStorage.setItem('prefers-color-scheme', this.isDarkTheme ? "dark" : "light")
   }
+
+  login(){
+    alert("ASd");
+  }
 }
