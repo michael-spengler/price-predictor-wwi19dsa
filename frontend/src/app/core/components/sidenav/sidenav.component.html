@@ -1,6 +1,6 @@
 <mat-sidenav-container
   class="sidenav-container mat-app-background"
-  [ngClass]="{ 'dark-theme-mode': isDarkTheme }"
+  [ngClass]="{ 'dark-theme-mode': this.themesService.getIsDarkTheme() }"
 >
   <mat-sidenav
     #drawer
@@ -30,9 +30,17 @@
       </button>
       <span>Price Predictor</span>
       <span class="spacer"></span>
-      <button mat-icon-button matTooltip="Switch theme" (click)="toggleTheme()">
-        <mat-icon *ngIf="isDarkTheme">brightness_2</mat-icon>
-        <mat-icon *ngIf="!isDarkTheme">brightness_7</mat-icon>
+      <button
+        mat-icon-button
+        matTooltip="Switch theme"
+        (click)="this.themesService.toggleTheme()"
+      >
+        <mat-icon *ngIf="this.themesService.getIsDarkTheme()"
+          >brightness_2</mat-icon
+        >
+        <mat-icon *ngIf="!this.themesService.getIsDarkTheme()"
+          >brightness_7</mat-icon
+        >
       </button>
       <button mat-icon-button routerLink="/auth/login">
         <mat-icon>person</mat-icon>
