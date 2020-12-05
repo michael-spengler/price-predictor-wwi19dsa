@@ -1,7 +1,5 @@
 mat-button-toggle-group {
-    margin-left: 5%;
-    margin-right: 5%;
-    width: 90%;
+    width: 100%;
 }
 
 mat-button-toggle {
@@ -13,3 +11,15 @@ mat-card {
     margin-top: 5%;
     width: 80%;
 }
+
+.class-content {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin: auto;
+
+}
+
+.mat-button-toggle-checked {
+    background-color: blue;
+    color: white;
+ }
