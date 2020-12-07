@@ -1,6 +1,14 @@
 <mat-card>
-    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-        <mat-button-toggle >Log In</mat-button-toggle>
-        <mat-button-toggle >Sign Up</mat-button-toggle>
-    </mat-button-toggle-group>
+    <div class="card-content"> 
+
+        <mat-button-toggle-group  name="fontStyle" aria-label="Font Style" value="optionLogin">
+            <mat-button-toggle value="optionLogin">Log In</mat-button-toggle>
+            <mat-button-toggle value="optionSignup">Sign Up</mat-button-toggle>
+        </mat-button-toggle-group>
+    
+        <app-login></app-login>
+        <app-signup></app-signup>
+
+    </div>
+    
 </mat-card>    

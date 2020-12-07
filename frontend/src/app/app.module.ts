@@ -9,6 +9,8 @@ import { LayoutModule } from '@angular/cdk/layout';
 
 import { MaterialModule } from './material.module';
 
+import { AuthModule } from './core/modules/auth/auth.module'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +21,8 @@ import { MaterialModule } from './material.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
-    MaterialModule
+    MaterialModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
