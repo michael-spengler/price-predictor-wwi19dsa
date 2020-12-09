@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 @Injectable({
   providedIn: 'root'
@@ -6,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class ThemesService {
 
   isDarkTheme: boolean = true;
-  constructor() {
+  constructor(public overlayContainer: OverlayContainer) {
     const userPrefersLocal = localStorage.getItem('prefers-color-scheme'); //=== 'Light' ? false : true;
     const userPrefersLightBrowser = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
     if (userPrefersLocal) {
@@ -14,6 +15,7 @@ export class ThemesService {
     } else {
       this.isDarkTheme = !userPrefersLightBrowser
     }
+    this.setOverlayContainer();
   }
 
   getIsDarkTheme(): boolean {
@@ -23,9 +25,18 @@ export class ThemesService {
   toggleTheme() {
     this.isDarkTheme = !this.isDarkTheme;
     this.storeThemeSelection();
+    this.setOverlayContainer();
   }
 
   storeThemeSelection() {
     localStorage.setItem('prefers-color-scheme', this.isDarkTheme ? "dark" : "light")
+  }
+
+  setOverlayContainer() {
+    if (this.isDarkTheme) {
+      this.overlayContainer.getContainerElement().classList.add('dark-theme-mode');
+    } else {
+      this.overlayContainer.getContainerElement().classList.remove('dark-theme-mode');
+    }
   }
 }
