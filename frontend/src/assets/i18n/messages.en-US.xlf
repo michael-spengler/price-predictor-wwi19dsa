@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="fb9c690d169679310cb06289b29721f09044e0e8" datatype="html">
+        <source> Language Test </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/sidenav/sidenav.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <note priority="1" from="description">An test for the language support@testID</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

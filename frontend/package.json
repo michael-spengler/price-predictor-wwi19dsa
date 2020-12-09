@@ -3,13 +3,15 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --configuaration=en-US",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "lang": "ng extract-i18n --output-path src/assets/i18n --format=xlf",
-    "de": "ng serve --configuration=de"
+    "en": "ng serve --configuration=en-US --open",
+    "de": "ng serve --configuration=de --open",
+    "prod-lang": "ng build --prod --localize"
   },
   "private": true,
   "dependencies": {

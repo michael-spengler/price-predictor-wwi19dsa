@@ -17,9 +17,10 @@
       "sourceRoot": "src",
       "prefix": "app",
       "i18n": {
-        "sourceLocale": "en-US",
+        "sourceLocale": "hi", 
         "locales": {
-          "de": "src/assets/i18n/messages.de.xlf"
+          "de": "src/assets/i18n/messages.de.xlf",
+          "en-US": "src/assets/i18n/messages.en-US.xlf"
         }
       },
       "architect": {
@@ -47,6 +48,9 @@
           "configurations": {
             "de": {
               "localize": ["de"]
+            },
+            "en-US": {
+              "localize": ["en-US"]
             },
             "production": {
               "fileReplacements": [
@@ -85,6 +89,9 @@
           "configurations": {
             "de": {
               "browserTarget": "price-predictor:build:de"
+            },
+            "en-US": {
+              "browserTarget": "price-predictor:build:en-US"
             },
             "production": {
               "browserTarget": "price-predictor:build:production"

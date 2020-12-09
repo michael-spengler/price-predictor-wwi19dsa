@@ -11,11 +11,22 @@ import { ThemesService } from '../../services/themes/themes.service';
 })
 export class SidenavComponent {
   public isDarkTheme: boolean = true;
+  langs = [
+    {
+      "code": "en-US",
+      "label": "English"
+    },
+    {
+      "code": "de",
+      "label": "Deutsch"
+    }
+  ];
+
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, public themesService: ThemesService) {}
+  constructor(private breakpointObserver: BreakpointObserver, public themesService: ThemesService) { }
 }
