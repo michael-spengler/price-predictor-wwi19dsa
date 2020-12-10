@@ -11,6 +11,24 @@
         </context-group>
         <note priority="1" from="description">An test for the language support@testID</note>
       </trans-unit>
+      <trans-unit id="login" datatype="html">
+        <source>Log In</source>
+        <target>Anmeldung</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/modules/auth/auth-form/auth-form.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="description">Log In</note>
+      </trans-unit>
+      <trans-unit id="signin" datatype="html">
+        <source>Sign Up</source>
+        <target>Registrierung</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/modules/auth/auth-form/auth-form.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <note priority="1" from="description">Sign In</note>
+      </trans-unit>
     </body>
   </file>
 </xliff>
