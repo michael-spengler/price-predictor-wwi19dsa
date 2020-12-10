@@ -4,7 +4,21 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+**DEPREACATED:** Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+Use ```npm run <lang>```, i.e. ```npm run de```
+
+## Build production version
+Use ```npm run prod-lang```. This will create a seperate folder for each language in the dist/price-predictor folde.
+
+## Run the project will local http-server
+- Install http-server: ```npm install -g http-server```
+- Run ```http-server dist/price-predictor``` from the root folder "frontend"
+
+## Extract languages
+Run ```npm run lang```. This will create a messages.xlf file in the assets/i18n folder which is used as a standard for language support.
+
+**NOTICE:** this will override the existing file. Any changes will be lost. Be aware, if anything changes, this might break the other messages files.
 
 ## Code scaffolding
 

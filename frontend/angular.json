@@ -16,10 +16,18 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "hi", 
+        "locales": {
+          "de": "src/assets/i18n/messages.de.xlf",
+          "en-US": "src/assets/i18n/messages.en-US.xlf"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "localize": true,
             "outputPath": "dist/price-predictor",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -38,6 +46,12 @@
             "scripts": []
           },
           "configurations": {
+            "de": {
+              "localize": ["de"]
+            },
+            "en-US": {
+              "localize": ["en-US"]
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -73,6 +87,12 @@
             "browserTarget": "price-predictor:build"
           },
           "configurations": {
+            "de": {
+              "browserTarget": "price-predictor:build:de"
+            },
+            "en-US": {
+              "browserTarget": "price-predictor:build:en-US"
+            },
             "production": {
               "browserTarget": "price-predictor:build:production"
             }
