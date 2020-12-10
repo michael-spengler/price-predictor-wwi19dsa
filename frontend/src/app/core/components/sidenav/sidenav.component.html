@@ -1,48 +1,35 @@
-<mat-sidenav-container
-  class="sidenav-container mat-app-background"
-  [ngClass]="{ 'dark-theme-mode': this.themesService.getIsDarkTheme() }"
->
-  <mat-sidenav
-    #drawer
-    class="sidenav"
-    fixedInViewport
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="(isHandset$ | async) === false"
-  >
+<mat-sidenav-container class="sidenav-container mat-app-background"
+  [ngClass]="{ 'dark-theme-mode': this.themesService.getIsDarkTheme() }">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="">Link 1</a>
+      <a mat-list-item href="" i18n="An test for the language @@testID"> Language Test </a>
       <a mat-list-item href="">Link 2</a>
       <a mat-list-item href="">Link 3</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async"
-      >
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>Price Predictor</span>
       <span class="spacer"></span>
-      <button
-        mat-icon-button
-        matTooltip="Switch theme"
-        (click)="this.themesService.toggleTheme()"
-      >
-        <mat-icon *ngIf="this.themesService.getIsDarkTheme()"
-          >brightness_2</mat-icon
-        >
-        <mat-icon *ngIf="!this.themesService.getIsDarkTheme()"
-          >brightness_7</mat-icon
-        >
+      <button mat-icon-button matTooltip="Switch theme" (click)="this.themesService.toggleTheme()">
+        <mat-icon *ngIf="this.themesService.getIsDarkTheme()">brightness_2</mat-icon>
+        <mat-icon *ngIf="!this.themesService.getIsDarkTheme()">brightness_7</mat-icon>
       </button>
-      <button mat-icon-button routerLink="/auth/login">
+
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>translate</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu" color="secondary">
+        <a mat-menu-item *ngFor="let lang of langs" href="/{{lang.code}}" color="primary">{{ lang.label }}</a>
+      </mat-menu>
+
+      <button mat-icon-button routerLink="/auth">
         <mat-icon>person</mat-icon>
       </button>
     </mat-toolbar>

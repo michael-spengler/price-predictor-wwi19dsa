@@ -7,7 +7,26 @@ $pp-accent: mat-palette($mat-light-green);
 $pp-warn: mat-palette($mat-red);
 
 $pp-theme: mat-light-theme($pp-primary, $pp-accent, $pp-warn);
+
+
+@mixin mix-app-theme($pp-theme) {
+  $primary: map-get($pp-theme, primary);
+
+  .mat-button-toggle-checked {
+    background-color: mat-color($primary);
+
+    .mat-button-toggle-label-content{
+        color: $light-primary-text;
+    }
+  }
+  .login-wrapper .mat-stroked-button {
+    background-color: mat-color($primary);
+    color:$light-primary-text;
+  }
+
+}
 @include angular-material-theme($pp-theme);
+@include mix-app-theme($pp-theme);
 
 $pp-primary-dark: mat-palette($mat-orange);
 $pp-accent-dark: mat-palette($mat-yellow);
@@ -20,4 +39,9 @@ $pp-theme-dark: mat-dark-theme(
 
 .dark-theme-mode {
   @include angular-material-theme($pp-theme-dark);
+  @include mix-app-theme($pp-theme-dark);
 }
+
+
+
+

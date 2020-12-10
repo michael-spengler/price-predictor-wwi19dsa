@@ -11,6 +11,9 @@ mat-card {
     margin-top: 5%;
     width: 80%;
 }
+.mat-card-header {
+    display: block;
+}
 
 .class-content {
     margin-left: 5%;
@@ -19,7 +22,10 @@ mat-card {
 
 }
 
-.mat-button-toggle-checked {
-    background-color: blue;
-    color: white;
- }
+
+.inputContainer {
+    display: block;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+}

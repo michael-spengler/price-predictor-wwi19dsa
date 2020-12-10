@@ -6,6 +6,10 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./core/modules/auth/auth.module')
       .then(m => m.AuthModule)
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];
 
