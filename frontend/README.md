@@ -11,7 +11,7 @@ Use ```npm run <lang>```, i.e. ```npm run de```
 ## Build production version
 Use ```npm run prod-lang```. This will create a seperate folder for each language in the dist/price-predictor folde.
 
-## Run the project will local http-server
+## Run the project with local http-server
 - Install http-server: ```npm install -g http-server```
 - Run ```http-server dist/price-predictor``` from the root folder "frontend"
 
