@@ -1,14 +1,14 @@
-<mat-card>
+<mat-card >
     <div class="card-content"> 
 
-        <mat-button-toggle-group #group="matButtonToggleGroup" name="fontStyle" aria-label="Font Style" value="optionLogin">
-            <mat-button-toggle value="optionLogin">Log In</mat-button-toggle>
-            <mat-button-toggle value="optionSignup">Sign Up</mat-button-toggle>
-        </mat-button-toggle-group>
-    
-        <p >{{group.value}}</p>
-
-        <div *ngIf="group.value === 'optionLogin'">
+        <mat-card-header>
+            <mat-button-toggle-group #group="matButtonToggleGroup" name="fontStyle" aria-label="Font Style" value="optionLogin">
+                <mat-button-toggle value="optionLogin">Log In</mat-button-toggle>
+                <mat-button-toggle value="optionSignup">Sign Up</mat-button-toggle>
+            </mat-button-toggle-group>
+        </mat-card-header>
+        
+        <div class="inputContainer" *ngIf=" group.value === 'optionLogin'">
             <app-login></app-login>
         </div>
 

@@ -17,12 +17,19 @@ export class LoginComponent implements OnInit {
   }
 
   email = new FormControl('', [Validators.required, Validators.email]);
+  password = new FormControl('', [Validators.required])
 
-  getErrorMessage() {
+  getErrorMessageEmail() {
     if (this.email.hasError('required')) {
       return 'You must enter a value';
     }
 
     return this.email.hasError('email') ? 'Not a valid email' : '';
+  }
+
+  getErrorMessagePW() {
+
+    return 'You must enter a value';
+
   }
 }
