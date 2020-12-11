@@ -3,16 +3,17 @@ from flask_restful import Api, Resource, reqparse, abort, fields, marshal_with
 from functions import createHashAndSalt, matchingPassword, createToken, verifyToken
 from flask_sqlalchemy import SQLAlchemy
 import uuid
+from flask_cors import CORS, cross_origin
 
 
-app = Flask(__name__)
+app = Flask(_name_)
 api = Api(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///tmp/database.db"
 db = SQLAlchemy(app)
+CORS(app, support_credentials=True)
 
 class UserModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    # id = db.Column('id', db.Text(length=36), default=lambda: str(uuid.uuid4()), primary_key=True, nullable=False)
     username = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False)
     name = db.Column(db.String, nullable=False)
@@ -23,13 +24,13 @@ class UserModel(db.Model):
     country = db.Column(db.String, nullable=False)
     password = db.Column(db.LargeBinary, nullable=False)
 
-    def __repr__(self):
+    def _repr_(self):
         return f"id : {id}, email : {email}, username : {username}, firstName : {firstName}, name : {name}, street : {street}, plz : {plz}, city : {city}, country : {country}"
 
 resource_fields = {
-	'email': fields.String,
     'id': fields.String,
     'username': fields.String,
+	'email': fields.String,
     'name': fields.String,
     'firstName': fields.String,
     'street': fields.String,
@@ -59,20 +60,25 @@ user_args.add_argument("token", type=str, help="token missing", required=True)
 
 
 class SignIn(Resource):
+    @cross_origin(supports_credentials=True)
     def post(self):
         args = user_signin_args.parse_args() #reading args from json
         result = UserModel.query.filter_by(email=args.email).first()
+
+        #Test Case
+        if args.email == 'demo@test.de' and args.password == "Test1":
+            token = "Bearer " +  str(createToken(args.email))
+            return {"message" : "Successfully authenticated"}, 201, {"Authorization" :  token, "Access-Control-Expose-Headers": "Authorization"},  #body, status, header
+        #End of Test Case 
+
         if not result:
-            abort(404, message="Email not registered...")
+            abort(401, message="Email or Password incorrect")
         storedKey = result.password #loading stored Key
         if not matchingPassword(storedKey, args.password):
-            abort(404, message="Password incorrect")
+            abort(401, message="Email or Password incorrect")
         else:
-            #resp = flask.make_response()
-            token = createToken(args.email)
-            #resp.headers["bearer"] = str(token)
-            #print(resp)
-            return {"message" : "Successfully authenticated"}, 201, {"token" : str(token)} #body, status, header
+            token = "Bearer " +  str(createToken(args.email))
+            return {"message" : "Successfully authenticated"}, 201, {"Authorization" :  token, "Access-Control-Expose-Headers": "Authorization"},  #body, status, header
 
 class SignUp(Resource):
 
@@ -97,10 +103,10 @@ class CheckToken(Resource):
         else:
             return {"message" : "Token invalid"}, 404
 
-api.add_resource(SignIn, "/signin")
+api.add_resource(SignIn, "/login")
 api.add_resource(SignUp, "/signup")
 api.add_resource(CheckToken, "/checkToken")
 
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     app.run(debug=True)
