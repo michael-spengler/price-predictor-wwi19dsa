@@ -6,11 +6,11 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - name: executing remote ssh commands using password
+    - name: executing remote ssh commands using ssh key
       uses: appleboy/ssh-action@master
       with:
         host: ec2-18-218-213-10.us-east-2.compute.amazonaws.com
-        key: $SSH_PRIVATE_KEY
         username: ubuntu
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 20
         script: whoami
