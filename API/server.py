@@ -6,7 +6,7 @@ import uuid
 from flask_cors import CORS, cross_origin
 
 
-app = Flask(_name_)
+app = Flask(__name__)
 api = Api(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///tmp/database.db"
 db = SQLAlchemy(app)
@@ -108,6 +108,5 @@ api.add_resource(SignUp, "/signup")
 api.add_resource(CheckToken, "/checkToken")
 
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     app.run(debug=True)
-    
