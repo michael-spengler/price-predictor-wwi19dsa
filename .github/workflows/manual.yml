@@ -13,7 +13,8 @@ jobs:
         username: ubuntu
         key: ${{ secrets.sshkey }}
         port: 22
-        script: cd /var/www/price-predictor-wwi19dsa 
+        script: |
+          cd /var/www/price-predictor-wwi19dsa 
           git pull 
           cd frontend
           ls
