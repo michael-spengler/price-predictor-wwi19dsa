@@ -1,19 +1,16 @@
-before_script:
-  - apt-get update -qq
-  - apt-get install -qq git
-  # Setup SSH deploy keys
-  - 'which ssh-agent || ( apt-get install -qq openssh-client )'
-  - eval $(ssh-agent -s)
-  - ssh-add <(echo "$SSH_PRIVATE_KEY")
-  - mkdir -p ~/.ssh
-  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-    
-deploy_staging:
-  type: deploy
-  environment:
-    name: staging
-    url: example.com
-  script:
-    - ssh ubuntu@ec2-18-218-213-10.us-east-2.compute.amazonaws.com "cd var/www/price-predictor-wwi19dsa && git checkout master && git pull origin master && exit"
-  only:
-    - master
+name: remote ssh command
+on: [push]
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ec2-18-218-213-10.us-east-2.compute.amazonaws.com
+        key: $SSH_PRIVATE_KEY
+        username: ubuntu
+        port: 20
+        script: whoami
