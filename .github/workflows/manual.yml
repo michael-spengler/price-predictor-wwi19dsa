@@ -15,9 +15,9 @@ jobs:
         port: 22
         script: |
           cd /var/www/price-predictor-wwi19dsa 
-          git checkout develop 
-          git stash
-          git pull 
+          sudo git checkout develop 
+          sudo git stash
+          sudo git pull 
           cd frontend
           ls
         #ng build --prod --build-optimizer
