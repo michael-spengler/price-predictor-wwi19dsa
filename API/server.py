@@ -103,10 +103,11 @@ class CheckToken(Resource):
         else:
             return {"message" : "Token invalid"}, 404
 
-api.add_resource(SignIn, "/login")
+api.add_resource(SignIn, "/signin")
 api.add_resource(SignUp, "/signup")
 api.add_resource(CheckToken, "/checkToken")
 
 
 if _name_ == "_main_":
     app.run(debug=True)
+    
