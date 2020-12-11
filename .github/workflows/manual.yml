@@ -15,7 +15,8 @@ jobs:
         port: 22
         script: |
           cd /var/www/price-predictor-wwi19dsa 
-          git checkout develop
+          git checkout develop 
+          git stash
           git pull 
           cd frontend
           ls
