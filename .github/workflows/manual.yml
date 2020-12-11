@@ -20,5 +20,4 @@ jobs:
           sudo git stash
           sudo git pull 
           cd frontend
-          ls
           ng build --prod --build-optimizer
