@@ -9,22 +9,21 @@ import { LayoutModule } from '@angular/cdk/layout';
 
 import { MaterialModule } from './material.module';
 
-import { AuthModule } from './core/modules/auth/auth.module'
+import { AuthModule } from './core/modules/auth/auth.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SidenavComponent
-  ],
+  declarations: [AppComponent, SidenavComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
     MaterialModule,
-    AuthModule
+    AuthModule,
+    HttpClientModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [HttpClientModule],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
