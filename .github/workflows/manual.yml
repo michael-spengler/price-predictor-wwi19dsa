@@ -16,9 +16,9 @@ jobs:
         script: |
           cd /var/www/price-predictor-wwi19dsa 
           sudo git stash
-          sudo git checkout develop 
+          sudo git checkout master 
           sudo git stash
           sudo git pull 
           cd frontend
           ls
-        #ng build --prod --build-optimizer
+          ng build --prod --build-optimizer
