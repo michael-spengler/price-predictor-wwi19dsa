@@ -36,9 +36,10 @@ export class AuthenticationService {
     }
   }
 
-  public isExpired(): Boolean|null {
+  public isAuthenticated(): Boolean|null {
       const expiry = this.getTokenPayload().exp;
-      return (Math.floor((new Date).getTime() / 1000)) >= expiry;
+      const currentTime = Math.floor((new Date).getTime() / 1000)
+      return currentTime <= expiry;
   }
 
   private getTokenPayload(): AccessToken {
