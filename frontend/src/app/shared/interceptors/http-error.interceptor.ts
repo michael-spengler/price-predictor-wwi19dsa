@@ -13,10 +13,10 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                 if (error.error && error.error.status !== 403) {
                     if (error.error instanceof ErrorEvent) {
                         // client-side/network error
-                        this.openSnackBar("Network Error");
+                        this.openSnackBar($localize`:Error message if client cannot connect@@connectionError:Connection Error`);
                     } else {
                         // unsuccessful respond code from server
-                        this.openSnackBar('Connection Error');
+                        this.openSnackBar($localize`:@@connectionError:Connection Error`);
                     }
                 }
                 return throwError(error);
