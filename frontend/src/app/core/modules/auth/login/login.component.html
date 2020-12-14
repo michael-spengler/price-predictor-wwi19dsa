@@ -23,7 +23,7 @@
           <mat-error *ngIf="password.invalid">{{getErrorMessagePW()}}</mat-error>
         </mat-form-field>
       </mat-card-content>
-      <button  mat-stroked-button  color="primary" class="btn-block">Log In</button>
+      <button  mat-stroked-button  (click)="submit()" color="primary" class="btn-block">Log In</button>
     </form>
 
 
