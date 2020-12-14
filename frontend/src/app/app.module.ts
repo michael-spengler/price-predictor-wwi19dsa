@@ -12,6 +12,7 @@ import { MaterialModule } from './material.module';
 
 import { AuthModule } from './core/modules/auth/auth.module';
 import { HttpErrorInterceptor } from './shared/interceptors/http-error.interceptor';
+import '@angular/localize/init';
 
 @NgModule({
   declarations: [AppComponent, SidenavComponent],
