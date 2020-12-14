@@ -6,11 +6,12 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidenavComponent } from './core/components/sidenav/sidenav.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MaterialModule } from './material.module';
 
 import { AuthModule } from './core/modules/auth/auth.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpErrorInterceptor } from './shared/interceptors/http-error.interceptor';
 
 @NgModule({
   declarations: [AppComponent, SidenavComponent],
@@ -23,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     AuthModule,
     HttpClientModule,
   ],
-  providers: [HttpClientModule],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
