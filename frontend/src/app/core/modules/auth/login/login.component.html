@@ -1,13 +1,14 @@
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
     <form [formGroup]="loginForm" (submit)="submit()" autocomplete="off" novalidate class="login-form">
         <mat-card-content>
             <mat-form-field appearance="outline" class="login-full-width">
                 <mat-label>Your Email</mat-label>
                 <input fxFlex="50" matInput placeholder="example@domain.com" formControlName="email" required>
                 <mat-icon matSuffix>email</mat-icon>
-                <mat-error *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
-                    <span *ngIf="loginForm.controls.email.errors.required">This field is mandatory.</span>
-                    <span *ngIf="loginForm.controls.email.errors.pattern">This field is invalid.</span>
+                <mat-error *ngIf="loginForm.controls.email.invalid">
+                    <span *ngIf="loginForm.controls.email.hasError('required')">This field is mandatory.</span>
+                    <span *ngIf="loginForm.controls.email.hasError('pattern')">This field is invalid.</span>
                 </mat-error>
             </mat-form-field>
             <mat-form-field class="login-full-width" fxFlexFill appearance="outline">
@@ -16,8 +17,8 @@
                 <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="!hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
-                <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
-                    <span *ngIf="loginForm.controls.password.errors.required">This field is mandatory.</span>
+                <mat-error *ngIf="loginForm.controls.password.invalid">
+                    <span *ngIf="loginForm.controls.password.hasError('required')">This field is mandatory.</span>
                 </mat-error>
             </mat-form-field>
             <button type="submit" mat-stroked-button class="login-full-width" *ngIf="loginForm.valid">Log In</button>
@@ -25,4 +26,3 @@
         </mat-card-content>
     </form>
 </div>
-<!-- *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid" -->
