@@ -5,22 +5,35 @@
             <mat-form-field appearance="outline" class="signup-full-width">
                 <mat-label>First Name</mat-label>
                 <input fxFlex="25" matInput formControlName="firstName" required>
+                <mat-error *ngIf="signupForm.controls.firstName.invalid">
+                    <span *ngIf="signupForm.controls.firstName.hasError('required')">This field is mandatory.</span>
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="signup-full-width">
                 <mat-label>Last Name</mat-label>
                 <input fxFlex="50" matInput formControlName="lastName" required>
+                <mat-error *ngIf="signupForm.controls.lastName.invalid">
+                    <span *ngIf="signupForm.controls.lastName.hasError('required')">This field is mandatory.</span>
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="signup-full-width">
                 <mat-label>Username</mat-label>
                 <input fxFlex="25" matInput formControlName="username" required>
+                <mat-error *ngIf="signupForm.controls.username.invalid">
+                    <span *ngIf="signupForm.controls.username.hasError('required')">This field is mandatory.</span>
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="signup-full-width">
                 <mat-label>Your Email</mat-label>
                 <input fxFlex="50" matInput formControlName="email" required>
                 <mat-icon matSuffix>email</mat-icon>
+                <mat-error *ngIf="signupForm.controls.email.invalid">
+                    <span *ngIf="signupForm.controls.email.hasError('required')">This field is mandatory.</span>
+                    <span *ngIf="signupForm.controls.email.hasError('pattern')">This field is invalid.</span>
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field class="signup-full-width" fxFlexFill appearance="outline">
@@ -29,18 +42,27 @@
                 <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="!hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
+                <mat-error *ngIf="signupForm.controls.password.invalid">
+                    <span *ngIf="signupForm.controls.password.hasError('required')">This field is mandatory.</span>
+                    <span *ngIf="signupForm.controls.password.hasError('pattern')">This field is invalid.</span>
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field class="signup-full-width" fxFlexFill appearance="outline">
-                <mat-label>Repeat your password</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'" formControlName="repeatedPassword" required>
+                <mat-label>Confirm your password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="confirmPassword" required>
                 <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="!hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
+                <mat-error *ngIf="signupForm.controls.confirmPassword.invalid">
+                    <span *ngIf="signupForm.controls.confirmPassword.hasError('required')">This field is mandatory.</span>
+                    <span *ngIf="signupForm.controls.confirmPassword.hasError('mustMatch')">Passwords should match.</span>
+                </mat-error>
             </mat-form-field>
 
 
-            <button mat-stroked-button color="primary" class="signup-full-width">Sign Up</button>
+            <button type="submit" mat-stroked-button class="signup-full-width" *ngIf="signupForm.valid">Sign Up</button>
+            <button type="submit" mat-stroked-button class="signup-full-width" *ngIf="!signupForm.valid" disabled>Sign Up</button>
 
         </mat-card-content>
     </form>

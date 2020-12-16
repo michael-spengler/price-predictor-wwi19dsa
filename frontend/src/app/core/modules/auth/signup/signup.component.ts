@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from '../../../services/authentication/authentication.service';
+import { MustMatch } from '../../../services/validators/must-match.validator';
 
 
 @Component({
@@ -15,14 +16,18 @@ export class SignupComponent {
 
   public hide = true;
   emailRegx = /^(([^<>+()\[\]\\.,;:\s@"-#$%&=]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
+  passwordRegx = '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}';
 
   public signupForm: FormGroup = this.formBuilder.group({
     email: [null, [Validators.required, Validators.pattern(this.emailRegx)]],
     firstName: [null, Validators.required],
     lastName: [null, Validators.required],
     username: [null, Validators.required],
-    password: [null, Validators.required],
-    repeatedPassword: [null, Validators.required],
+    birthday: [null, Validators.required],
+    password: [null, [Validators.required, Validators.pattern(this.passwordRegx)]],
+    confirmPassword: [null, Validators.required],
+  }, {
+    validator: MustMatch('password', 'confirmPassword')
   });
 
   constructor(
@@ -31,7 +36,6 @@ export class SignupComponent {
     private router: Router,
     private formBuilder: FormBuilder
   ) {}
-
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
