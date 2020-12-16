@@ -26,6 +26,16 @@
                 </mat-error>
             </mat-form-field>
 
+            <mat-form-field class="signup-full-width" fxFlexFill appearance="fill">
+                <mat-label>What is your birthday?</mat-label>
+                <input matInput formControlName="birthday" [matDatepicker]="picker" [min]="minDate" [max]="maxDate">
+                <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+                <mat-datepicker #picker startView="multi-year"></mat-datepicker>
+                <mat-error *ngIf="signupForm.controls.birthday.invalid">
+                    <span *ngIf="signupForm.controls.birthday.hasError('required')">This field is mandatory.</span>
+                </mat-error>
+            </mat-form-field>
+
             <mat-form-field appearance="outline" class="signup-full-width">
                 <mat-label>Your Email</mat-label>
                 <input fxFlex="50" matInput formControlName="email" required>

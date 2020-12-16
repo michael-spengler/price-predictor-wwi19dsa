@@ -15,8 +15,13 @@ import { MustMatch } from '../../../services/validators/must-match.validator';
 export class SignupComponent {
 
   public hide = true;
+  
   emailRegx = /^(([^<>+()\[\]\\.,;:\s@"-#$%&=]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
   passwordRegx = '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}';
+
+  minDate = new Date();
+  maxDate = new Date();
+
 
   public signupForm: FormGroup = this.formBuilder.group({
     email: [null, [Validators.required, Validators.pattern(this.emailRegx)]],
@@ -35,7 +40,10 @@ export class SignupComponent {
     private _snackBar: MatSnackBar,
     private router: Router,
     private formBuilder: FormBuilder
-  ) {}
+  ) {
+    this.maxDate.setFullYear(this.minDate.getFullYear() - 18);
+    this.minDate.setFullYear(this.minDate.getFullYear() - 120);
+  }
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
