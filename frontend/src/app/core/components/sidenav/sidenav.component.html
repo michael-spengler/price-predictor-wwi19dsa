@@ -18,8 +18,7 @@
       <span>Price Predictor</span>
       <span class="spacer"></span>
       <button mat-icon-button matTooltip="Switch theme" (click)="this.themesService.toggleTheme()">
-        <mat-icon *ngIf="this.themesService.getIsDarkTheme()">brightness_2</mat-icon>
-        <mat-icon *ngIf="!this.themesService.getIsDarkTheme()">brightness_7</mat-icon>
+        <mat-icon>{{ themesService.getIsDarkTheme() ? 'brightness_2' : 'brightness_7' }}</mat-icon>
       </button>
 
       <button mat-icon-button [matMenuTriggerFor]="menu">
