@@ -48,9 +48,9 @@
 
             <mat-form-field class="signup-full-width" fxFlexFill appearance="outline">
                 <mat-label>Enter your password</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
-                <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="!hide">
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <input matInput [type]="hide1 ? 'password' : 'text'" formControlName="password" required>
+                <button type="button" mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="!hide1">
+                    <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
                 <mat-error *ngIf="signupForm.controls.password.invalid">
                     <span *ngIf="signupForm.controls.password.hasError('required')">This field is mandatory.</span>
@@ -60,15 +60,22 @@
 
             <mat-form-field class="signup-full-width" fxFlexFill appearance="outline">
                 <mat-label>Confirm your password</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'" formControlName="confirmPassword" required>
-                <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="!hide">
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <input matInput [type]="hide2 ? 'password' : 'text'" formControlName="confirmPassword" required>
+                <button type="button" mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="!hide2">
+                    <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
                 <mat-error *ngIf="signupForm.controls.confirmPassword.invalid">
                     <span *ngIf="signupForm.controls.confirmPassword.hasError('required')">This field is mandatory.</span>
                     <span *ngIf="signupForm.controls.confirmPassword.hasError('mustMatch')">Passwords should match.</span>
                 </mat-error>
             </mat-form-field>
+
+            <div>
+                <mat-checkbox formControlName="acceptTerms" required>I have not read and understood the terms and conditions.</mat-checkbox>
+                <mat-error *ngIf="signupForm.controls.acceptTerms.touched && signupForm.controls.acceptTerms.invalid">
+                    <span *ngIf="signupForm.controls.acceptTerms.hasError('required')">This field is mandatory.</span>
+                </mat-error>
+            </div>
 
 
             <button type="submit" mat-stroked-button class="signup-full-width" *ngIf="signupForm.valid">Sign Up</button>

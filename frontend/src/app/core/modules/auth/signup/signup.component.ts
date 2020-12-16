@@ -14,8 +14,9 @@ import { MustMatch } from '../../../services/validators/must-match.validator';
 })
 export class SignupComponent {
 
-  public hide = true;
-  
+  public hide1 = true;
+  public hide2 = true;
+
   emailRegx = /^(([^<>+()\[\]\\.,;:\s@"-#$%&=]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
   passwordRegx = '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}';
 
@@ -31,6 +32,7 @@ export class SignupComponent {
     birthday: [null, Validators.required],
     password: [null, [Validators.required, Validators.pattern(this.passwordRegx)]],
     confirmPassword: [null, Validators.required],
+    acceptTerms: [null, Validators.required]
   }, {
     validator: MustMatch('password', 'confirmPassword')
   });
