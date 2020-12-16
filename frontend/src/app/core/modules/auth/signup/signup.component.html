@@ -4,17 +4,17 @@
 
             <mat-form-field appearance="outline" class="signup-full-width">
                 <mat-label>First Name</mat-label>
-                <input fxFlex="25" matInput formControlName="text" required>
+                <input fxFlex="25" matInput formControlName="firstName" required>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="signup-full-width">
                 <mat-label>Last Name</mat-label>
-                <input fxFlex="25" matInput formControlName="text" required>
+                <input fxFlex="50" matInput formControlName="lastName" required>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="signup-full-width">
-                <mat-label>Last Name</mat-label>
-                <input fxFlex="50" matInput formControlName="text" required>
+                <mat-label>Username</mat-label>
+                <input fxFlex="25" matInput formControlName="username" required>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="signup-full-width">
@@ -25,7 +25,7 @@
 
             <mat-form-field class="signup-full-width" fxFlexFill appearance="outline">
                 <mat-label>Enter your password</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" id="password" required>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
                 <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="!hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
@@ -33,7 +33,7 @@
 
             <mat-form-field class="signup-full-width" fxFlexFill appearance="outline">
                 <mat-label>Repeat your password</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" id="password" required>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="repeatedPassword" required>
                 <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="!hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
