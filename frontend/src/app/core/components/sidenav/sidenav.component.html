@@ -18,20 +18,34 @@
       <span>Price Predictor</span>
       <span class="spacer"></span>
       <button mat-icon-button matTooltip="Switch theme" (click)="this.themesService.toggleTheme()">
-        <mat-icon *ngIf="this.themesService.getIsDarkTheme()">brightness_2</mat-icon>
-        <mat-icon *ngIf="!this.themesService.getIsDarkTheme()">brightness_7</mat-icon>
+        <mat-icon>{{ themesService.getIsDarkTheme() ? 'brightness_2' : 'brightness_7' }}</mat-icon>
       </button>
 
-      <button mat-icon-button [matMenuTriggerFor]="menu">
+      <button mat-icon-button [matMenuTriggerFor]="translationMenu">
         <mat-icon>translate</mat-icon>
       </button>
-      <mat-menu #menu="matMenu" color="secondary">
+      <mat-menu #translationMenu="matMenu" color="secondary">
         <a mat-menu-item *ngFor="let lang of langs" href="/{{lang.code}}" color="primary">{{ lang.label }}</a>
       </mat-menu>
 
-      <button mat-icon-button routerLink="/auth">
-        <mat-icon>person</mat-icon>
-      </button>
+
+      <div *ngIf="this.isLoggedIn; then loggedInBlock else notLoggedInBlock"></div>
+      <ng-template #loggedInBlock>
+        <button mat-button [matMenuTriggerFor]="userMenu">
+            <mat-icon>face</mat-icon>
+            <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+        <mat-menu #userMenu="matMenu">
+          <button (click)="authenticationService.logout()" mat-menu-item routerLink="/">
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </ng-template>
+      <ng-template #notLoggedInBlock>
+        <button mat-icon-button routerLink="/auth">
+          <mat-icon>person</mat-icon>
+        </button>
+      </ng-template>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

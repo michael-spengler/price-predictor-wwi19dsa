@@ -4,7 +4,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 @Injectable({
   providedIn: 'root'
 })
-export class ThemesService {
+export class ThemeService {
 
   isDarkTheme: boolean = true;
   constructor(public overlayContainer: OverlayContainer) {
