@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { ThemeService } from 'src/app/shared/services/theme/theme.service';
 import { Router, NavigationEnd } from '@angular/router';
-import { AuthenticationService } from '../../shared/services/authentication/authentication.service';
+import { AuthService } from '../../shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -33,19 +33,19 @@ export class SidenavComponent implements OnInit{
   constructor(
     private breakpointObserver: BreakpointObserver,
     public themesService: ThemeService,
-    public authenticationService: AuthenticationService,
+    public authService: AuthService,
     private router: Router
   ) { }
 
   ngOnInit() {
     this.onUpdate();
-    this.authenticationService.isLoggedIn.subscribe((data) => this.isLoggedIn = data);
+    this.authService.isLoggedIn.subscribe((data) => this.isLoggedIn = data);
   }
 
   private onUpdate() {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.authenticationService.checkAuthentication();
+        this.authService.checkAuthentication();
       }
     });
   }
