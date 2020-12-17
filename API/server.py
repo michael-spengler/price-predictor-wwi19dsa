@@ -63,7 +63,7 @@ class SignIn(Resource):
     @cross_origin(supports_credentials=True)
     def post(self):
         args = user_signin_args.parse_args() #reading args from json
-	args.email= args.email.lower()
+	    #args.email = args.email.lower()
         result = UserModel.query.filter_by(email=args.email).first()
 
         #Test Case
@@ -87,7 +87,7 @@ class SignUp(Resource):
     @cross_origin(supports_credentials=True)
     def post(self):
         args = user_signup_args.parse_args()
-	args.email= args.email.lower()
+	    #args.email= args.email.lower()
         result = UserModel.query.filter_by(email=args.email).first()
         if result:
             abort(409, message="Email is taken...")
