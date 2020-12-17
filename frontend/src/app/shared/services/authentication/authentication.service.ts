@@ -42,16 +42,19 @@ export class AuthenticationService {
     }
   }
 
-  public checkAuthentication() {
+  public checkAuthentication(): boolean {
     try {
       const currentTime = Math.floor((new Date).getTime() / 1000)
       if (currentTime <= this.getExpiration()) {
         this.isLoggedIn.next(true);
+        return true;
       } else {
         this.isLoggedIn.next(false);
+        return false;
       }
     } catch (error) {
       this.isLoggedIn.next(false);
+      return false;
     }
   }
 
