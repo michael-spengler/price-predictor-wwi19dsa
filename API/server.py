@@ -63,6 +63,7 @@ class SignIn(Resource):
     @cross_origin(supports_credentials=True)
     def post(self):
         args = user_signin_args.parse_args() #reading args from json
+	args.email= args.email.lower()
         result = UserModel.query.filter_by(email=args.email).first()
 
         #Test Case
@@ -83,8 +84,10 @@ class SignIn(Resource):
 class SignUp(Resource):
 
     @marshal_with(resource_fields)
+    @cross_origin(supports_credentials=True)
     def post(self):
         args = user_signup_args.parse_args()
+	args.email= args.email.lower()
         result = UserModel.query.filter_by(email=args.email).first()
         if result:
             abort(409, message="Email is taken...")
@@ -96,6 +99,7 @@ class SignUp(Resource):
         return user, 201
 
 class CheckToken(Resource):
+    @cross_origin(supports_credentials=True)
     def post(self):
         args = user_args.parse_args()
         if verifyToken(args.token):
