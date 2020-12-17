@@ -3,7 +3,7 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
-import { AuthenticationService } from '../../../shared/services/authentication/authentication.service';
+import { AuthService } from '../../../shared/services/auth/auth.service';
 import { MustMatch } from '../../../shared/validators/must-match.validator';
 
 
@@ -38,7 +38,7 @@ export class SignupComponent {
   });
 
   constructor(
-    private authenticationService: AuthenticationService,
+    private authService: AuthService,
     private _snackBar: MatSnackBar,
     private router: Router,
     private formBuilder: FormBuilder
@@ -53,24 +53,6 @@ export class SignupComponent {
     });
   }
 
-  public submit() {
-
-  //   if(!this.signupForm?.valid) {
-  //     this._snackBar.open('Please provide any values.', 'Close');
-  //   } else {
-  //   const email = this.signupForm.value.email;
-  //   const password = this.signupForm.value.password;
-  //   this.authenticationService
-  //     .signup(email, password)
-  //     .then((result) => {
-  //       this.router.navigate(['']);
-  //     })
-  //     .catch((error) => {
-  //       if (error.status >= 400 && error.status < 500) {
-  //         this._snackBar.open('Error. Credentials are invalid!', 'Close');
-  //       }
-  //     });
-  //   }
-  }
+  public submit() {}
 
 }

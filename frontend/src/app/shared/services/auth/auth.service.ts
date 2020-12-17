@@ -12,7 +12,7 @@ const ACCESS_TOKEN = 'Authorization';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenticationService {
+export class AuthService {
 
   isLoggedIn = new BehaviorSubject(false);
 
@@ -32,29 +32,24 @@ export class AuthenticationService {
     this.isLoggedIn.next(false);
   }
 
-  public getToken(): string {
-    const token = localStorage.getItem(ACCESS_TOKEN);
-
-    if (token == null) {
-      throw new Error('No Token Found');
-    } else {
-      return token;
-    }
-  }
-
-  public checkAuthentication(): boolean {
+  public isAuthenticated(): boolean {
     try {
-      const currentTime = Math.floor((new Date).getTime() / 1000)
+      const currentTime = Math.floor((new Date).getTime() / 1000);
       if (currentTime <= this.getExpiration()) {
-        this.isLoggedIn.next(true);
         return true;
       } else {
-        this.isLoggedIn.next(false);
         return false;
       }
     } catch (error) {
-      this.isLoggedIn.next(false);
       return false;
+    }
+  }
+
+  public checkAuthentication() {
+    if (this.isAuthenticated()) {
+      this.isLoggedIn.next(true);
+    } else {
+      this.isLoggedIn.next(false);
     }
   }
 
@@ -72,6 +67,16 @@ export class AuthenticationService {
       throw new Error('No Token Found');
     } else {
       localStorage.setItem(ACCESS_TOKEN, token);
+    }
+  }
+
+  private getToken(): string {
+    const token = localStorage.getItem(ACCESS_TOKEN);
+
+    if (token == null) {
+      throw new Error('No Token Found');
+    } else {
+      return token;
     }
   }
 }
