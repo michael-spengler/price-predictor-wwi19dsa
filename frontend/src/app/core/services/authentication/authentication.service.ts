@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { BehaviorSubject } from 'rxjs';
 import jwt_decode from 'jwt-decode';
 
+import { environment } from 'src/environments/environment';
 import { AccessToken } from 'src/app/shared/models/access-token.model';
+
 
 const ACCESS_TOKEN = 'Authorization';
 
@@ -12,34 +14,49 @@ const ACCESS_TOKEN = 'Authorization';
 })
 export class AuthenticationService {
 
+  isLoggedIn = new BehaviorSubject(false);
+
   constructor(private httpClient: HttpClient) { }
 
   public async login(email: string, password: string) {
     const body = { 'email': email, 'password': password };
     const response = await this.httpClient.post(environment.apiEndpoint + 'signin', body, { observe: 'response' }).toPromise();
-    const token = response.headers.get(ACCESS_TOKEN)
+    const token = response.headers.get(ACCESS_TOKEN);
     this.setAccessToken(token);
+    this.isLoggedIn.next(true);
     return response;
   }
 
   public logout() {
-    localStorage.removeItem(ACCESS_TOKEN)
+    localStorage.removeItem(ACCESS_TOKEN);
+    this.isLoggedIn.next(false);
   }
 
   public getToken(): string {
-    const token = localStorage.getItem(ACCESS_TOKEN)
+    const token = localStorage.getItem(ACCESS_TOKEN);
 
     if (token == null) {
-      throw new Error('No Token Found')
+      throw new Error('No Token Found');
     } else {
-      return token
+      return token;
     }
   }
 
-  public isAuthenticated(): Boolean|null {
-      const expiry = this.getTokenPayload().exp;
+  public checkAuthentication() {
+    try {
       const currentTime = Math.floor((new Date).getTime() / 1000)
-      return currentTime <= expiry;
+      if (currentTime <= this.getExpiration()) {
+        this.isLoggedIn.next(true);
+      } else {
+        this.isLoggedIn.next(false);
+      }
+    } catch (error) {
+      this.isLoggedIn.next(false);
+    }
+  }
+
+  private getExpiration(): number {
+    return this.getTokenPayload().exp;
   }
 
   private getTokenPayload(): AccessToken {
