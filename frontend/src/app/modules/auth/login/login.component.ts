@@ -3,7 +3,7 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
-import { AuthenticationService } from '../../../shared/services/authentication/authentication.service';
+import { AuthService } from '../../../shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +20,7 @@ export class LoginComponent {
   });
 
   constructor(
-    private authenticationService: AuthenticationService,
+    private authService: AuthService,
     private _snackBar: MatSnackBar,
     private router: Router,
     private formBuilder: FormBuilder
@@ -39,7 +39,7 @@ export class LoginComponent {
     } else {
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
-    this.authenticationService
+    this.authService
       .login(email, password)
       .then((result) => {
         this.router.navigate(['']);
