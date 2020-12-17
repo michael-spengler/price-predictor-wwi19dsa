@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { ThemeService } from 'src/app/core/services/theme/theme.service';
+import { ThemeService } from 'src/app/shared/services/theme/theme.service';
 import { Router, NavigationEnd } from '@angular/router';
-import { AuthenticationService } from '../../services/authentication/authentication.service';
+import { AuthenticationService } from '../../shared/services/authentication/authentication.service';
 
 @Component({
   selector: 'app-sidenav',

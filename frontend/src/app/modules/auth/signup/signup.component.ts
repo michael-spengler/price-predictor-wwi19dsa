@@ -3,8 +3,8 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
-import { AuthenticationService } from '../../../services/authentication/authentication.service';
-import { MustMatch } from '../../../services/validators/must-match.validator';
+import { AuthenticationService } from '../../../shared/services/authentication/authentication.service';
+import { MustMatch } from '../../../shared/validators/must-match.validator';
 
 
 @Component({
