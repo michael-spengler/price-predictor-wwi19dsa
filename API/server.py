@@ -16,7 +16,7 @@ class UserModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False)
-    name = db.Column(db.String, nullable=False)
+    lastname = db.Column(db.String, nullable=False)
     firstName = db.Column(db.String, nullable=False)
     street = db.Column(db.String, nullable=False)
     plz = db.Column(db.Integer, nullable=False)
@@ -25,13 +25,13 @@ class UserModel(db.Model):
     password = db.Column(db.LargeBinary, nullable=False)
 
     def _repr_(self):
-        return f"id : {id}, email : {email}, username : {username}, firstName : {firstName}, name : {name}, street : {street}, plz : {plz}, city : {city}, country : {country}"
+        return f"id : {id}, email : {email}, username : {username}, firstName : {firstName}, lastname : {lastname}, street : {street}, plz : {plz}, city : {city}, country : {country}"
 
 resource_fields = {
     'id': fields.String,
     'username': fields.String,
-	'email': fields.String,
-    'name': fields.String,
+    'email': fields.String,
+    'lastname': fields.String,
     'firstName': fields.String,
     'street': fields.String,
     'plz': fields.Integer,
@@ -50,7 +50,7 @@ user_signin_args.add_argument("password", type=str, help="password missing", req
 user_signup_args = reqparse.RequestParser()
 user_signup_args.add_argument("email", type=str, help="email missing", required=True)
 user_signup_args.add_argument("username", type=str, help="username missing", required=True)
-user_signup_args.add_argument("name", type=str, help="name missing", required=True)
+user_signup_args.add_argument("lastname", type=str, help="lastname missing", required=True)
 user_signup_args.add_argument("password", type=str, help="password missing", required=True)
 
 
