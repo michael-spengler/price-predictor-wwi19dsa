@@ -4,6 +4,9 @@
     "analytics": false
   },
   "version": 1,
+  "cli": {
+    "analytics": false
+  },
   "newProjectRoot": "projects",
   "projects": {
     "price-predictor": {
