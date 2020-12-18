@@ -47,3 +47,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+frontend/package-lock.json
+API/pylib/__pycache__/__init__.cpython-38.pyc
+API/pylib/__pycache__/functions.cpython-38.pyc
