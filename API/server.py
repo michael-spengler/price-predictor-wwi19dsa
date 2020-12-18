@@ -21,11 +21,7 @@ class UserModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False)
-<<<<<<< HEAD
-    lastname = db.Column(db.String, nullable=False)
-=======
     lastName = db.Column(db.String, nullable=False)
->>>>>>> 7f3d889... fixed SignUp in API
     firstName = db.Column(db.String, nullable=False)
     street = db.Column(db.String, nullable=True)
     zip = db.Column(db.Integer, nullable=True)
@@ -35,11 +31,7 @@ class UserModel(db.Model):
     birthdate = db.Column(db.String, nullable=False)
 
     def _repr_(self):
-<<<<<<< HEAD
-        return f"id : {id}, email : {email}, username : {username}, firstName : {firstName}, lastname : {lastname}, street : {street}, plz : {plz}, city : {city}, country : {country}"
-=======
         return f"id : {id}, email : {email}, username : {username}, firstName : {firstName}, name : {name}, street : {street}, plz : {plz}, city : {city}, country : {country}, birtdate : {birtdate}"
->>>>>>> 7f3d889... fixed SignUp in API
 
 resource_fields = {
     'id': fields.String,
@@ -64,11 +56,7 @@ user_signin_args.add_argument("password", type=str, help="password missing", req
 
 user_signup_args = reqparse.RequestParser()
 user_signup_args.add_argument("username", type=str, help="username missing", required=True)
-<<<<<<< HEAD
-user_signup_args.add_argument("lastname", type=str, help="lastname missing", required=True)
-=======
 user_signup_args.add_argument("email", type=str, help="email missing", required=True)
->>>>>>> 7f3d889... fixed SignUp in API
 user_signup_args.add_argument("password", type=str, help="password missing", required=True)
 user_signup_args.add_argument("firstName", type=str, help="firstName missing", required=True)
 user_signup_args.add_argument("lastName", type=str, help="lastName missing", required=True)
@@ -89,12 +77,7 @@ class SignIn(Resource):
     @cross_origin(supports_credentials=True)
     def post(self):
         args = user_signin_args.parse_args() #reading args from json
-<<<<<<< HEAD
-	    #args.email = args.email.lower()
-        result = UserModel.query.filter_by(email=args.email).first()
-=======
         args.email = args.email.lower()
->>>>>>> 7f3d889... fixed SignUp in API
 
         #Test Case
         if args.email == 'demo@test.de' and args.password == "Test1":
@@ -119,12 +102,8 @@ class SignUp(Resource):
     def post(self):
         #load body
         args = user_signup_args.parse_args()
-<<<<<<< HEAD
-	    #args.email= args.email.lower()
-=======
         args.email = args.email.lower()
         #check result
->>>>>>> 7f3d889... fixed SignUp in API
         result = UserModel.query.filter_by(email=args.email).first()
         if result:
             abort(409, message="Email is taken...")
