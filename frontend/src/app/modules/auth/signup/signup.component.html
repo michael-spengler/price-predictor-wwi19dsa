@@ -37,6 +37,14 @@
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="signup-full-width">
+                <mat-label i18n="Country @@enter_country">Country</mat-label>
+                <input fxFlex="50" matInput formControlName="country" required>
+                <mat-error *ngIf="signupForm.controls.country.invalid">
+                    <span *ngIf="signupForm.controls.country.hasError('required')" i18n="This field is mandatory.@@field_mandatory">This field is mandatory.</span>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="signup-full-width">
                 <mat-label i18n="Your email@@enter_email">Your Email</mat-label>
                 <input fxFlex="50" matInput formControlName="email" required>
                 <mat-icon matSuffix>email</mat-icon>

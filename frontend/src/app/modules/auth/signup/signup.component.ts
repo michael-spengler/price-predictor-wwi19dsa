@@ -30,6 +30,7 @@ export class SignupComponent {
     lastName: [null, Validators.required],
     username: [null, Validators.required],
     birthday: [null, Validators.required],
+    country: [null, Validators.required],
     password: [null, [Validators.required, Validators.pattern(this.passwordRegx)]],
     confirmPassword: [null, Validators.required],
     acceptTerms: [null, Validators.required]
