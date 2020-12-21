@@ -75,7 +75,6 @@ def loadArgs(Args):
         args.email = args.email.lower()
     except:
         pass
-    
     return args
 
 def abortIfEmailIsInDB(args, UserModel, abort, abortMessage):
@@ -109,9 +108,10 @@ def loadSignUpArgs(userSignUpArgs):
     userSignUpArgs.add_argument("zip", type=int, help="zip missing", required=False)
     userSignUpArgs.add_argument("country", type=str, help="country missing", required=False)
     userSignUpArgs.add_argument("birthdate", type=str, help="birthdate missing", required=False)
+    userSignUpArgs.add_argument("city", type=str, help="birthdate missing", required=False)
     return userSignUpArgs
 
-def loadtokenVerifivationArgs(tokenVerifivationArgs):
+def loadTokenVerifivationArgs(tokenVerifivationArgs):
     tokenVerifivationArgs.add_argument("token", type=str, help="token missing", required=True)
     return tokenVerifivationArgs
 
@@ -129,14 +129,63 @@ def loadSignUpFields(fields):
     'birtdate': fields.String
     }
 
+def loadBlogFields(fields):
+    return {
+        'id' : fields.String,
+        'author' : fields.String,
+        'title' : fields.String,
+        'date' : fields.String,
+        'content' : fields.String
+    }
+
 def createUser(args, UserModel, db):
     hashedPassword = createHashAndSalt(args.password)
     user = UserModel(email=args.email, password=hashedPassword, username=args.username, \
-        firstName=args.firstName, lastName=args.lastName, country=args.country, zip=int(args.zip), street=args.street, birthdate=args.birthdate)
+        firstName=args.firstName, lastName=args.lastName, country=args.country, zip=int(args.zip), street=args.street, birthdate=args.birthdate, city=args.city)
     db.session.add(user)
     db.session.commit()
     return user
 
-def returnToken(args):
-    token = createToken(args.email)
-    return {"message" : "Successfully authenticated"}, 201, {"Authorization" :  token, "Access-Control-Expose-Headers": "Authorization"},  #body, status, header
+def updateDB(db):
+    import os.path
+    if os.path.exists("/home/ubuntu"):
+        if os.path.isfile('/home/ubuntu/database.db'):
+            print ("File exist")
+        else:
+            app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////home/ubuntu/database.db"
+            db.drop_all()
+            db.create_all()
+            print ("DB File created")
+    elif os.path.isfile("tmp/database.db"):
+        pass
+    else:
+        db.drop_all()
+        db.create_all()
+
+def createBlogEntry(args, BlogModel, db):
+    blog = BlogModel(author=args.author, date=args.date, title=args.title, content=args.content)
+    db.session.add(blog)
+    db.session.commit()
+    return blog
+
+def loadToken(args):
+    return createToken(args.email)
+
+def loadUsername(args, UserModel):
+    result = UserModel.query.filter_by(email=args.email).first()
+    return result.username
+
+def loadBlogArgs(BlogArgs):
+    BlogArgs.add_argument("author", type=str, help="author missing", required=True)
+    BlogArgs.add_argument("content", type=str, help="content missing", required=True)
+    BlogArgs.add_argument("date", type=str, help="date missing", required=True)
+    BlogArgs.add_argument("title", type=str, help="title missing", required=True)
+    BlogArgs.add_argument("id", type=str, help="ID missing", required=False)
+    return BlogArgs
+
+def loadBlogEntries(BlogModel):
+    result = BlogModel.query.all()
+    entries = {}
+    for blog in result:
+        entries[int(blog.id)]=blog.data()
+    return entries
