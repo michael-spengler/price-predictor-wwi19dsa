@@ -146,7 +146,7 @@ def createUser(args, UserModel, db):
     db.session.commit()
     return user
 
-def updateDB(db):
+def updateDB(db, app):
     import os.path
     if os.path.exists("/home/ubuntu"):
         print("if")
