@@ -32,8 +32,8 @@ class UserModel(db.Model):
     country = db.Column(db.String, nullable=True)
     password = db.Column(db.LargeBinary, nullable=False)
     birthdate = db.Column(db.String, nullable=False)
-    def _repr_(self):
-        return f"id : {id}, email : {email}, username : {username}, firstName : {firstName}, name : {name}, street : {street}, plz : {plz}, city : {city}, country : {country}, birtdate : {birtdate}"
+    def data(self):
+        return {"id" : self.id, "email" : self.email, "username" : self.username, "firstName" : self.firstName, "name" : self.name, "street" : self.street, "zip" : self.zip, "city" : self.city, "country" : self.country, "birtdate" : self.birtdate}
 
 class BlogModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)

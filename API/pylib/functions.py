@@ -149,6 +149,7 @@ def createUser(args, UserModel, db):
 def updateDB(db):
     import os.path
     if os.path.exists("/home/ubuntu"):
+        print("if")
         if os.path.isfile('/home/ubuntu/database.db'):
             print ("File exist")
         else:
@@ -159,7 +160,7 @@ def updateDB(db):
     elif os.path.isfile("tmp/database.db"):
         pass
     else:
-        db.drop_all()
+        os.mkdir("tmp")
         db.create_all()
 
 def createBlogEntry(args, BlogModel, db):
