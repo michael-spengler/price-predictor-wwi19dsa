@@ -39,6 +39,7 @@ export class SidenavComponent implements OnInit{
 
   ngOnInit() {
     this.onUpdate();
+    this.authService.checkAuthentication();
     this.authService.isLoggedIn.subscribe((data) => this.isLoggedIn = data);
   }
 
