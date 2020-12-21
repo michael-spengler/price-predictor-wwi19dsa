@@ -154,7 +154,6 @@ def updateDB(db, app):
             print ("File exist")
         else:
             app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////home/ubuntu/database.db"
-            db.drop_all()
             db.create_all()
             print ("DB File created")
     elif os.path.isfile("tmp/database.db"):
