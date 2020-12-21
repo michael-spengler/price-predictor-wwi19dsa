@@ -62,7 +62,7 @@ blogArgs = reqparse.RequestParser()
 blogArgs = functions.loadBlogArgs(blogArgs)
 
 #In case of changes, the db needs to be reconfigured
-functions.updateDB(db)
+functions.updateDB(db, app)
 
 @api.route("/signin")
 @api.doc(params={"email": "", "password": ""})
