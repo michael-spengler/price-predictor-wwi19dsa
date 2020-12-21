@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AnonymousGuard } from './shared/guards/anonymous.guard';
 import { SidenavComponent } from './template/sidenav/sidenav.component';
 
 const routes: Routes = [
@@ -12,13 +11,13 @@ const routes: Routes = [
   {
     path: '',
     component: SidenavComponent,
-    loadChildren: () => import('./template/sidenav.module')
-      .then(m => m.SidenavModule)
+    loadChildren: () => import('./modules/application/application.module')
+      .then(m => m.ApplicationModule)
   },
-  // {
-  //   path: '**',
-  //   redirectTo: ''
-  // }
+  {
+    path: '**',
+    redirectTo: ''
+  }
 ];
 
 @NgModule({

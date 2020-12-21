@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AnonymousGuard } from 'src/app/shared/guards/anonymous.guard';
 
 const routes: Routes = [
   {
@@ -7,12 +8,9 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    loadChildren: () => import('../modules/auth/auth.module')
+    loadChildren: () => import('../auth/auth.module')
       .then(m => m.AuthModule),
-  },
-  {
-    path: '**',
-    redirectTo: ''
+    canActivate: [AnonymousGuard],
   }
 ];
 
@@ -20,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class SidenavRoutingModule { }
+export class ApplicationRoutingModule { }
