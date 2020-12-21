@@ -20,8 +20,14 @@ if str(input()) != "1":
     token = "abc"
 
 response = requests.post(Base + "verify-token", {"token": token})
+
 print(response.json())
 
-#input()
+input()
+
+response = requests.post(Base + "blog", {"content":"Test", "author":"author", "title":"title", "date":"today"}, headers={"Authorization" : token})
+print(response.json())
+
+input()
 #response = requests.get(Base + "video/2")
 #print(response.json())
