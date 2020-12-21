@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ApplicationRoutingModule } from './application-routing.module';
 import { MaterialModule } from '../../material.module';
 import { AuthModule } from '../auth/auth.module';
+import { FeedModule } from '../feed/feed.module';
 
 @NgModule({
   declarations: [],
@@ -10,7 +11,8 @@ import { AuthModule } from '../auth/auth.module';
     CommonModule,
     ApplicationRoutingModule,
     MaterialModule,
-    AuthModule
+    AuthModule,
+    FeedModule
   ]
 })
 export class ApplicationModule { }
