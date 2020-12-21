@@ -34,7 +34,7 @@ class UserModel(db.Model):
     password = db.Column(db.LargeBinary, nullable=False)
     birthdate = db.Column(db.String, nullable=False)
     def data(self):
-        return {"id" : self.id, "email" : self.email, "username" : self.username, "firstName" : self.firstName, "name" : self.name, "street" : self.street, "zip" : self.zip, "city" : self.city, "country" : self.country, "birtdate" : self.birtdate}
+        return {"id" : self.id, "email" : self.email, "username" : self.username, "firstName" : self.firstName, "lastName": self.lastName, "street" : self.street, "zip" : self.zip, "city" : self.city, "country" : self.country, "birthdate" : self.birthdate}
 
 class BlogModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
