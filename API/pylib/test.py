@@ -1,16 +1,21 @@
 import requests
 
-Base = "http://3.131.4.23:5000/"
+enter = input("1 for 3.131.4.23")
+if enter == "1":
+    Base = "http://3.131.4.23:5000/"
+else:
+    Base = "http://127.0.0.1:5000/"
 
-response = requests.post(Base + "signup", {"email": "demo@test.de", "password": "Test1", "username":"Test", "lastName":"Piet", "firstName":"TestName", "country":"DHBWstinkt", "birthdate": "today", "zip": "61476"})
+response = requests.post(Base + "signup", {"email": "demo@test.de", "password": "Test1", "username":"Test", "lastName":"Piet", "firstName":"TestName", "country":"DHBWstinkt", "birthdate": "100202000", "zip": "61476"})
 print(response)
 print(response.json())
 
 input()
 
-response = requests.post(Base + "signin", {"email": "ferdi@test.de", "password": "Test1"})
+response = requests.post(Base + "signin", {"email": "demo@test.de", "password": "Test1"})
 print(response.headers)
 print(response.json())
+input()
 token= response.headers["Authorization"]
 print(token)
 
