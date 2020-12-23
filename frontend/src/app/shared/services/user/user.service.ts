@@ -12,6 +12,6 @@ export class UserService {
   constructor(private httpClient: HttpClient) { }
 
   public createUser(user: User) {
-    return this.httpClient.post(environment.apiEndpoint + 'signup', user);
+    return this.httpClient.post(environment.apiEndpoint + 'signup', user, { observe: 'response' });
   }
 }

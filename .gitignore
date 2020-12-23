@@ -9,6 +9,7 @@
 
 # dependencies
 /frontend/node_modules
+API/.vscode/settings.json
 
 #cached python files
 API/__pycache__/*
