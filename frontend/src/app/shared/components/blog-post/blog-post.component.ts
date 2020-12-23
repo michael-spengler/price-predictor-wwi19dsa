@@ -1,14 +1,12 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BlogPost } from '../../models/blog-post.model';
-import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-blog-post',
   templateUrl: './blog-post.component.html',
   styleUrls: ['./blog-post.component.scss']
 })
-export class BlogPostComponent implements OnInit {
+export class BlogPostComponent {
   date = new Date;
   posts: Array<BlogPost> = [];
 
@@ -19,19 +17,6 @@ export class BlogPostComponent implements OnInit {
     'title': 'TITLE',
     'date': this.date,
   };
-  constructor(private httpClient: HttpClient) {
-    for (let i = 0; i < 50; i++) {
-      this.posts.push(this.post1);
-    }
+  constructor() {
    }
-
-  ngOnInit() {
-    this.getPosts();
-  }
-
-  getPosts() {
-    this.httpClient.get(environment.apiEndpoint + '/blog').subscribe(resp => {
-      console.log(resp);
-    });
-  }
 }

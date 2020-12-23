@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BlogPostComponent } from '../../shared/components/blog-post/blog-post.component';
+import { FeedComponent } from './feed/feed.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: BlogPostComponent
+    component: FeedComponent
   }
 ];
 
