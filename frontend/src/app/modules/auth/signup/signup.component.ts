@@ -5,7 +5,9 @@ import { Router } from '@angular/router';
 
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { MustMatch } from '../../../shared/validators/must-match.validator';
-
+import { UserService } from '../../../shared/services/user/user.service';
+import { User } from '../../../shared/models/user.model';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-signup',
@@ -29,7 +31,7 @@ export class SignupComponent {
     firstName: [null, Validators.required],
     lastName: [null, Validators.required],
     username: [null, Validators.required],
-    birthday: [null, Validators.required],
+    birthdate: [null, Validators.required],
     country: [null, Validators.required],
     password: [null, [Validators.required, Validators.pattern(this.passwordRegx)]],
     confirmPassword: [null, Validators.required],
@@ -42,7 +44,9 @@ export class SignupComponent {
     private authService: AuthService,
     private _snackBar: MatSnackBar,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private httpClient: HttpClient
   ) {
     this.maxDate.setFullYear(this.minDate.getFullYear() - 18);
     this.minDate.setFullYear(this.minDate.getFullYear() - 120);
@@ -54,6 +58,25 @@ export class SignupComponent {
     });
   }
 
-  public submit() {}
+  public submit() {
+    const user: User = {
+      username: this.signupForm.value.username,
+      email: this.signupForm.value.email,
+      firstName: this.signupForm.value.firstName,
+      lastName: this.signupForm.value.lastName,
+      country: this.signupForm.value.country,
+      password: this.signupForm.value.password,
+      birthdate: this.signupForm.value.birthdate,
+      zip: 2324234
+    };
+    
+    this.userService.createUser(user).subscribe(result => {
+        console.log(result);
+        this.authService.login(user.email, user.password).then(() => this.router.navigate(['/']));
+    }, error => {
+        this._snackBar.open('Error. There are some troubles with the signup!', 'Close');
+
+    });
+  }
 
 }

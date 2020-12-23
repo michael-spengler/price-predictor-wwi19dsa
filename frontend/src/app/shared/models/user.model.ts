@@ -3,10 +3,9 @@ export interface User {
     username: string,
     email: string,
     firstName: string,
-    name: string,
-    street?: string,
+    lastName: string,
     zip?: number,
-    city?: string,
-    country?: string,
-    password?: string
+    country: string,
+    password: string,
+    birthdate: string
 }
