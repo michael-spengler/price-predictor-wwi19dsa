@@ -3,36 +3,36 @@
         <mat-card-content>
 
             <mat-form-field appearance="outline" class="signup-full-width">
-                <mat-label i18n="First Name@@enter_firstName">First Name</mat-label>
+                <mat-label i18n="First Name @@enter_firstName">First Name</mat-label>
                 <input fxFlex="25" matInput formControlName="firstName" required>
                 <mat-error *ngIf="signupForm.controls.firstName.invalid">
-                    <span *ngIf="signupForm.controls.firstName.hasError('required')" i18n="This field is mandatory.@@field_mandatory">This field is mandatory.</span>
+                    <span *ngIf="signupForm.controls.firstName.hasError('required')" i18n="This field is mandatory. @@field_mandatory">This field is mandatory.</span>
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="signup-full-width">
-                <mat-label i18n="Last Name@@enter_lastName">Last Name</mat-label>
+                <mat-label i18n="Last Name @@enter_lastName">Last Name</mat-label>
                 <input fxFlex="50" matInput formControlName="lastName" required>
                 <mat-error *ngIf="signupForm.controls.lastName.invalid">
-                    <span *ngIf="signupForm.controls.lastName.hasError('required')" i18n="This field is mandatory.@@field_mandatory">This field is mandatory.</span>
+                    <span *ngIf="signupForm.controls.lastName.hasError('required')" i18n="This field is mandatory. @@field_mandatory">This field is mandatory.</span>
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="signup-full-width">
-                <mat-label i18n="Username@@enter_username">Username</mat-label>
+                <mat-label i18n="Username @@enter_username">Username</mat-label>
                 <input fxFlex="25" matInput formControlName="username" required>
                 <mat-error *ngIf="signupForm.controls.username.invalid">
-                    <span *ngIf="signupForm.controls.username.hasError('required')" i18n="This field is mandatory.@@field_mandatory">This field is mandatory.</span>
+                    <span *ngIf="signupForm.controls.username.hasError('required')" i18n="This field is mandatory. @@field_mandatory">This field is mandatory.</span>
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field class="signup-full-width" fxFlexFill appearance="fill">
-                <mat-label i18n="What is your birthday?@@enter_birthday">What is your birthday?</mat-label>
-                <input matInput formControlName="birthday" [matDatepicker]="picker" [min]="minDate" [max]="maxDate">
+                <mat-label i18n="What is your birthday? @@enter_birthday">What is your birthday?</mat-label>
+                <input matInput formControlName="birthdate" [matDatepicker]="picker" [min]="minDate" [max]="maxDate">
                 <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
                 <mat-datepicker #picker startView="multi-year"></mat-datepicker>
-                <mat-error *ngIf="signupForm.controls.birthday.invalid">
-                    <span *ngIf="signupForm.controls.birthday.hasError('required')" i18n="This field is mandatory.@@field_mandatory">This field is mandatory.</span>
+                <mat-error *ngIf="signupForm.controls.birthdate.invalid">
+                    <span *ngIf="signupForm.controls.birthdate.hasError('required')" i18n="This field is mandatory. @@field_mandatory">This field is mandatory.</span>
                 </mat-error>
             </mat-form-field>
 
@@ -40,54 +40,54 @@
                 <mat-label i18n="Country @@enter_country">Country</mat-label>
                 <input fxFlex="50" matInput formControlName="country" required>
                 <mat-error *ngIf="signupForm.controls.country.invalid">
-                    <span *ngIf="signupForm.controls.country.hasError('required')" i18n="This field is mandatory.@@field_mandatory">This field is mandatory.</span>
+                    <span *ngIf="signupForm.controls.country.hasError('required')" i18n="This field is mandatory. @@field_mandatory">This field is mandatory.</span>
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="signup-full-width">
-                <mat-label i18n="Your email@@enter_email">Your Email</mat-label>
+                <mat-label i18n="Your email @@enter_email">Your Email</mat-label>
                 <input fxFlex="50" matInput formControlName="email" required>
                 <mat-icon matSuffix>email</mat-icon>
                 <mat-error *ngIf="signupForm.controls.email.invalid">
-                    <span *ngIf="signupForm.controls.email.hasError('required')" i18n="This field is mandatory.@@field_mandatory">This field is mandatory.</span>
-                    <span *ngIf="signupForm.controls.email.hasError('pattern')" i18n="This field is invalid.@@field_invalid">This field is invalid.</span>
+                    <span *ngIf="signupForm.controls.email.hasError('required')" i18n="This field is mandatory. @@field_mandatory">This field is mandatory.</span>
+                    <span *ngIf="signupForm.controls.email.hasError('pattern')" i18n="This field is invalid. @@field_invalid">This field is invalid.</span>
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field class="signup-full-width" fxFlexFill appearance="outline">
-                <mat-label i18n="Your password@@enter_password">Your password</mat-label>
+                <mat-label i18n="Your password @@enter_password">Your password</mat-label>
                 <input matInput [type]="hide1 ? 'password' : 'text'" formControlName="password" required>
                 <button type="button" mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="!hide1">
                     <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
                 <mat-error *ngIf="signupForm.controls.password.invalid">
-                    <span *ngIf="signupForm.controls.password.hasError('required')" i18n="This field is mandatory.@@field_mandatory">This field is mandatory.</span>
-                    <span *ngIf="signupForm.controls.password.hasError('pattern')" i18n="This field is invalid.@@field_invalid">This field is invalid.</span>
+                    <span *ngIf="signupForm.controls.password.hasError('required')" i18n="This field is mandatory. @@field_mandatory">This field is mandatory.</span>
+                    <span *ngIf="signupForm.controls.password.hasError('pattern')" i18n="This field is invalid. @@field_invalid">This field is invalid.</span>
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field class="signup-full-width" fxFlexFill appearance="outline">
-                <mat-label i18n="Confirm your password@@confirm_password">Confirm your password</mat-label>
+                <mat-label i18n="Confirm your password @@confirm_password">Confirm your password</mat-label>
                 <input matInput [type]="hide2 ? 'password' : 'text'" formControlName="confirmPassword" required>
                 <button type="button" mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="!hide2">
                     <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
                 <mat-error *ngIf="signupForm.controls.confirmPassword.invalid">
-                    <span *ngIf="signupForm.controls.confirmPassword.hasError('required')" i18n="This field is mandatory.@@field_mandatory">This field is mandatory.</span>
-                    <span *ngIf="signupForm.controls.confirmPassword.hasError('mustMatch')" i18n="Passwords should match.@@password_match">Passwords should match.</span>
+                    <span *ngIf="signupForm.controls.confirmPassword.hasError('required')" i18n="This field is mandatory. @@field_mandatory">This field is mandatory.</span>
+                    <span *ngIf="signupForm.controls.confirmPassword.hasError('mustMatch')" i18n="Passwords should match. @@password_match">Passwords should match.</span>
                 </mat-error>
             </mat-form-field>
 
             <div>
-                <mat-checkbox formControlName="acceptTerms" required i18n="I have not read and understood the terms and conditions.@@read_t_c">I have not read and understood the terms and conditions.</mat-checkbox>
+                <mat-checkbox formControlName="acceptTerms" required i18n="I have not read and understood the terms and conditions. @@read_t_c">I have not read and understood the terms and conditions.</mat-checkbox>
                 <mat-error *ngIf="signupForm.controls.acceptTerms.touched && signupForm.controls.acceptTerms.invalid">
-                    <span *ngIf="signupForm.controls.acceptTerms.hasError('required')" i18n="This field is mandatory.@@field_mandatory">This field is mandatory.</span>
+                    <span *ngIf="signupForm.controls.acceptTerms.hasError('required')" i18n="This field is mandatory. @@field_mandatory">This field is mandatory.</span>
                 </mat-error>
             </div>
 
 
-            <button type="submit" mat-stroked-button class="signup-full-width" *ngIf="signupForm.valid" i18n="Sign Up@@sign_up">Sign Up</button>
-            <button type="submit" mat-stroked-button class="signup-full-width" *ngIf="!signupForm.valid" i18n="Sign Up@@sign_up" disabled>Sign Up</button>
+            <button type="submit" mat-stroked-button class="signup-full-width" *ngIf="signupForm.valid" i18n="Sign Up @@sign_up">Sign Up</button>
+            <button type="submit" mat-stroked-button class="signup-full-width" *ngIf="!signupForm.valid" i18n="Sign Up @@sign_up" disabled>Sign Up</button>
 
         </mat-card-content>
     </form>
