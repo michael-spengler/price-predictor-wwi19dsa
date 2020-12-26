@@ -28,7 +28,7 @@ class UserModel(db.Model):
     lastName = db.Column(db.String, nullable=False)
     firstName = db.Column(db.String, nullable=False)
     street = db.Column(db.String, nullable=True)
-    zip = db.Column(db.Integer, nullable=True)
+    zip = db.Column(db.String, nullable=True)
     city = db.Column(db.String, nullable=True)
     country = db.Column(db.String, nullable=True)
     password = db.Column(db.LargeBinary, nullable=False)
@@ -81,7 +81,7 @@ class SignIn(Resource):
 
         
 @api.route("/signup")
-@api.doc(params={"email": "", "password": "", "username":"", "lastName":"", "firstName":"", "country":"", "birthdate": "", "zip": "requires int!", "city": ""})
+@api.doc(params={"email": "", "password": "", "username":"", "lastName":"", "firstName":"", "country":"", "birthdate": "", "street":"", "zip": "", "city": ""})
 class SignUp(Resource):
     @cross_origin(supports_credentials=True)
     @marshal_with(SignUpFields)
@@ -94,7 +94,7 @@ class SignUp(Resource):
         return res, 201
 
 @api.route("/verify-token")
-@api.doc(params={"token":"Bearer sometokenvalue"})
+@api.doc(params={"token":"example: \"Bearer sometokenvalue\""})
 class VerifyToken(Resource):
     @cross_origin(supports_credentials=True)
     def post(self):
@@ -105,7 +105,6 @@ class VerifyToken(Resource):
             return {"message" : "Token invalid"}, 404
 
 @api.route("/blog")
-
 class Blog(Resource):
     @api.doc(params={"content":"", "author":"", "title":"", "date":""})
     @marshal_with(BlogFields)
@@ -121,6 +120,10 @@ class Blog(Resource):
         res = functions.loadBlogEntries(BlogModel)
         return {"blog entries": res}, 200
 
+@api.route("/blog/<int:blogID>")
+class BlogID(Resource):
+    def get(self, blogID):
+        return functions.loadBlogEntryByID(BlogModel, blogID, abort)
 
 if __name__ == "__main__":
     hostip = sys.argv[1]
