@@ -54,6 +54,8 @@ def verifyToken(auth_token):
     import jwt
     from flask_restx import abort
     #removing "Bearer " from token
+    if auth_token is None:
+        abort(404, message="No token provided in Header")
     auth_token = auth_token[7:]
     #Reading Secret Key
     secret = secretKey()
