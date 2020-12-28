@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ApplicationRoutingModule } from './application-routing.module';
 import { MaterialModule } from '../../material.module';
 import { AuthModule } from '../auth/auth.module';
-import { FeedModule } from '../feed/feed.module';
+import { BlogModule } from '../blog/blog.module';
 
 @NgModule({
   declarations: [],
@@ -12,7 +12,7 @@ import { FeedModule } from '../feed/feed.module';
     ApplicationRoutingModule,
     MaterialModule,
     AuthModule,
-    FeedModule
+    BlogModule
   ]
 })
 export class ApplicationModule { }

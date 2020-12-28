@@ -7,9 +7,9 @@ const routes: Routes = [
     path: '',
   },
   {
-    path: 'feed',
-    loadChildren: () => import('../feed/feed.module')
-      .then(m => m.FeedModule)
+    path: 'blog',
+    loadChildren: () => import('../blog/blog.module')
+      .then(m => m.BlogModule)
   },
   {
     path: 'auth',
