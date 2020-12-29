@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { BlogPost } from '../../../shared/models/blog-post.model';
+import { retry } from 'rxjs/operators';
 
 @Component({
   selector: 'app-feed',
@@ -27,12 +28,16 @@ export class FeedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getPosts();
+    this.getPosts().subscribe(blogs => {
+      for (let blog of blogs['blog entries']) {
+        this.posts.push(blog);
+        console.log(blog.date)
+        console.log(typeof(blog.date))
+      }
+    });
   }
 
   getPosts() {
-    this.httpClient.get<BlogPost[]>(environment.apiEndpoint + '/blog').subscribe(resp => {
-      console.log(resp);
-    });
+    return this.httpClient.get<{'blog entries' : BlogPost[]}>(environment.apiEndpoint + 'blog').pipe(retry(2));
   }
 }
