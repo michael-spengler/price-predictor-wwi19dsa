@@ -6,10 +6,11 @@ import { MaterialModule } from '../../material.module';
 import { BlogPostComponent } from '../../shared/components/blog-post/blog-post.component';
 import { BlogRoutingModule } from './blog-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { BlogDialogComponent } from '../../shared/components/blog-dialog/blog-dialog.component';
 
 
 @NgModule({
-  declarations: [PostComponent, FeedComponent, BlogPostComponent],
+  declarations: [PostComponent, FeedComponent, BlogPostComponent, BlogDialogComponent],
   imports: [
     CommonModule,
     MaterialModule,

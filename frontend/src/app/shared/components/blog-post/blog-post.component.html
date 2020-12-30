@@ -1,8 +1,5 @@
 <mat-card class="mat-elevation-z4" style="margin: 8px;">
     <mat-card-header>
-        <!-- <div mat-card-avatar>
-                        <mat-icon>face</mat-icon>
-                    </div> -->
         <mat-card-title>{{ post.title }}</mat-card-title>
         <mat-card-subtitle>{{ post.author }} - {{ post.date | date }}</mat-card-subtitle>
     </mat-card-header>
@@ -11,4 +8,7 @@
             {{ post.content }}
         </p>
     </mat-card-content>
+    <mat-card-actions>
+        <button mat-button>View</button>
+      </mat-card-actions>
 </mat-card>
