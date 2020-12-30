@@ -1,14 +1,14 @@
 <mat-card class="mat-elevation-z4" style="margin: 8px;">
     <mat-card-header>
-        <!-- <div mat-card-avatar>
-                        <mat-icon>face</mat-icon>
-                    </div> -->
-        <mat-card-title>{{ post1.title }}</mat-card-title>
-        <mat-card-subtitle>{{ post1.author }} - {{ post1.date | date }}</mat-card-subtitle>
+        <mat-card-title>{{ post.title }}</mat-card-title>
+        <mat-card-subtitle>{{ post.author }} - {{ post.date | date }}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
         <p class="shorten-long-text">
-            {{ post1.content }}
+            {{ post.content }}
         </p>
     </mat-card-content>
+    <mat-card-actions>
+        <button mat-button (click)="openDialog()">View</button>
+      </mat-card-actions>
 </mat-card>
