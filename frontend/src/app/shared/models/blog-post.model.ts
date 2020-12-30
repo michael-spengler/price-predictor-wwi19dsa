@@ -4,5 +4,5 @@ export interface BlogPost {
     title: string,
     author: User['username'],
     content: string,
-    date: Date
+    date?: Date
 }
