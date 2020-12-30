@@ -9,20 +9,14 @@ import { BlogDialogComponent } from '../blog-dialog/blog-dialog.component';
   styleUrls: ['./blog-post.component.scss']
 })
 export class BlogPostComponent {
-  posts: Array<BlogPost> = [];
 
-  @Input() post: BlogPost = {
-    'id': 0,
-    'author': '',
-    'content': '',
-    'title': '',
-    'date': new Date,
-  };
+  @Input() post = <BlogPost>{};
+
   constructor(private dialog: MatDialog) {}
 
   openDialog() {
     this.dialog.open(BlogDialogComponent, {
-      data: 1
+      data: this.post.id
     });
   }
 }

@@ -1,1 +1,8 @@
-<p>blog-dialog works!</p>
+<h2 mat-dialog-title>{{ post.title }}</h2>
+<mat-dialog-content class="mat-typography">
+    <h3>{{ post.author }} - {{ post.date | date }}</h3>
+    <p>{{ post.content }}</p>
+</mat-dialog-content>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</div>
