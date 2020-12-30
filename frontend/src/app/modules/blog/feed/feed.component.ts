@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { BlogPost } from '../../../shared/models/blog-post.model';
-import { retry } from 'rxjs/operators';
+import { map, retry } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-feed',
@@ -21,23 +22,28 @@ export class FeedComponent implements OnInit {
   };
   posts: BlogPost[] = [];
 
-  constructor(private httpClient: HttpClient) {
-    for (let i=0; i<100; i++) {
-      this.posts.push(this.post);
-    }
-  }
+  constructor(private httpClient: HttpClient) {}
 
   ngOnInit(): void {
     this.getPosts().subscribe(blogs => {
-      for (let blog of blogs['blog entries']) {
-        this.posts.push(blog);
-        console.log(blog.date)
-        console.log(typeof(blog.date))
-      }
+      this.posts = blogs;
     });
   }
 
-  getPosts() {
-    return this.httpClient.get<{'blog entries' : BlogPost[]}>(environment.apiEndpoint + 'blog').pipe(retry(2));
+  getPosts(): Observable<BlogPost[]> {
+    return this.httpClient.get(environment.apiEndpoint + 'blog').pipe(
+      retry(2),
+      map((data: any) => {
+        return data['blog entries'].filter((post: BlogPost) => {
+          post.date = new Date(post.date);
+          if (!isNaN(post.date.getTime())) {
+            return true
+          } else {
+            return false;
+          }
+        }
+        );
+      })
+    );
   }
 }
