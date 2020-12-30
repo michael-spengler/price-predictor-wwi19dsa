@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { BlogPost } from '../../models/blog-post.model';
+import { MatDialog } from '@angular/material/dialog';
+import { BlogDialogComponent } from '../blog-dialog/blog-dialog.component';
 
 @Component({
   selector: 'app-blog-post',
@@ -16,6 +18,11 @@ export class BlogPostComponent {
     'title': '',
     'date': new Date,
   };
-  constructor() {
-   }
+  constructor(private dialog: MatDialog) {}
+
+  openDialog() {
+    this.dialog.open(BlogDialogComponent, {
+      data: 1
+    });
+  }
 }
