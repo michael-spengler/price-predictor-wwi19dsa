@@ -70,7 +70,7 @@ export class AuthService {
     }
   }
 
-  private getToken(): string {
+  public getToken(): string {
     const token = localStorage.getItem(ACCESS_TOKEN);
 
     if (token == null) {

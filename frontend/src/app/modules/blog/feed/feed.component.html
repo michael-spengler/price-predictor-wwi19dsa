@@ -1,0 +1,7 @@
+<div style="width: 100%; height: calc(100% - 64px);">
+    <div fxLayout="row wrap" fxLayoutAlign="space-around start">
+        <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let post of posts">
+            <app-blog-post [post1]="post"></app-blog-post>
+        </div>
+    </div>
+</div>

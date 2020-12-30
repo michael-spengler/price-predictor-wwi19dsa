@@ -6,31 +6,27 @@ $pp-primary: mat-palette($mat-light-blue);
 $pp-accent: mat-palette($mat-light-green);
 $pp-warn: mat-palette($mat-red);
 $pp-theme: mat-light-theme($pp-primary, $pp-accent, $pp-warn);
-
 @mixin mix-app-theme($pp-theme) {
-  $primary: map-get($pp-theme, primary);
-  $warn: mat-color(map-get($pp-theme, warn));
-  $warn-text: mat-color(map-get($pp-theme, warn), default-contrast);
-
-  .inputContainer .mat-stroked-button {
-      background-color: mat-color($primary);
-      color: $light-primary-text;
-  }
-
-  .mat-button-toggle-checked {
-    background-color: mat-color($primary);
-
-    .mat-button-toggle-label-content{
+    $primary: map-get($pp-theme, primary);
+    $warn: mat-color(map-get($pp-theme, warn));
+    $warn-text: mat-color(map-get($pp-theme, warn), default-contrast);
+    .mat-stroked-button {
+        background-color: mat-color($primary);
         color: $light-primary-text;
     }
-  }
-  .error {
-    color: $warn-text;
-    background-color: $warn;
-  }
-  .error .mat-simple-snackbar-action {
-    color: $warn-text;
-  }
+    .mat-button-toggle-checked {
+        background-color: mat-color($primary);
+        .mat-button-toggle-label-content {
+            color: $light-primary-text;
+        }
+    }
+    .error {
+        color: $warn-text;
+        background-color: $warn;
+    }
+    .error .mat-simple-snackbar-action {
+        color: $warn-text;
+    }
 }
 
 @include angular-material-theme($pp-theme);
@@ -40,6 +36,6 @@ $pp-accent-dark: mat-palette($mat-yellow);
 $pp-warn-dark: mat-palette($mat-red);
 $pp-theme-dark: mat-dark-theme( $pp-primary-dark, $pp-accent-dark, $pp-warn-dark);
 .dark-theme-mode {
-  @include angular-material-theme($pp-theme-dark);
-  @include mix-app-theme($pp-theme-dark);
+    @include angular-material-theme($pp-theme-dark);
+    @include mix-app-theme($pp-theme-dark);
 }
