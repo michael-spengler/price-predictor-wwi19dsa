@@ -14,18 +14,17 @@ import { BlogPost } from '../../models/blog-post.model';
 export class BlogDialogComponent implements OnInit {
 
   post = <BlogPost>{};
-  loading: Boolean = true;
+  isLoading: Boolean = true;
   constructor(@Inject(MAT_DIALOG_DATA) public data: number, private httpClient: HttpClient) { }
 
   ngOnInit() {
     this.getPost().subscribe(post => {
       this.post = post;
-      this.loading = false
+      this.isLoading = false
     });
   }
 
   getPost(): Observable<BlogPost> {
-    console.log(this.data)
     return this.httpClient.get<BlogPost>(environment.apiEndpoint + 'blog/' + this.data.toString()).pipe(
       retry(2),
       map((post: BlogPost) => {
