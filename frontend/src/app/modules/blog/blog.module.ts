@@ -5,6 +5,7 @@ import { FeedComponent } from './feed/feed.component';
 import { MaterialModule } from '../../material.module';
 import { BlogPostComponent } from '../../shared/components/blog-post/blog-post.component';
 import { BlogRoutingModule } from './blog-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -12,7 +13,9 @@ import { BlogRoutingModule } from './blog-routing.module';
   imports: [
     CommonModule,
     MaterialModule,
-    BlogRoutingModule
+    BlogRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class BlogModule { }
