@@ -9,6 +9,11 @@ const routes: Routes = [
       .then(m => m.LandingModule)
   },
   {
+    path: 'about',
+    loadChildren: () => import('./modules/about/about.module')
+      .then(m => m.AboutModule)
+  },
+  {
     path: '',
     component: SidenavComponent,
     loadChildren: () => import('./modules/application/application.module')

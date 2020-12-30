@@ -9,6 +9,7 @@
 
 # dependencies
 /frontend/node_modules
+API/.vscode/settings.json
 
 #cached python files
 API/__pycache__/*
@@ -49,3 +50,7 @@ Thumbs.db
 frontend/package-lock.json
 API/pylib/__pycache__/__init__.cpython-38.pyc
 API/pylib/__pycache__/functions.cpython-38.pyc
+API/tmp/database.db
+API/tmp/database.db
+API/pylib/test.py
+API/pylib/test.py
