@@ -14,7 +14,7 @@
       </button>
       <span>Price Predictor</span>
       <div *ngIf="(isHandset$ | async) === false">
-        <button mat-button class="nav-button"> Feed </button>
+        <button mat-button class="nav-button" routerLink="/blog/feed"> Feed </button>
       </div>
 
       <span class="spacer"></span>
@@ -38,6 +38,14 @@
           <mat-icon>keyboard_arrow_down</mat-icon>
         </button>
         <mat-menu #userMenu="matMenu">
+          <button mat-menu-item routerLink="/">
+            <span> Signed in as
+              <strong>
+                {{ authService.getUser().username }}
+              </strong>
+            </span>
+          </button>
+          <mat-divider></mat-divider>
           <button mat-menu-item routerLink="/blog/post">
             <span i18n="New Post @@newPostID">New Post</span>
           </button>
