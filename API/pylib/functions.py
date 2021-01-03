@@ -189,7 +189,8 @@ def loadBlogEntries(BlogModel):
     result = BlogModel.query.all()
     entries = []
     for blog in result:
-        entries.append(blog.data())
+        blog.content=blog.content[:150] + "..."
+        entries.append(blog.data())       
     return entries
     
 def loadBlogEntryByID(BlogModel, blogID, abort):
