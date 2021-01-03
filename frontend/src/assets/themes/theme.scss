@@ -43,7 +43,7 @@ $pp-theme-dark: mat-dark-theme( $pp-primary-dark, $pp-accent-dark, $pp-warn-dark
 /* Typographie Added 02-01-2020 Fa */
 h1, h2, h3, h4 {
   text-align: center;
-  font-family: "Consolas";
+  font-family: "Consolas" !important;
   font-weight: bold !important;
 }
 
@@ -60,7 +60,7 @@ h3 {
   font-size: 20px !important;
 }
 
-p {
+p,a {
   font-family: "Consolas" !important;
   font-size: 20px !important;
 }
