@@ -16,6 +16,6 @@
         </mat-error>
     </mat-form-field>
 
-    <button type="submit" mat-stroked-button class="login-full-width" *ngIf="createPostForm.valid" i18n="Post @@post">Post</button>
-    <button type="submit" mat-stroked-button class="login-full-width" *ngIf="!createPostForm.valid" i18n="Post @@post" disabled>Post</button>
+    <button type="submit" mat-button class="login-full-width" *ngIf="createPostForm.valid" i18n="Post @@post">Post</button>
+    <button type="submit" mat-button class="login-full-width" *ngIf="!createPostForm.valid" i18n="Post @@post" disabled>Post</button>
 </form>
