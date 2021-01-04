@@ -118,12 +118,18 @@ class Blog(Resource):
 
     def get(self):
         res = functions.loadBlogEntries(BlogModel)
-        return {"blog entries": res}, 200
+        return {"data": res}, 200
 
 @api.route("/blog/<int:blogID>")
 class BlogID(Resource):
     def get(self, blogID):
         return functions.loadBlogEntryByID(BlogModel, blogID, abort)
+
+@api.route("/blog/<string:blogAuthor>")
+class BlogID(Resource):
+    def get(self, blogAuthor):
+        res = functions.loadBlogEntriesByAuthor(BlogModel, blogAuthor, abort)
+        return {"data": res}, 200
 
 if __name__ == "__main__":
     hostip = sys.argv[1]

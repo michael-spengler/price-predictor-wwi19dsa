@@ -164,12 +164,6 @@ def updateDB(db, app):
         os.mkdir("tmp")
         db.create_all()
 
-def createBlogEntry(args, BlogModel, db):
-    blog = BlogModel(author=args.author, date=args.date, title=args.title, content=args.content)
-    db.session.add(blog)
-    db.session.commit()
-    return blog
-
 def loadToken(args):
     return createToken(args.email)
 
@@ -180,10 +174,17 @@ def loadUsername(args, UserModel):
 def loadBlogArgs(BlogArgs):
     BlogArgs.add_argument("author", type=str, help="author missing", required=True)
     BlogArgs.add_argument("content", type=str, help="content missing", required=True)
-    BlogArgs.add_argument("date", type=str, help="date missing", required=True)
+    BlogArgs.add_argument("date", type=str, help="date missing", required=False)
     BlogArgs.add_argument("title", type=str, help="title missing", required=True)
     BlogArgs.add_argument("id", type=str, help="ID missing", required=False)
     return BlogArgs
+
+def createBlogEntry(args, BlogModel, db):
+    import datetime
+    blog = BlogModel(author=args.author, date=str(datetime.datetime.today()), title=args.title, content=args.content)
+    db.session.add(blog)
+    db.session.commit()
+    return blog
 
 def loadBlogEntries(BlogModel):
     result = BlogModel.query.all()
@@ -199,3 +200,10 @@ def loadBlogEntryByID(BlogModel, blogID, abort):
         abort(404, message="ID not found")
     else:
         return result.data()
+
+def loadBlogEntriesByAuthor(BlogModel, blogAuthor, abort):
+    result = BlogModel.query.filter_by(author=blogAuthor).all()
+    entries = []
+    for blog in result:
+        entries.append(blog.data())
+    return entries
