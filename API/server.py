@@ -5,12 +5,8 @@ import uuid
 from flask_cors import CORS, cross_origin
 
 import sys
-#import functions from lib/functions.py
-from pylib import functions
-
-
-
-
+#import f from lib/f.py
+from pylib import functions as f
 
 #Set API Settings
 app = Flask(__name__)
@@ -45,91 +41,111 @@ class BlogModel(db.Model):
     def data(self):
         return {"id" : self.id, "author" : self.author, "date" : self.date, "title" : self.title, "content" : self.content}
 
+class TradeModel(db.Model):
+    id              = db.Column(db.Integer, primary_key=True)
+    author          = db.Column(db.String, nullable=False)
+    date            = db.Column(db.String, nullable=False)
+    type            = db.Column(db.String, nullable=False)
+    percent         = db.Column(db.String, nullable=False)
+    fiat            = db.Column(db.String, nullable=False)
+    motivation      = db.Column(db.String, nullable=False)
+    startdate       = db.Column(db.String, nullable=False)
+    enddate         = db.Column(db.String, nullable=False)
+    expectedIncrease= db.Column(db.String, nullable=False)
+    description     = db.Column(db.String, nullable=False)
+    def data(self):
+        return {"id":self.id, "author":self.author, "date":self.date, "type":self.type, "percent":self.percent, "fiat":self.fiat, "motivation":self.motivation, "startdate":self.startdate, "enddate":self.enddate, "expectedIncrease":self.expectedIncrease, "description":self.description}
+    
+
 #Set Resourcefields for Requestparser
-SignUpFields = functions.loadSignUpFields(fields)
-BlogFields = functions.loadBlogFields(fields)
+SignUpFields = f.loadSignUpFields(fields)
+BlogFields = f.loadBlogFields(fields)
 
 ##Args that need to be provided per HTTP Request[Post, Get, PUT, ...]
 userSignInArgs = reqparse.RequestParser()
-userSignInArgs = functions.loadSignInArgs(userSignInArgs)
+userSignInArgs = f.loadSignInArgs(userSignInArgs)
 
 userSignUpArgs = reqparse.RequestParser()
-userSignUpArgs = functions.loadSignUpArgs(userSignUpArgs)
+userSignUpArgs = f.loadSignUpArgs(userSignUpArgs)
 
 tokenVerifivationArgs = reqparse.RequestParser()
-tokenVerifivationArgs = functions.loadTokenVerifivationArgs(tokenVerifivationArgs)
+tokenVerifivationArgs = f.loadTokenVerifivationArgs(tokenVerifivationArgs)
 
 blogArgs = reqparse.RequestParser()
-blogArgs = functions.loadBlogArgs(blogArgs)
+blogArgs = f.loadBlogArgs(blogArgs)
+
+tradeArgs = reqparse.RequestParser()
+tradeArgs = f.loadTradeArgs(tradeArgs)
 
 #In case of changes, the db needs to be reconfigured
-functions.updateDB(db, app)
+f.updateDB(db, app)
 
 @api.route("/signin")
-@api.doc(params={"email": "", "password": ""})
 class SignIn(Resource):
+    @api.doc(params={"email": "", "password": ""})
     @cross_origin(supports_credentials=True)
     def post(self):
-        args = functions.loadArgs(userSignInArgs)
-         #Check if Email and Password are matching
-        functions.abortIfEmailIsNotInDB(args, UserModel, abort, "Email or Password incorrect")
-        functions.abortIfPasswordIncorrect(args, UserModel, abort, "Email or Password incorrect")
-        #login successful
-        username = functions.loadUsername(args, UserModel)
-        token = functions.loadToken(args) 
-        return {"message" : "Successfully authenticated", "username" : username}, 201, {"Authorization" :  token, "Access-Control-Expose-Headers": "Authorization"},  #body, status, header
+        args = f.loadArgs(userSignInArgs)
+        return f.signIn(args, UserModel, abort)
 
-        
 @api.route("/signup")
-@api.doc(params={"email": "", "password": "", "username":"", "lastName":"", "firstName":"", "country":"", "birthdate": "", "street":"", "zip": "", "city": ""})
 class SignUp(Resource):
+    @api.doc(params={"email": "", "password": "", "username":"", "lastName":"", "firstName":"", "country":"", "birthdate": "", "street":"", "zip": "", "city": ""}, description="No authentication needed")
     @cross_origin(supports_credentials=True)
     @marshal_with(SignUpFields)
     def post(self):
-        args = functions.loadArgs(userSignUpArgs)
-        #check if Email already registered
-        functions.abortIfEmailIsInDB(args, UserModel, abort, "Email is already registered...")
-        #add User to DB    
-        res = functions.createUser(args, UserModel, db)
-        return res, 201
+        args = f.loadArgs(userSignUpArgs)
+        return f.createUser(args, UserModel, db, abort)
 
 @api.route("/verify-token")
-@api.doc(params={"token":"example: \"Bearer sometokenvalue\""})
 class VerifyToken(Resource):
+    @api.doc(params={"token":"example: \"Bearer sometokenvalue\""})
     @cross_origin(supports_credentials=True)
     def post(self):
-        args = functions.loadArgs(tokenVerifivationArgs)
-        if functions.verifyToken(args.token):
+        args = f.loadArgs(tokenVerifivationArgs)
+        if f.verifyToken(args.token):
             return {"message" : "worked"}, 201
         else:
             return {"message" : "Token invalid"}, 404
 
 @api.route("/blog")
 class Blog(Resource):
-    @api.doc(params={"content":"", "author":"", "title":"", "date":""})
+    @api.doc(params={"content":"", "title":"", "date":""}, description="valid Token needs to be provided in the header")
     @marshal_with(BlogFields)
     def post(self):
-        args = functions.loadArgs(blogArgs)
-        if functions.verifyToken(request.headers.get("Authorization")):
-            res = functions.createBlogEntry(args, BlogModel, db)
-            return res, 201
-        else:
-            return {"message" : "Token not valid, please sign in"}, 201
+        args = f.loadArgs(blogArgs)
+        token = request.headers.get("Authorization")
+        return f.createBlogEntry(args, BlogModel, db, token, UserModel)
 
     def get(self):
-        res = functions.loadBlogEntries(BlogModel)
-        return {"data": res}, 200
+        return f.loadBlogEntries(BlogModel)
 
 @api.route("/blog/<int:blogID>")
 class BlogID(Resource):
     def get(self, blogID):
-        return functions.loadBlogEntryByID(BlogModel, blogID, abort)
+        return f.loadBlogEntryByID(BlogModel, blogID, abort)
 
 @api.route("/blog/<string:blogAuthor>")
-class BlogID(Resource):
+class Blogauthor(Resource):
     def get(self, blogAuthor):
-        res = functions.loadBlogEntriesByAuthor(BlogModel, blogAuthor, abort)
-        return {"data": res}, 200
+        return f.loadBlogEntriesByAuthor(BlogModel, blogAuthor)
+
+@api.route("/trade")
+class Trade(Resource):
+    @api.doc(params={"type":"", "percent":"", "fiat":"", "motivation":"", "startdate":"", "enddate":"", "expectedIncrease":"", "description":""}, description="No authentication needed")
+    def post(self):
+        args = f.loadArgs(tradeArgs)
+        token = request.headers.get("Authorization")
+        return f.createTradeEntry(args, TradeModel, db, token, UserModel)
+
+    def get(self):
+        return f.loadTradeEntries(TradeModel)
+
+@api.route("/trade/<string:tradeAuthor>")
+class Blogauthor(Resource):
+    def get(self, tradeAuthor):
+        return f.loadTradeEntriesByAuthor(TradeModel, tradeAuthor)
+
 
 if __name__ == "__main__":
     hostip = sys.argv[1]
