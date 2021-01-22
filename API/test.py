@@ -1,6 +1,6 @@
 import requests
 
-Base = "http://127.0.0.1:5000/"
+Base = "http://3.131.4.23:5000/"
 
 response = requests.post(Base + "signup", {"email": "demo@test.de", "password": "Test1", "username":"Test", "lastName":"Piet", "firstName":"TestName", "country":"DHBWstinkt", "birthdate": "today", "zip": "61476"})
 print(response)
