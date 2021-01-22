@@ -127,7 +127,8 @@ def loadSignUpArgs(userSignUpArgs):
 def loadTradeArgs(tradeArgs):
     tradeArgs.add_argument("type", type=str, help="type missing", required=True)
     tradeArgs.add_argument("percent", type=str, help="percentage missing", required=True)
-    tradeArgs.add_argument("fiat", type=str, help="fiat missing", required=True)
+    tradeArgs.add_argument("fiatcurrency", type=str, help="fiat missing", required=True)
+    tradeArgs.add_argument("cryptocurrency", type=str, help="fiat missing", required=True)
     tradeArgs.add_argument("motivation", type=str, help="motivation missing", required=True)
     tradeArgs.add_argument("startdate", type=str, help="startdate missing", required=True)
     tradeArgs.add_argument("enddate", type=str, help="enddate missing", required=True)

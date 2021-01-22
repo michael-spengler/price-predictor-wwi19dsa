@@ -1,6 +1,8 @@
 from flask import Flask, request
 from flask_restx import Api, Resource, reqparse, abort, fields, marshal_with
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate, MigrateCommand
+from flask_script import Manager
 import uuid
 from flask_cors import CORS, cross_origin
 
@@ -47,14 +49,15 @@ class TradeModel(db.Model):
     date            = db.Column(db.String, nullable=False)
     type            = db.Column(db.String, nullable=False)
     percent         = db.Column(db.String, nullable=False)
-    fiat            = db.Column(db.String, nullable=False)
+    fiatcurrency    = db.Column(db.String, nullable=True, default="not set")
+    cryptocurrency  = db.Column(db.String, nullable=True, default="not set")
     motivation      = db.Column(db.String, nullable=False)
     startdate       = db.Column(db.String, nullable=False)
     enddate         = db.Column(db.String, nullable=False)
     expectedIncrease= db.Column(db.String, nullable=False)
     description     = db.Column(db.String, nullable=False)
     def data(self):
-        return {"id":self.id, "author":self.author, "date":self.date, "type":self.type, "percent":self.percent, "fiat":self.fiat, "motivation":self.motivation, "startdate":self.startdate, "enddate":self.enddate, "expectedIncrease":self.expectedIncrease, "description":self.description}
+        return {"id":self.id, "author":self.author, "date":self.date, "type":self.type, "percent":self.percent, "fiatcurrency":self.fiatcurrency, "cryptocurrency":self.cryptocurrency, "motivation":self.motivation, "startdate":self.startdate, "enddate":self.enddate, "expectedIncrease":self.expectedIncrease, "description":self.description}
     
 
 #Set Resourcefields for Requestparser
@@ -79,6 +82,9 @@ tradeArgs = f.loadTradeArgs(tradeArgs)
 
 #In case of changes, the db needs to be reconfigured
 f.updateDB(db, app)
+migrate = Migrate(app, db)
+manager = Manager(app)
+manager.add_command('db', MigrateCommand)
 
 @api.route("/signin")
 class SignIn(Resource):
@@ -132,7 +138,7 @@ class Blogauthor(Resource):
 
 @api.route("/trade")
 class Trade(Resource):
-    @api.doc(params={"type":"", "percent":"", "fiat":"", "motivation":"", "startdate":"", "enddate":"", "expectedIncrease":"", "description":""}, description="No authentication needed")
+    @api.doc(params={"type":"", "percent":"", "fiatcurrency":"", "cryptocurrency":"", "motivation":"", "startdate":"", "enddate":"", "expectedIncrease":"", "description":""})
     def post(self):
         args = f.loadArgs(tradeArgs)
         token = request.headers.get("Authorization")
@@ -148,6 +154,12 @@ class Blogauthor(Resource):
 
 
 if __name__ == "__main__":
+    #with app.app_context():
+    #    if db.engine.url.drivername == 'sqlite':
+    #        migrate.init_app(app, db, render_as_batch=True)
+    #    else:
+    #        migrate.init_app(app, db)
+    #manager.run()
     hostip = sys.argv[1]
     debugmode = sys.argv[2] == "True"
     app.run(debug=debugmode, host=hostip)

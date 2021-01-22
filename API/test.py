@@ -1,6 +1,6 @@
 import requests
 
-Base = "http://3.131.4.23:5000/"
+Base = "http://127.0.0.1:5000/"
 
 response = requests.post(Base + "signup", {"email": "demo@test.de", "password": "Test1", "username":"Test", "lastName":"Piet", "firstName":"TestName", "country":"DHBWstinkt", "birthdate": "today", "zip": "61476"})
 print(response)
@@ -23,5 +23,5 @@ response = requests.post(Base + "verify-token", {"token": token})
 print(response.json())
 
 input("Post Blog")
-response = requests.post(Base + "trade", {"type":"test", "percent":"test", "fiat":"test", "motivation":"test", "startdate":"test", "enddate":"test", "expectedIncrease":"test", "description":"test"}, headers={"Authorization" : token})
+response = requests.post(Base + "trade", {"type":"test", "percent":"test", "fiatcurrency":"test", "cryptocurrency":"test", "motivation":"test", "startdate":"test", "enddate":"test", "expectedIncrease":"test", "description":"test"}, headers={"Authorization" : token})
 print(response.json())
