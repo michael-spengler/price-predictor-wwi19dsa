@@ -191,6 +191,13 @@ def abortIfPasswordIncorrect(args, UserModel, abort, abortMessage):
 
 #db shit
 
+def loadUsers(UserModel):
+    users = UserModel.query.all()
+    res = []
+    for user in users:
+        res.append(user.username)
+    return {"data":res}, 201
+
 def loadUsername(args, UserModel):
     result = UserModel.query.filter_by(email=args.email).first()
     return result.username
