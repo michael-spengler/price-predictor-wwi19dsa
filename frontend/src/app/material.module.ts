@@ -18,8 +18,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDividerModule } from '@angular/material/divider';
-
 
 const MaterialComponents = [
     MatButtonModule,
@@ -39,6 +42,10 @@ const MaterialComponents = [
     MatGridListModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+    MatStepperModule,
+    MatRadioModule,
+    MatSliderModule,
+    MatAutocompleteModule,
     MatDividerModule
 ];
 

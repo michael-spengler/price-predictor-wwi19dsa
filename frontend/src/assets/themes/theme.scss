@@ -10,7 +10,7 @@ $pp-theme: mat-light-theme($pp-primary, $pp-accent, $pp-warn);
     $primary: map-get($pp-theme, primary);
     $warn: mat-color(map-get($pp-theme, warn));
     $warn-text: mat-color(map-get($pp-theme, warn), default-contrast);
-    .mat-stroked-button {
+    .mat-button {
         background-color: mat-color($primary);
         color: $light-primary-text;
     }

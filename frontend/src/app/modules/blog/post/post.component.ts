@@ -5,7 +5,7 @@ import { BlogPost } from '../../../shared/models/blog-post.model';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { environment } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -24,6 +24,7 @@ export class PostComponent implements OnInit {
     private formBuilder: FormBuilder,
     private _snackBar: MatSnackBar,
     private httpClient: HttpClient,
+    private router: Router,
     private authService: AuthService
   ) { }
 
@@ -48,7 +49,7 @@ export class PostComponent implements OnInit {
       let options = { headers: headers };
       
       this.httpClient.post(environment.apiEndpoint + 'blog',blogPost, options).subscribe(result => {
-        console.log(result);
+        this.router.navigate(['blog/feed']);
     }, error => {
         this._snackBar.open('Error. There are some troubles with this post. Please try again!', 'Close');
   

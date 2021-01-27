@@ -21,8 +21,8 @@
                     <span *ngIf="loginForm.controls.password.hasError('required')" i18n="This field is mandatory.@@field_mandatory">This field is mandatory.</span>
                 </mat-error>
             </mat-form-field>
-            <button type="submit" mat-stroked-button class="login-full-width" *ngIf="loginForm.valid" i18n="Log In@@log_in">Log In</button>
-            <button type="submit" mat-stroked-button class="login-full-width" *ngIf="!loginForm.valid" i18n="Log In@@log_in" disabled>Log In</button>
+            <button type="submit" mat-button class="login-full-width" *ngIf="loginForm.valid" i18n="Log In@@log_in">Log In</button>
+            <button type="submit" mat-button class="login-full-width" *ngIf="!loginForm.valid" i18n="Log In@@log_in" disabled>Log In</button>
         </mat-card-content>
     </form>
 </div>
