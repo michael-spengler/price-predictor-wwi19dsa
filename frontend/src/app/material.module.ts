@@ -22,6 +22,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDividerModule } from '@angular/material/divider';
 
 const MaterialComponents = [
     MatButtonModule,
@@ -44,7 +45,8 @@ const MaterialComponents = [
     MatStepperModule,
     MatRadioModule,
     MatSliderModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDividerModule
 ];
 
 @NgModule({

@@ -27,7 +27,7 @@ export class FeedComponent implements OnInit {
     return this.httpClient.get(environment.apiEndpoint + 'blog').pipe(
       retry(2),
       map((data: any) => {
-        return data['blog entries'].filter((post: BlogPost) => {
+        return data.data.filter((post: BlogPost) => {
           try {
             let date = post.date ? post.date : '';
             post.date = new Date(date);
