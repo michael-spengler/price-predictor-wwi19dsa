@@ -1,5 +1,14 @@
 .blog-post-card {
-    max-width: 200px;
-    // min-width: max;
-    // max-height: 250px;
-  }
+    margin: 8px;
+}
+
+.card-title {
+  height: 20px;
+  overflow-y: hidden;
+}
+
+.card-content {
+  height: 100px;
+  overflow-y: auto;
+  text-overflow: ellipsis;
+}

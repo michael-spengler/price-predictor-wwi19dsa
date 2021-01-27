@@ -39,3 +39,32 @@ $pp-theme-dark: mat-dark-theme( $pp-primary-dark, $pp-accent-dark, $pp-warn-dark
     @include angular-material-theme($pp-theme-dark);
     @include mix-app-theme($pp-theme-dark);
 }
+
+/* Typographie Added 02-01-2020 Fa */
+h1, h2, h3, h4 {
+  text-align: center;
+  font-family: "Consolas" !important;
+  font-weight: bold !important;
+}
+
+h1 {
+  font-size: 36px !important;
+  margin-bottom: 2em !important;
+}
+
+h2 {
+  font-size: 24px !important;
+}
+
+h3 {
+  font-size: 20px !important;
+}
+
+p,a {
+  font-family: "Consolas" !important;
+  font-size: 20px !important;
+}
+
+.body-wrap {
+  margin: 2em 1.5em;
+}
