@@ -6,8 +6,7 @@ import { NewTradeComponent } from './new-trade/new-trade.component';
 const routes: Routes = [
     {
         path: 'newTrade',
-        component: NewTradeComponent,
-        canActivate: [AuthGuard]
+        component: NewTradeComponent
     }
 ];
 

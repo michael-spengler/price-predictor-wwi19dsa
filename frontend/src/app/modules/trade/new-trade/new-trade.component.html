@@ -1,1 +1,119 @@
-<p>new-trade works!</p>
+<h1 class="header-trade">EAT. SLEEP. TRADE. REPEAT.</h1>
+
+<mat-vertical-stepper [linear]="true" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Your Action</ng-template>
+            <p>You can either buy new Crypto or sell already existing Crypto.</p>
+            <mat-radio-group aria-label="Select an option" required formControlName="sellOrBuy">
+                <mat-radio-button value="option_sell">Sell</mat-radio-button>
+                <mat-radio-button value="option_buy">Buy</mat-radio-button>
+            </mat-radio-group>
+            <mat-error *ngIf="firstFormGroup.controls.sellOrBuy.touched && firstFormGroup.controls.sellOrBuy.invalid">
+                <span *ngIf="firstFormGroup.controls.sellOrBuy.hasError('required')" i18n="This field is mandatory. @@field_mandatory">This field is mandatory.</span>
+            </mat-error>
+
+
+            <div class="stepper-buttons">
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+
+
+    <mat-step [stepControl]="secondFormGroup">
+        <ng-template matStepLabel>Trade Information</ng-template>
+        <form [formGroup]="secondFormGroup">
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label i18n="Your motivation@@enter_motivation">Your motivation</mat-label>
+                <input matInput type="text" placeholder="Double your Crypo Net Worth in 5 Month" formControlName="motivation" required>
+            </mat-form-field>
+
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Please Select a Fiat Currency</mat-label>
+                <input id="field2" formControlName="fiat" type="text" placeholder="Fiat" aria-label="Number" matInput [matAutocomplete]="auto1" required>
+                <mat-autocomplete #auto1="matAutocomplete">
+                    <mat-option *ngFor="let option of fiatFilteredOptions | async" [value]="option">
+                        {{ option }}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+
+
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Please Select a Crypto Currency</mat-label>
+                <input id="field2" type="text" placeholder="Crypto" aria-label="Number" matInput formControlName="crypto" [matAutocomplete]="auto2" required>
+                <mat-autocomplete #auto2="matAutocomplete">
+                    <mat-option *ngFor="let option of cryptoFilteredOptions | async" [value]="option">
+                        {{ option }}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+
+
+
+            <div class="full-width">
+                <p>Please indicate the return you expect to receive: <br>(You can vary by 3-5 per cent.)</p>
+                <mat-slider thumbLabel [displayWith]="formatLabelPercent" tickInterval="10" min="1" max="250" formControlName="percentReturn"></mat-slider>
+            </div>
+
+            <div class="full-width">
+                <p>Please indicate the recommended percentage amount that the user should trade with their available buy currency: <br>(You can vary by 3-5 per cent.)</p>
+                <mat-slider thumbLabel [displayWith]="formatLabelPercent" tickInterval="10" min="1" max="100" formControlName="percentInvest"></mat-slider>
+            </div>
+
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Please indicate the time you expect to receive the return</mat-label>
+                <mat-date-range-input [rangePicker]="roiPicker" [min]="minDate">
+                    <input matStartDate placeholder="Start date" formControlName="startDate">
+                    <input matEndDate placeholder="End date" formControlName="endDate">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="roiPicker"></mat-datepicker-toggle>
+                <mat-date-range-picker #roiPicker></mat-date-range-picker>
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label i18n="Description @@enter_description">Description</mat-label>
+                <textarea cols="100" rows="15" matInput formControlName="description" required></textarea>
+            </mat-form-field>
+
+            <div class="stepper-buttons">
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+
+
+
+
+
+
+
+
+
+
+
+
+    <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <form [formGroup]="thirdFormGroup" (submit)="publishTrade()">
+            <div>
+                <mat-checkbox formControlName="acceptTerms" required i18n="I have not read and understood the terms and conditions. @@read_t_c">I have not read and understood the terms and conditions.</mat-checkbox>
+            </div>
+            <div class="stepper-buttons">
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+
+
+            <button type="submit" mat-button *ngIf="thirdFormGroup.valid" i18n="Publish @@publish">Publish</button>
+            <button type="submit" mat-button *ngIf="!thirdFormGroup.valid" i18n="Publish @@publish" disabled>Publish</button>
+        </form>
+    </mat-step>
+
+
+</mat-vertical-stepper>
