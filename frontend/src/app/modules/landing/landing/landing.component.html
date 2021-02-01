@@ -4,18 +4,10 @@
     <h1>Welcome to Cointogether</h1>
 
     <mat-grid-list cols="4">
-      <mat-grid-tile>
-        <button mat-stroked-button class="landing-full-width" routerLink="/"> Home </button>
+      <mat-grid-tile *ngFor="let link of links">
+        <button mat-stroked-button class="landing-full-width" routerLink="{{link.loc}}"> {{link.title}} </button>
       </mat-grid-tile>
-      <mat-grid-tile>
-          <button mat-stroked-button class="landing-full-width" routerLink="/blog/feed"> Blog </button>
-      </mat-grid-tile>
-      <mat-grid-tile>
-          <button mat-stroked-button class="landing-full-width" routerLink="/about/us"> About Us </button>
-      </mat-grid-tile>
-      <mat-grid-tile>
-          <button mat-stroked-button class="landing-full-width" routerLink="/"> Wallet </button>
-      </mat-grid-tile>
+    
     </mat-grid-list>
 
     <div class="landing-blue-banner">

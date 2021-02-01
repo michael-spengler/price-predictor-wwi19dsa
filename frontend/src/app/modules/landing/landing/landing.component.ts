@@ -10,6 +10,13 @@ import { ThemeService } from 'src/app/shared/services/theme/theme.service';
 
 export class LandingComponent implements OnInit {
 
+  links = [
+    {loc: '/', title: 'Home'},
+    {loc: '/blog/feed', title: 'Blog'},
+    {loc: '/about/us', title: 'About Us'},
+    {loc: '/', title: 'Wallet'},
+ ];
+
   constructor(
     public themesService: ThemeService
   ) {
