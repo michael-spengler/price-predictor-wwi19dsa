@@ -23,14 +23,15 @@ mat-grid-tile {
   margin: 0 2em;
 }
 
-.landing-blue-banner {
-  background-color: #4CB5F5;
-  padding: 2em;
-}
-
 .landing-banner-button {
-  width: auto;
-  background-color: #B3C100;
+  background-color: primary;
+  display: block;
+  margin: auto;
+  padding: 0.5em 3em;
+}
+.landing-blue-banner {
+
+  padding: 2em;
 }
 
 .landing-blue-banner p {

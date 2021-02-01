@@ -1,26 +1,26 @@
-<div class="body-wrap">
+<div class="body-wrap" [ngClass]="{ 'dark-theme-mode': this.themesService.getIsDarkTheme() }">
   <div class="landing-wrapper" fxLayout="row" fxLayoutAlign="center center">
 
     <h1>Welcome to Cointogether</h1>
 
     <mat-grid-list cols="4">
       <mat-grid-tile>
-        <a href="" mat-stroked-button class="landing-full-width">Home</a>
+        <button mat-stroked-button class="landing-full-width" routerLink="/"> Home </button>
       </mat-grid-tile>
       <mat-grid-tile>
-          <a href="blog/feed" mat-stroked-button class="landing-full-width">Blog</a>
+          <button mat-stroked-button class="landing-full-width" routerLink="/blog/feed"> Blog </button>
       </mat-grid-tile>
       <mat-grid-tile>
-          <a href="about/us" mat-stroked-button class="landing-full-width">About Us</a>
+          <button mat-stroked-button class="landing-full-width" routerLink="/about/us"> About Us </button>
       </mat-grid-tile>
       <mat-grid-tile>
-          <a href="" mat-stroked-button class="landing-full-width">Wallet</a>
+          <button mat-stroked-button class="landing-full-width" routerLink="/"> Wallet </button>
       </mat-grid-tile>
     </mat-grid-list>
 
     <div class="landing-blue-banner">
       <h2>Start your Journey today!</h2>
-      <p><a href="/auth" mat-stroked-button class="landing-banner-button">Sign Up</a></p>
+      <button mat-stroked-button class="landing-banner-button" routerLink="/auth"> Sign Up </button>
     </div>
 
   </div>

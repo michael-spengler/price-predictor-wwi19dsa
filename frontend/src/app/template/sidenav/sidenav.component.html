@@ -10,9 +10,14 @@
             <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-            <span>Price Predictor</span>
+            <a class="navbar-brand" routerLink="/">
+        <div class="logo-image">
+          <img class="img-fluid" src="../assets/images/logo_schmal.png">
+        </div>
+      </a>
             <div *ngIf="(isHandset$ | async) === false">
                 <button mat-button class="nav-button" routerLink="/blog/feed"> Feed </button>
+				<button mat-button class="nav-button" routerLink="/about/us"> About Us </button>																	  
             </div>
 
             <span class="spacer"></span>
