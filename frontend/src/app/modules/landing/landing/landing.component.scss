@@ -1,14 +1,17 @@
-.landing-wrapper {
-  background: url("../../../../assets/images/earth-1149733.jpg");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  color: white;
-  padding-top: 4em;
-  padding-bottom: 25%;
+body, html {
+  height: 100%;
+  margin: 0;
 }
 
-.body-wrap {
-  margin: 0;
+.landing_bg {
+  background-image: url("/assets/images/earth-1149733.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 5%;
+  color: white;
+  padding-bottom: 10%;
 }
 
 h1 {
@@ -28,16 +31,4 @@ mat-grid-tile {
   display: block;
   margin: auto;
   padding: 0.5em 3em;
-}
-.landing-blue-banner {
-
-  padding: 2em;
-}
-
-.landing-blue-banner p {
-  text-align: center;
-}
-
-h1, h2, p, a {
-  font-family: "Century Gothic" !important;
 }

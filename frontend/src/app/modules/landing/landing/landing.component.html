@@ -1,19 +1,14 @@
-<div class="body-wrap" [ngClass]="{ 'dark-theme-mode': this.themesService.getIsDarkTheme() }">
-  <div class="landing-wrapper" fxLayout="row" fxLayoutAlign="center center">
+<div class="landing_bg" [ngClass]="{ 'dark-theme-mode': this.themesService.getIsDarkTheme() }">
+  <h1>Welcome to Cointogether</h1>
 
-    <h1>Welcome to Cointogether</h1>
+  <mat-grid-list cols="4">
+    <mat-grid-tile *ngFor="let link of links">
+      <button mat-stroked-button class="landing-full-width" routerLink="{{link.loc}}"> {{link.title}} </button>
+    </mat-grid-tile>
+  </mat-grid-list>
 
-    <mat-grid-list cols="4">
-      <mat-grid-tile *ngFor="let link of links">
-        <button mat-stroked-button class="landing-full-width" routerLink="{{link.loc}}"> {{link.title}} </button>
-      </mat-grid-tile>
-    
-    </mat-grid-list>
-
-    <div class="landing-blue-banner">
-      <h2>Start your Journey today!</h2>
-      <button mat-stroked-button class="landing-banner-button" routerLink="/auth"> Sign Up </button>
-    </div>
-
+  <div class="landing-blue-banner">
+    <h2>Start your Journey today!</h2>
+    <button mat-stroked-button class="landing-banner-button" routerLink="/auth"> Sign Up </button>
   </div>
 </div>

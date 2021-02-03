@@ -28,7 +28,6 @@ const routes: Routes = [
   },
   {
     path: 'about',
-    //component: SidenavComponent,
     loadChildren: () => import('../about/about.module')
       .then(m => m.AboutModule)
   }
