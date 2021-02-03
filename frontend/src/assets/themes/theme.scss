@@ -69,3 +69,38 @@ p,a {
 .body-wrap {
   margin: 2em 1.5em;
 }
+
+.btn_animated{
+  margin-top: 2em !important;
+  position: relative;
+  display: block;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  margin: auto;
+  border: 2px solid #03A9F4;
+  padding: 0.5em 2em;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 1s all ease;
+  width: 75% !important;
+  text-align: center;
+  font-weight: bold !important;
+  font-size: 24px !important;
+}
+
+.btn_animated::before{
+  background: #03A9F4;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: -1;
+  transition: all 0.6s ease;
+  width: 0;
+  height: 100%;
+}
+
+.btn_animated:hover::before{
+  width: 100%;
+}

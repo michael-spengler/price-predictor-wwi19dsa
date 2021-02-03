@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { UsComponent } from './us/us.component';
 import { MaterialModule } from '../../material.module';
 import { AboutRoutingModule } from './about-routing.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import { AboutRoutingModule } from './about-routing.module';
   imports: [
     CommonModule,
     AboutRoutingModule,
-    MaterialModule
+    MaterialModule,
+    FlexLayoutModule
   ]
 })
 export class AboutModule { }
