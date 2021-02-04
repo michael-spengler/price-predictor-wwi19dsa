@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChartType } from 'angular-google-charts';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 
 @Component({
@@ -29,26 +30,7 @@ export class ProfilePageComponent {
     ]
   };
 
-  portfolio = [
-    {
-      "name": "BTC",
-      "value": 32100
-    },
-    {
-      "name": "ETH",
-      "value": 4200
-    },
-    {
-      "name": "USD",
-      "value": 10123.23
-    },
-    {
-      "name": "EUR",
-      "value": 5012.123
-    }
-  ];
-
-  constructor() { 
+  constructor() {
     this.trade_data = this.genTradeData();
   }
 
@@ -57,7 +39,7 @@ export class ProfilePageComponent {
   genTradeData() {
     let correct_trades = this.user.correct_trades;
     let wrong_trades = this.user.wrong_trades;
-    let open_trades = this.user.trades-correct_trades-wrong_trades;
+    let open_trades = this.user.trades - correct_trades - wrong_trades;
     return [
       {
         "name": "Correct",
@@ -72,5 +54,63 @@ export class ProfilePageComponent {
         "value": open_trades,
       }
     ];
+  }
+
+  trade_chart = {
+    "type": ChartType.ColumnChart,
+    "data": [
+      [
+        "BTC", 32100
+      ],
+      [
+        "ETH", 4200
+      ],
+      [
+        "USD", 10123.23
+      ],
+      [
+        "EUR", 5012.123
+      ]
+    ],
+    "options": {
+      "backgroundColor": {
+        "fill": "transparent",
+      },
+      "legend": {
+        "textStyle": {
+          "color": "white"
+        }
+      }
+    },
+    "dynamicResize": true,
+  }
+
+  portfolio_chart = {
+    "type": ChartType.PieChart,
+    "data": [
+      [
+        "BTC", 32100
+      ],
+      [
+        "ETH", 4200
+      ],
+      [
+        "USD", 10123.23
+      ],
+      [
+        "EUR", 5012.123
+      ]
+    ],
+    "options": {
+      "backgroundColor": {
+        "fill": "transparent",
+      },
+      "legend": {
+        "textStyle": {
+          "color": "white"
+        }
+      }
+    },
+    "dynamicResize": true,
   }
 }
