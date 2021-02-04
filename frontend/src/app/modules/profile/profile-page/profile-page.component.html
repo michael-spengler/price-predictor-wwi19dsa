@@ -1,1 +1,61 @@
-Test
+<div fxLayout="row wrap" fxLayoutAlign="space-around stretch" class="profile-header">
+        <mat-card class="profile-card mat-elevation-z4" style="margin: 8px;">
+            <img class="rounded" src="../assets/images/avatar-1299805.svg"><br>
+            <span class="profile-name">{{ user.username }}</span><br>
+            <span class="profile-text">@{{ user.user_id }}</span><br>
+            <span class="spacer"></span><br>
+
+            <div class="with-icon profile-text">
+                <mat-icon>today</mat-icon>
+                <span i18n="Joined on @@joinDateID">
+                    Joined on {{ user.join_date | date }}
+                </span>
+            </div>
+            <div class="with-icon profile-text">
+                <mat-icon>article</mat-icon>
+                <span style="font-weight: bold; white-space: pre;">Posts: </span>
+                {{ user.posts }}<br>
+            </div>
+
+            <div class="with-icon profile-text">
+                <mat-icon>article</mat-icon>
+                <span style="font-weight: bold; white-space: pre;">Trades: </span>
+                {{ user.trades }}<br>
+            </div>
+
+            <div class="with-icon profile-text">
+                <mat-icon>person</mat-icon>
+                <span style="font-weight: bold; white-space: pre;">Follower: </span>
+                {{ user.follower }}<br>
+            </div>
+
+            <div class="with-icon profile-text" *ngFor="let link of user.links">
+                <mat-icon>link</mat-icon>
+                <a href="{{ link.link }}" target="_blank" style="text-decoration-color: grey;">
+                    <span class="profile-text">
+                        {{ link.name }}
+                    </span>
+                </a>
+            </div>
+        </mat-card>
+
+        <mat-card class="mat-elevation-z4 fix-bug-class" style="margin: 8px;">
+            <mat-card-title style="text-align: center;">
+                Trades
+            </mat-card-title>
+            Graph 1
+        </mat-card>
+
+        <mat-card class="mat-elevation-z4 fix-bug-class" style="margin: 8px;">
+            <mat-card-title style="text-align: center;">
+                Portfolio
+            </mat-card-title>
+            Graph 2
+        </mat-card>
+</div>
+
+<mat-tab-group mat-align-tabs="start">
+    <mat-tab label="All">Content 1</mat-tab>
+    <mat-tab label="Posts">Content 2</mat-tab>
+    <mat-tab label="Trades">Content 3</mat-tab>
+</mat-tab-group>
