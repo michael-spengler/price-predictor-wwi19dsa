@@ -30,6 +30,11 @@ const routes: Routes = [
     path: 'about',
     loadChildren: () => import('../about/about.module')
       .then(m => m.AboutModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('../profile/profile.module')
+      .then(m => m.ProfileModule)
   }
 ];
 
