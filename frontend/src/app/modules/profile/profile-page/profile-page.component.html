@@ -1,5 +1,5 @@
 <div fxLayout="row wrap" fxLayoutAlign="space-around stretch" class="profile-header">
-        <mat-card class="profile-card mat-elevation-z4" style="margin: 8px;">
+        <mat-card class="profile-card mat-elevation-z4" style="margin: 8px;" fxFlex="20%" fxFlex.xs="100%" fxFlex.sm="50%">
             <img class="rounded" src="../assets/images/avatar-1299805.svg"><br>
             <span class="profile-name">{{ user.username }}</span><br>
             <span class="profile-text">@{{ user.user_id }}</span><br>
@@ -39,18 +39,18 @@
             </div>
         </mat-card>
 
-        <mat-card class="mat-elevation-z4 fix-bug-class" style="margin: 8px;">
+        <mat-card class="mat-elevation-z4 fix-bug-class" style="margin: 8px;" fxFlex="40%" fxFlex.xs="100%">
             <mat-card-title style="text-align: center;">
                 Trades
             </mat-card-title>
-            Graph 1
+            <google-chart [type]="trade_chart.type" [data]="trade_chart.data" [options]="trade_chart.options" [dynamicResize]="trade_chart.dynamicResize" style="width: 100%;"></google-chart>
         </mat-card>
 
-        <mat-card class="mat-elevation-z4 fix-bug-class" style="margin: 8px;">
+        <mat-card class="mat-elevation-z4 fix-bug-class" style="margin: 8px;" fxFlex="40%" fxFlex.xs="100%">
             <mat-card-title style="text-align: center;">
                 Portfolio
             </mat-card-title>
-            Graph 2
+            <google-chart [type]="portfolio_chart.type" [data]="portfolio_chart.data" [options]="portfolio_chart.options" [dynamicResize]="portfolio_chart.dynamicResize" style="width: 100%;"></google-chart>
         </mat-card>
 </div>
 
