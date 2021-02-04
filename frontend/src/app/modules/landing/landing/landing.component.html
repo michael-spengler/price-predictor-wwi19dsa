@@ -1,13 +1,13 @@
 <div class="landing_bg" [ngClass]="{ 'dark-theme-mode': this.themesService.getIsDarkTheme() }">
   <h1>Welcome to Cointogether</h1>
 
-  <mat-grid-list cols="4">
-    <mat-grid-tile *ngFor="let link of links">
+  <div fxLayout="row start" fxLayoutAlign="space-around">
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let link of links" style="margin-top: 1em;">
       <button mat-stroked-button class="landing-full-width" routerLink="{{link.loc}}"> {{link.title}} </button>
-    </mat-grid-tile>
-  </mat-grid-list>
+    </div>
+  </div>
 
-  <div class="landing-blue-banner">
+  <div class="landing-blue-banner" style="margin-top: 15%;">
     <h2>Start your Journey today!</h2>
     <button mat-stroked-button class="landing-banner-button" routerLink="/auth"> Sign Up </button>
   </div>

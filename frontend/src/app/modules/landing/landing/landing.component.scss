@@ -16,14 +16,13 @@ body, html {
 
 h1 {
   font-size: 3.5em !important;
+  line-height: 1.5em;
 }
 
 .landing-full-width {
+  display: block;
+  margin: auto;
   width: 75%;
-}
-
-mat-grid-tile {
-  margin: 0 2em;
 }
 
 .landing-banner-button {
