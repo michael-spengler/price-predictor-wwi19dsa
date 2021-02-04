@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartType } from 'angular-google-charts';
-import { AuthService } from '../../../shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -60,16 +59,13 @@ export class ProfilePageComponent {
     "type": ChartType.ColumnChart,
     "data": [
       [
-        "BTC", 32100
+        "Correct", 123
       ],
       [
-        "ETH", 4200
+        "Wrong", 243
       ],
       [
-        "USD", 10123.23
-      ],
-      [
-        "EUR", 5012.123
+        "Open", 13
       ]
     ],
     "options": {
