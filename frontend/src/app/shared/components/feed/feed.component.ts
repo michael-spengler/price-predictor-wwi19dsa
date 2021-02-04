@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
-import { BlogPost } from '../../../shared/models/blog-post.model';
+import { BlogPost } from '../../models/blog-post.model';
 import { map, retry } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
