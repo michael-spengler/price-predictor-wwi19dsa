@@ -1,0 +1,43 @@
+.profile-header {
+    padding: 16px;
+}
+
+.profile-card {
+    width: 200;
+}
+
+.profile-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.profile-text {
+    font-size: 15px;
+    color: grey;
+}
+
+.rounded {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: grey;
+}
+
+.with-icon {
+    display: flex;
+    align-items: center;
+}
+
+.spacer {
+    height: 3px;
+}
+
+.charts {
+    fill: white;
+}
+
+.fix-bug-class {
+    display: flex !important; 
+    flex-direction: column !important; 
+    overflow: visible !important; 
+}
