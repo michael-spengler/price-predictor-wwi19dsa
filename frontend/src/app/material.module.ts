@@ -23,6 +23,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatTabsModule } from '@angular/material/tabs';
 
 const MaterialComponents = [
     MatButtonModule,
@@ -46,7 +47,8 @@ const MaterialComponents = [
     MatRadioModule,
     MatSliderModule,
     MatAutocompleteModule,
-    MatDividerModule
+    MatDividerModule,
+    MatTabsModule
 ];
 
 @NgModule({
