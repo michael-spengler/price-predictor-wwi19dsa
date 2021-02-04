@@ -5,7 +5,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { MaterialModule } from '../../material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { GoogleChartsModule } from 'angular-google-charts';
-
+import { SharedModule } from '../../shared/components/shared.module';
 
 @NgModule({
   declarations: [ProfilePageComponent],
@@ -14,7 +14,8 @@ import { GoogleChartsModule } from 'angular-google-charts';
     MaterialModule,
     ProfileRoutingModule,
     FlexLayoutModule,
-    GoogleChartsModule
+    GoogleChartsModule,
+    SharedModule
   ]
 })
 export class ProfileModule { }
