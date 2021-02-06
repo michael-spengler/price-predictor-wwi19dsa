@@ -14,7 +14,6 @@ import { Router } from '@angular/router';
 })
 export class PostComponent implements OnInit {
 
-
   public createPostForm: FormGroup = this.formBuilder.group({
     title: [null, Validators.required],
     content: [null, Validators.required]
@@ -27,7 +26,6 @@ export class PostComponent implements OnInit {
     private router: Router,
     private authService: AuthService
   ) { }
-
 
   ngOnInit(): void {
   }
@@ -52,15 +50,10 @@ export class PostComponent implements OnInit {
         this.router.navigate(['blog/feed']);
     }, error => {
         this._snackBar.open('Error. There are some troubles with this post. Please try again!', 'Close');
-  
     });
     }catch (e)
     {
       this._snackBar.open('Error. No authorization token found. Please login again!', 'Close');
     }
-   
-
-   
   }
-
 }
