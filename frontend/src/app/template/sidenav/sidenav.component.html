@@ -1,68 +1,104 @@
-<mat-sidenav-container class="sidenav-container mat-app-background" [ngClass]="{ 'dark-theme-mode': this.themesService.getIsDarkTheme() }">
-    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="'dialog'">
-        <mat-toolbar>Menu</mat-toolbar>
-        <mat-nav-list>
-            <a mat-list-item i18n="Feed @@feedID" routerLink="/blog/feed"> Feed </a>
-        </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <mat-toolbar color="primary">
-            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+<mat-sidenav-container class="sidenav-container mat-app-background"
+  [ngClass]="{ 'dark-theme-mode': this.themesService.getIsDarkTheme() }">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="'dialog'">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item i18n="Feed @@feedID" routerLink="/blog/feed"> Feed </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" >
+      <mat-toolbar-row color="primary" id="normalRow" [style.display]="(visibleSearch == true) ? 'none' : '' ">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-            <span>Price Predictor</span>
-            <div *ngIf="(isHandset$ | async) === false">
-                <button mat-button class="nav-button" routerLink="/blog/feed"> Feed </button>
-            </div>
+      <span>Price Predictor</span>
+      <div *ngIf="(isHandset$ | async) === false">
+        <button mat-button class="nav-button" routerLink="/blog/feed"> Feed </button>
+      </div>
 
-            <span class="spacer"></span>
-            <button mat-icon-button matTooltip="Switch theme" (click)="this.themesService.toggleTheme()">
+      <span class="spacer"></span>
+      <button mat-icon-button matTooltip="Switch theme" (click)="this.themesService.toggleTheme()">
         <mat-icon>{{
           themesService.getIsDarkTheme() ? "brightness_2" : "brightness_7"
           }}</mat-icon>
       </button>
 
-            <button mat-icon-button [matMenuTriggerFor]="translationMenu">
+      <button mat-icon-button [matMenuTriggerFor]="translationMenu">
         <mat-icon>translate</mat-icon>
       </button>
-            <mat-menu #translationMenu="matMenu" color="secondary">
-                <a mat-menu-item *ngFor="let lang of langs" href="/{{ lang.code }}" color="primary">{{ lang.label }}</a>
-            </mat-menu>
+      <mat-menu #translationMenu="matMenu" color="secondary">
+        <a mat-menu-item *ngFor="let lang of langs" href="/{{ lang.code }}" color="primary">{{ lang.label }}</a>
+      </mat-menu>
 
-            <div *ngIf="this.isLoggedIn; then loggedInBlock; else notLoggedInBlock"></div>
-            <ng-template #loggedInBlock>
-                <button mat-button [matMenuTriggerFor]="userMenu">
+      <div *ngIf="this.isLoggedIn; then loggedInBlock; else notLoggedInBlock"></div>
+      <ng-template #loggedInBlock>
+        <button mat-button [matMenuTriggerFor]="userMenu">
           <mat-icon>face</mat-icon>
           <mat-icon>keyboard_arrow_down</mat-icon>
         </button>
 
-                <mat-menu #userMenu="matMenu">
-                    <button mat-menu-item routerLink="/">
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item routerLink="/">
             <span> Signed in as
               <strong>
                 {{ authService.getUser().username }}
               </strong>
             </span>
           </button>
-                    <mat-divider></mat-divider>
-                    <button mat-menu-item routerLink="/blog/post">
+          <mat-divider></mat-divider>
+          <button mat-menu-item routerLink="/blog/post">
             <span i18n="New Post @@newPostID">New Post</span>
           </button>
-                    <button mat-menu-item routerLink="/trade/newTrade">
+          <button mat-menu-item routerLink="/trade/newTrade">
             <span i18n="New Trade @@newTradeID">New Trade</span>
           </button>
-                    <button (click)="authService.logout()" mat-menu-item routerLink="/">
+          <button (click)="authService.logout()" mat-menu-item routerLink="/">
             <span i18n="Logout @@logoutID">Logout</span>
           </button>
-                </mat-menu>
-            </ng-template>
-            <ng-template #notLoggedInBlock>
-                <button mat-icon-button routerLink="/auth">
+        </mat-menu>
+      </ng-template>
+      <ng-template #notLoggedInBlock>
+        <button mat-icon-button routerLink="/auth">
           <mat-icon>person</mat-icon>
         </button>
-            </ng-template>
-        </mat-toolbar>
-        <!-- Add Content Here -->
-        <router-outlet></router-outlet>
-    </mat-sidenav-content>
+      </ng-template>
+     
+        <button mat-icon-button (click)="openSearch()" (click) = "filterName.value = ''">
+          <span class="material-icons">
+            search
+            </span>
+        </button>
+    </mat-toolbar-row>
+
+    <mat-toolbar-row id="searchRow" [style.display]="(visibleSearch == false) ? 'none' : '' ">
+      <span class="material-icons">
+        search
+        </span>
+        <mat-form-field class="search-full-width">
+          <input [formControl]="control1" [matAutocomplete]="auto" matInput #filterName name="filterName">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of usernamesFilteredOptions | async" [value]="option" [ngClass]="_allowSelection(option)" (click)="userClicked(option)">
+
+                  <ng-container *ngIf="option !='No User was found'">
+                  <span class="material-icons">
+                    launch
+                    </span>
+                  </ng-container> {{ option }}
+            </mat-option>       
+        </mat-autocomplete>
+        </mat-form-field>
+      
+        <button mat-icon-button (click)="closeSearch()">
+        <span class="material-icons">
+          close
+        </span>
+      </button>
+    </mat-toolbar-row>
+
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
 </mat-sidenav-container>
