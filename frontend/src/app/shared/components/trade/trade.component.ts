@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Trade } from '../../models/trade.model';
+import { MatDialog } from '@angular/material/dialog';
+import { TradeDialogComponent } from '../trade-dialog/trade-dialog.component';
 
 @Component({
   selector: 'app-trade',
@@ -23,6 +25,12 @@ export class TradeComponent {
   }
 
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
+
+  openDialog() {
+    this.dialog.open(TradeDialogComponent, {
+      data: this.trade.id
+    });
+  }
 
 }
