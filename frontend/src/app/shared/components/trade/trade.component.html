@@ -1,6 +1,8 @@
 <mat-card class="mat-elevation-z4" style="margin: 8px;">
     <mat-card-header>
-        <mat-card-title> {{ trade.expectedIncrease }}%</mat-card-title>
+        <mat-card-title i18n="Expected increase @@expectedIncreaseID">
+            {{ trade.expectedIncrease }}% Increase
+        </mat-card-title>
         <mat-card-subtitle>
             {{ trade.author }} - {{ trade.date | date }} <br>
             <mat-chip-list>
@@ -12,11 +14,11 @@
 
     <mat-card-content>
         <span class="with-icon" style="white-space: pre;">
-            <mat-icon>date_range</mat-icon> {{ trade.startdate | date }} - {{ trade.enddate | date }} <br>
+            <mat-icon>date_range</mat-icon> {{ trade.startdate | date }} - {{ trade.enddate | date }}
         </span>
 
-        <span class="with-icon">
-            <span style="font-weight: bold; white-space: pre;" i18n="Idea @@tradeIdeaID">Idea: </span>
+        <span class="with-icon" style="white-space: pre;">
+            <mat-icon>emoji_objects</mat-icon> {{trade.percent}}% 
             <div *ngIf="trade.type == 'sell'; else buyBlock" class="with-icon">
                 {{ trade.cryptocurrency }}
                 <mat-icon>east</mat-icon>
@@ -34,5 +36,3 @@
         <button mat-button>View</button>
     </mat-card-actions>
 </mat-card>
-
-<!-- east; forward ; trending_up, _down-->
