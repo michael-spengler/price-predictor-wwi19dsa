@@ -24,6 +24,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatChipsModule } from '@angular/material/chips';
+
 
 const MaterialComponents = [
     MatButtonModule,
@@ -48,7 +50,8 @@ const MaterialComponents = [
     MatSliderModule,
     MatAutocompleteModule,
     MatDividerModule,
-    MatTabsModule
+    MatTabsModule,
+    MatChipsModule
 ];
 
 @NgModule({
