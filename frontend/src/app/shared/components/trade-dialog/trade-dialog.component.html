@@ -5,7 +5,7 @@
 <ng-template #isNotLoadingBlock>
     <h1 mat-dialog-title i18n="Expected increase @@expectedIncreaseID">{{ trade.expectedIncrease }}% Increase</h1>
     <h3 mat-dialog-title>{{ trade.author }} - {{ trade.date | date }}</h3>
-    <mat-dialog-content class="mat-typography">
+    <mat-dialog-content style="max-height: 300px;">
         <h4>Motivation</h4>
         <span>{{ trade.motivation }}</span>
         <span>{{ trade.motivation }}</span>
@@ -15,6 +15,6 @@
         <span>{{ trade.description }}</span>
     </mat-dialog-content>
     <div mat-dialog-actions>
-        <button mat-button mat-dialog-close>Close</button>
+        <button mat-stroked-button color="accent" mat-dialog-close>Close</button>
     </div>
 </ng-template>
