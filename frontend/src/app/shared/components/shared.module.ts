@@ -6,10 +6,11 @@ import { BlogPostComponent } from '../../shared/components/blog-post/blog-post.c
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BlogDialogComponent } from '../../shared/components/blog-dialog/blog-dialog.component';
+import { TradeComponent } from './trade/trade.component';
 
 
 @NgModule({
-  declarations: [FeedComponent, BlogPostComponent, BlogDialogComponent],
+  declarations: [FeedComponent, BlogPostComponent, BlogDialogComponent, TradeComponent],
   imports: [
     CommonModule,
     MaterialModule,
