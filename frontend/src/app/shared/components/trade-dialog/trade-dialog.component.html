@@ -1,1 +1,20 @@
-<p>trade-dialog works!</p>
+<div *ngIf="this.isLoading; then isLoadingBlock else isNotLoadingBlock"></div>
+<ng-template #isLoadingBlock>
+    <mat-spinner></mat-spinner>
+</ng-template>
+<ng-template #isNotLoadingBlock>
+    <h1 mat-dialog-title i18n="Expected increase @@expectedIncreaseID">{{ trade.expectedIncrease }}% Increase</h1>
+    <h3 mat-dialog-title>{{ trade.author }} - {{ trade.date | date }}</h3>
+    <mat-dialog-content class="mat-typography">
+        <h4>Motivation</h4>
+        <span>{{ trade.motivation }}</span>
+        <span>{{ trade.motivation }}</span>
+        <span>{{ trade.motivation }}</span>
+        <div style="height: 3em;"></div>
+        <h4>Description</h4>
+        <span>{{ trade.description }}</span>
+    </mat-dialog-content>
+    <div mat-dialog-actions>
+        <button mat-button mat-dialog-close>Close</button>
+    </div>
+</ng-template>
