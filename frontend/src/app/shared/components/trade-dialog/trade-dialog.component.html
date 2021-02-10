@@ -5,10 +5,25 @@
 <ng-template #isNotLoadingBlock>
     <h1 mat-dialog-title i18n="Expected increase @@expectedIncreaseID">{{ trade.expectedIncrease }}% Increase</h1>
     <h3 mat-dialog-title>{{ trade.author }} - {{ trade.date | date }}</h3>
-    <mat-dialog-content style="max-height: 300px;">
+    <mat-dialog-content>
+        <span class="with-icon" style="white-space: pre;">
+            <mat-icon>date_range</mat-icon> {{ trade.startdate | date }} - {{ trade.enddate | date }}
+        </span>
+
+        <span class="with-icon" style="white-space: pre;">
+            <mat-icon>emoji_objects</mat-icon> {{trade.percent}}% 
+            <div *ngIf="trade.type == 'sell'; else buyBlock" class="with-icon">
+                {{ trade.cryptocurrency }}
+                <mat-icon>east</mat-icon>
+                {{ trade.fiatcurrency }}
+            </div>
+            <ng-template #buyBlock>
+                {{ trade.fiatcurrency }}
+                <mat-icon>east</mat-icon>
+                {{ trade.cryptocurrency }}
+            </ng-template>
+        </span>
         <h4>Motivation</h4>
-        <span>{{ trade.motivation }}</span>
-        <span>{{ trade.motivation }}</span>
         <span>{{ trade.motivation }}</span>
         <div style="height: 3em;"></div>
         <h4>Description</h4>
