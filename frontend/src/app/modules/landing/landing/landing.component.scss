@@ -6,12 +6,15 @@ body, html {
 .landing_bg {
   background-image: url("/assets/images/earth-1149733.jpg");
   height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   padding-top: 5%;
   color: white;
-  padding-bottom: 10%;
 }
 
 h1 {
