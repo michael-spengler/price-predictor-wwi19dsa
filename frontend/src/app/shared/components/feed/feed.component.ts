@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
 import { BlogPost } from '../../models/blog-post.model';
-import { map, retry } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { BlogPostService } from '../../services/blog-post/blog-post.service';
 
 @Component({
   selector: 'app-feed',
@@ -12,36 +9,13 @@ import { Observable } from 'rxjs';
 })
 export class FeedComponent implements OnInit {
 
-  date = new Date();
   posts: BlogPost[] = [];
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private blogPostService: BlogPostService) {}
 
   ngOnInit(): void {
-    this.getPosts().subscribe(blogs => {
+    this.blogPostService.getAllPosts().subscribe(blogs => {
       this.posts = blogs;
     });
-  }
-
-  getPosts(): Observable<BlogPost[]> {
-    return this.httpClient.get(environment.apiEndpoint + 'blog').pipe(
-      retry(2),
-      map((data: any) => {
-        return data.data.filter((post: BlogPost) => {
-          try {
-            let date = post.date ? post.date : '';
-            post.date = new Date(date);
-            if (!isNaN(post.date.getTime())) {
-              return true
-            } else {
-              return false;
-            }
-          } catch (error) {
-            return false
-          }
-        }
-        );
-      })
-    );
   }
 }
