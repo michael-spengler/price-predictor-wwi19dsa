@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BlogPost } from '../../models/blog-post.model';
 import { Trade } from '../../models/trade.model';
-import { BlogPostService } from '../../services/blog-post/blog-post.service';
-import { TradeService } from '../../services/trade/trade.service';
 
 @Component({
   selector: 'app-feed',
@@ -11,16 +9,10 @@ import { TradeService } from '../../services/trade/trade.service';
 })
 export class FeedComponent implements OnInit {
 
-  feedList: (BlogPost | Trade)[] = [];
+  @Input() feedList: (BlogPost | Trade)[] = [];
 
-  constructor(private blogPostService: BlogPostService, private tradeService: TradeService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.tradeService.getAllTrades().subscribe(trades => {
-      this.feedList = this.feedList.concat(trades);
-    })
-    this.blogPostService.getAllPosts().subscribe(blogs => {
-      this.feedList = this.feedList.concat(blogs);
-    });
   }
 }
