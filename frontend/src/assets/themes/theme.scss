@@ -13,6 +13,7 @@ $pp-theme: mat-light-theme($pp-primary, $pp-accent, $pp-warn);
     .mat-button {
         background-color: mat-color($primary);
         color: $light-primary-text;
+        margin: 0.5em !important
     }
     .mat-button-toggle-checked {
         background-color: mat-color($primary);

@@ -4,6 +4,11 @@ import { SidenavComponent } from './template/sidenav/sidenav.component';
 
 const routes: Routes = [
   {
+    path: 'landing',
+    loadChildren: () => import('./modules/application/application.module')
+      .then(m => m.ApplicationModule)
+  },
+  {
     path: '',
     component: SidenavComponent,
     loadChildren: () => import('./modules/application/application.module')
