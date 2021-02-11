@@ -1,4 +1,5 @@
 export interface Trade {
+    interface?: "trade",
     type: string,
     id?: number,
     date?: Date,
