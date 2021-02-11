@@ -1,164 +1,40 @@
 <div class="body-wrap">
-  <div class="aboutus-wrapper" fxLayout="row" fxLayoutAlign="center center">
-
-    <h1>About Us</h1>
-
-    <h2>Services</h2>
-
-    <mat-grid-list cols="3">
-      <mat-grid-tile>
+  <div class="aboutus-wrapper" style="width: 100%;">
+    <h1 i18n="About Us @@usID">About Us</h1>
+    <h2 i18n="Services @@servicesID">Services</h2>
+    <div fxLayout="row start" fxLayoutAlign="space-around">
+      <div fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="100%" *ngFor="let service of services" style="margin-top: 1em;">
         <mat-card>
           <mat-card-header>
-            <mat-card-title>Bitcoin</mat-card-title>
+            <mat-card-title  i18n="Service Name @@ServiceTitle">{{service.title}}</mat-card-title>
           </mat-card-header>
-          <img mat-card-image src="../assets/images/bitcoin-225078.svg">
+          <img mat-card-image src="{{service.img}}">
           <mat-card-content>
-            <p>
-               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            <p i18n="Service Text @@ServiceText">
+              {{service.text}}
             </p>
           </mat-card-content>
         </mat-card>
-
-      </mat-grid-tile>
-
-      <mat-grid-tile>
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>Finanzgurus</mat-card-title>
-          </mat-card-header>
-          <img mat-card-image src="../assets/images/avatar-1299805.svg">
-          <mat-card-content>
-            <p>
-               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-            </p>
-          </mat-card-content>
-        </mat-card>
-
-      </mat-grid-tile>
-
-      <mat-grid-tile>
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>Prognosen</mat-card-title>
-          </mat-card-header>
-          <img mat-card-image src="../assets/images/chart-line-148256.svg">
-          <mat-card-content>
-            <p>
-               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-            </p>
-          </mat-card-content>
-        </mat-card>
-
-      </mat-grid-tile>
-    </mat-grid-list>
-
-    <div class="entwickler_wrapper">
-      <h2>Entwickler</h2>
-      <mat-grid-list cols="3">
-        <mat-grid-tile>
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title>Jonas Wuttke</mat-card-title>
-              <mat-card-subtitle>Business & Design</mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image src="../assets/images/avatar-3637425.svg">
-          </mat-card>
-        </mat-grid-tile>
-
-        <mat-grid-tile>
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title>Bastian Berle</mat-card-title>
-              <mat-card-subtitle>Business & Frontend</mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image src="../assets/images/avatar-3637425.svg">
-          </mat-card>
-        </mat-grid-tile>
-
-        <mat-grid-tile>
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title>Ron Holzapfel</mat-card-title>
-              <mat-card-subtitle>Backend</mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image src="../assets/images/avatar-3637425.svg">
-          </mat-card>
-        </mat-grid-tile>
-      <!-- </mat-grid-list>
-
-      <mat-grid-list cols="3"> -->
-        <mat-grid-tile>
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title>Ferdinand Muth</mat-card-title>
-              <mat-card-subtitle>Backend</mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image src="../assets/images/avatar-3637425.svg">
-          </mat-card>
-
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title>Tomke Blach</mat-card-title>
-              <mat-card-subtitle>Frontend</mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image src="../assets/images/avatar-3637425.svg">
-          </mat-card>
-
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title>Fabian Heidger</mat-card-title>
-              <mat-card-subtitle>Frontend</mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image src="../assets/images/avatar-3637425.svg">
-          </mat-card>
-        </mat-grid-tile>
-      </mat-grid-list>
+      </div>
     </div>
 
+    <div class="entwickler_wrapper" style="margin-top: 3em;">
+      <h2 i18n="Entwickler @@entwicklerID">Entwickler</h2>
+      <div fxLayout="row start" fxLayoutAlign="space-around">
+        <div fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="47.5%" *ngFor="let developer of developers"
+          style="margin-top: 1em;">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title i18n="Developer Name @@DeveloperName">{{developer.name}}</mat-card-title>
+              <mat-card-subtitle i18n="Developer Position @@DeveloperPosition">{{developer.position}}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="{{developer.img}}">
+          </mat-card>
+        </div>
+      </div>
+    </div>
 
-
-    <h2>Contact Us</h2>
-
-    <!-- <div class="contact-wrapper" fxLayout="row" fxLayoutAlign="center center">
-      <form  (submit)="submit()" autocomplete="off" novalidate class="contact-form">
-        <!-- <mat-grid-list cols="2"> -->
-          <!-- <mat-grid-tile> -->
-          <!-- <mat-card-content>
-            <mat-form-field appearance="outline" class="contact-full-width">
-                <mat-label i18n="">Name</mat-label>
-                <input fxFlex="25" matInput formControlName="name" required> -->
-                <!-- <mat-error *ngIf="signupForm.controls.firstName.invalid">
-                    <span *ngIf="signupForm.controls.firstName.hasError('required')" i18n="This field is mandatory. @@field_mandatory">This field is mandatory.</span>
-                </mat-error> -->
-            <!-- </mat-form-field>
-
-            <mat-form-field appearance="outline" class="contact-full-width">
-                <mat-label i18n="">Email</mat-label>
-                <input fxFlex="25" matInput formControlName="mail" required>
-                <mat-icon matSuffix>email</mat-icon> -->
-                <!-- <mat-error *ngIf="signupForm.controls.firstName.invalid">
-                    <span *ngIf="signupForm.controls.firstName.hasError('required')" i18n="This field is mandatory. @@field_mandatory">This field is mandatory.</span>
-                </mat-error> -->
-            <!-- </mat-form-field> -->
-          <!-- </mat-grid-tile> -->
-
-          <!-- <mat-grid-tile> -->
-            <!-- <mat-form-field appearance="outline" class="contact-full-width">
-                <mat-label i18n="">Message</mat-label>
-                <input fxFlex="25" matInput formControlName="messaage" required> -->
-                <!-- <mat-error *ngIf="signupForm.controls.firstName.invalid">
-                    <span *ngIf="signupForm.controls.firstName.hasError('required')" i18n="This field is mandatory. @@field_mandatory">This field is mandatory.</span>
-                </mat-error> -->
-            <!-- </mat-form-field> -->
-          <!-- </mat-grid-tile> -->
-        <!-- </mat-grid-list> -->
-        <!-- </mat-card-content>
-      </form>
-    </div> -->
+    <a i18n="Contact Us @@contactID" href="mailto:info@coin2gether.de" subject="Deine%20Nachricht%20an%Coin2Gether" class="btn_animated" style="margin-top: 1em;">Contact Us</a>
 
   </div>
 </div>

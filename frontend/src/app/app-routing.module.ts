@@ -5,15 +5,8 @@ import { SidenavComponent } from './template/sidenav/sidenav.component';
 const routes: Routes = [
   {
     path: 'landing',
-    component: SidenavComponent,
-    loadChildren: () => import('./modules/landing/landing.module')
-      .then(m => m.LandingModule)
-  },
-  {
-    path: 'about',
-    component: SidenavComponent,
-    loadChildren: () => import('./modules/about/about.module')
-      .then(m => m.AboutModule)
+    loadChildren: () => import('./modules/application/application.module')
+      .then(m => m.ApplicationModule)
   },
   {
     path: '',

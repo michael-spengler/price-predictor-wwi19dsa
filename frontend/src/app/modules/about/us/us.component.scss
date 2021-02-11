@@ -1,25 +1,3 @@
-.contact-form {
-  min-width: 100%;
-  max-width: 300px;
-  width: 100%;
-}
-
-.contact-form .contact-form,
-.login-wrapper .btn-block {
-  width: 100%;
-}
-
-.contact-wrapper {
-  padding: 2em 4em;
-  width: 75%;
-}
-
-mat-card {
-  width: 100% !important;
-  text-align: center !important;
-  margin: 0 3em;
-}
-
 .aboutus-wrapper .mat-card-image {
   height: 150px;
   width: auto;
@@ -31,16 +9,6 @@ mat-card {
   height: auto;
 }
 
-mat-card-header {
-  width: 100% !important;
-  text-align: center;
-}
-
-.mat-card-header-text {
-  width: 100% !important;
-}
-
-mat-card-title, mat-card-subtitle {
-  width: 100%;
+mat-card-header, mat-carf-title, mat-card-subtitle, mat-card {
   text-align: center;
 }

@@ -6,6 +6,8 @@ import { AuthGuard } from 'src/app/shared/guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
+    loadChildren: () => import('../landing/landing.module')
+      .then(m => m.LandingModule)
   },
   {
     path: 'blog',
@@ -23,6 +25,11 @@ const routes: Routes = [
     loadChildren: () => import('../trade/trade.module')
       .then(m => m.TradeModule),
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'about',
+    loadChildren: () => import('../about/about.module')
+      .then(m => m.AboutModule)
   }
 ];
 

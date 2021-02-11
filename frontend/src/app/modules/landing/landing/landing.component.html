@@ -1,27 +1,14 @@
-<div class="body-wrap">
-  <div class="landing-wrapper" fxLayout="row" fxLayoutAlign="center center">
+<div class="landing_bg" [ngClass]="{ 'dark-theme-mode': this.themesService.getIsDarkTheme() }">
+  <h1 i18n="Welcome to Cointogether @@EntryId">Welcome to Cointogether</h1>
 
-    <h1>Welcome to Cointogether</h1>
-
-    <mat-grid-list cols="4">
-      <mat-grid-tile>
-        <a href="" mat-stroked-button class="landing-full-width">Home</a>
-      </mat-grid-tile>
-      <mat-grid-tile>
-          <a href="blog/feed" mat-stroked-button class="landing-full-width">Blog</a>
-      </mat-grid-tile>
-      <mat-grid-tile>
-          <a href="about/us" mat-stroked-button class="landing-full-width">About Us</a>
-      </mat-grid-tile>
-      <mat-grid-tile>
-          <a href="" mat-stroked-button class="landing-full-width">Wallet</a>
-      </mat-grid-tile>
-    </mat-grid-list>
-
-    <div class="landing-blue-banner">
-      <h2>Start your Journey today!</h2>
-      <p><a href="/auth" mat-stroked-button class="landing-banner-button">Sign Up</a></p>
+  <div fxLayout="row start" fxLayoutAlign="space-around">
+    <div fxFlex="50%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let link of links" style="margin-top: 1em;">
+      <a class="btn_animated btn_landing" routerLink="{{link.loc}}" i18n="Link Title @@LandingLink"> {{link.title}} </a>
     </div>
+  </div>
 
+  <div class="landing-blue-banner" style="margin-top: 15%;">
+    <h2 i18n="Start your Journey today! @@JourneyID">Start your Journey today!</h2>
+    <a class="btn_animated btn_landing" routerLink="/auth" i18n="SignUp @@SignUpID"> Sign Up </a>
   </div>
 </div>

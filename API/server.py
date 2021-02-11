@@ -152,6 +152,11 @@ class Blogauthor(Resource):
     def get(self, tradeAuthor):
         return f.loadTradeEntriesByAuthor(TradeModel, tradeAuthor)
 
+@api.route("/users")
+class Blogauthor(Resource):
+    def get(self):
+        return f.loadUsers(UserModel)
+
 
 if __name__ == "__main__":
     #with app.app_context():

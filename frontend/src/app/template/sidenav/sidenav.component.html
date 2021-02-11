@@ -4,6 +4,7 @@
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item i18n="Feed @@feedID" routerLink="/blog/feed"> Feed </a>
+      <a mat-list-item  routerLink="/bout/us"> About Us </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -13,9 +14,15 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Price Predictor</span>
+
+      <a class="navbar-brand" routerLink="/">
+        <div class="logo-image">
+          <img class="img-fluid" src="assets/images/logo_schmal.png">
+        </div>
+      </a>
       <div *ngIf="(isHandset$ | async) === false">
         <button mat-button class="nav-button" routerLink="/blog/feed"> Feed </button>
+        <button mat-button class="nav-button" routerLink="/about/us"> About Us </button>
       </div>
 
       <span class="spacer"></span>
@@ -64,7 +71,7 @@
           <mat-icon>person</mat-icon>
         </button>
       </ng-template>
-     
+
         <button mat-icon-button (click)="openSearch()" (click) = "filterName.value = ''">
           <span class="material-icons">
             search
@@ -96,7 +103,6 @@
         </span>
       </button>
     </mat-toolbar-row>
-
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

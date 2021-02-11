@@ -11,9 +11,9 @@
 }
 
 .mat-toolbar.mat-primary {
-    position: sticky;
-    top: 0;
-    z-index: 1;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
 .spacer {
@@ -30,4 +30,16 @@
 
 .no-data {
     pointer-events: none;
+}
+
+.logo-image{
+  width: 150px;
+  height: auto;
+  overflow: hidden;
+  margin-top: 5%;
+}
+
+.img-fluid {
+  width: 100%;
+  height: auto;
 }
