@@ -18,11 +18,12 @@ export class TradeService {
       map((data: any) => {
         return data.data.filter((trade: Trade) => {
           try {
+            trade.interface = "trade";
             trade.date = this.parseToDate(trade.date);
             trade.startdate = this.parseToDate(trade.startdate);
             trade.enddate = this.parseToDate(trade.enddate);
 
-            if (!isNaN(trade.date.getTime())) {
+            if (!isNaN(trade.date.getTime()) && !isNaN(trade.startdate.getTime()) && !isNaN(trade.enddate.getTime())) {
               return true
             } else {
               return false;
@@ -37,7 +38,8 @@ export class TradeService {
   }
 
   private parseToDate(dateString: any): Date {
-    let date = dateString ? dateString : '';
-    return new Date(date);
+    let date = new Date(dateString);
+    date = date ? date : new Date();
+    return date;
   }
 }

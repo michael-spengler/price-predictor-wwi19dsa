@@ -18,6 +18,7 @@ export class BlogPostService {
       map((data: any) => {
         return data.data.filter((post: BlogPost) => {
           try {
+            post.interface = "blog-post";
             let date = post.date ? post.date : '';
             post.date = new Date(date);
             if (!isNaN(post.date.getTime())) {
@@ -38,6 +39,7 @@ export class BlogPostService {
     return this.httpClient.get<BlogPost>(environment.apiEndpoint + 'blog/' + id.toString()).pipe(
       retry(2),
       map((post: BlogPost) => {
+        post.interface = "blog-post";
         let date = post.date ? post.date : '';
         post.date = new Date(date);
         if (isNaN(post.date.getTime())) {
