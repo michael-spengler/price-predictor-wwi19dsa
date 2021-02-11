@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { zip } from 'rxjs';
 import { BlogPostService } from '../../../shared/services/blog-post/blog-post.service';
 import { TradeService } from '../../../shared/services/trade/trade.service';
 import { Trade } from '../../../shared/models/trade.model';
 import { BlogPost } from '../../../shared/models/blog-post.model';
-
 @Component({
   selector: 'app-news-feed',
   templateUrl: './news-feed.component.html',
@@ -16,12 +16,21 @@ export class NewsFeedComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.tradeService.getAllTrades().subscribe(trades => {
+    zip(
+      this.tradeService.getAllTrades(),
+      this.blogPostService.getAllPosts()
+    ).subscribe(([trades, blogPosts]: [Trade[], BlogPost[]]) => {
+      this.feedList = blogPosts;
       this.feedList = this.feedList.concat(trades);
-    })
-    this.blogPostService.getAllPosts().subscribe(blogs => {
-      this.feedList = this.feedList.concat(blogs);
+      console.log(this.sortByDate());
     });
   }
 
+  private sortByDate() {
+    return this.feedList.sort((a, b) => {
+      if (a.date != undefined && b.date != undefined) {
+        return (a.date > b.date) ? -1 : 1
+      } else return -1;
+    });
+  }
 }
