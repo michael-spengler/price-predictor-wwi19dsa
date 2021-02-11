@@ -1,7 +1,14 @@
 <mat-card class="mat-elevation-z4 blog-post-card">
     <mat-card-header>
         <mat-card-title class="card-title">{{ post.title }}</mat-card-title>
-        <mat-card-subtitle class="card-title">{{ post.author }} - {{ post.date | date }}</mat-card-subtitle>
+        <mat-card-subtitle>
+            <div class="card-title">
+                {{ post.author }} - {{ post.date | date }}
+            </div>
+            <mat-chip-list>
+                <mat-chip color="accent">POST</mat-chip>
+            </mat-chip-list>
+        </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content class="card-content">
             {{ post.content }}
