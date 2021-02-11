@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { SidenavComponent } from './template/sidenav/sidenav.component';
 
 import { HttpErrorInterceptor } from './shared/interceptors/http-error.interceptor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, SidenavComponent],
@@ -22,6 +23,8 @@ import { HttpErrorInterceptor } from './shared/interceptors/http-error.intercept
     LayoutModule,
     MaterialModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }],
   bootstrap: [AppComponent],

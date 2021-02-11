@@ -65,7 +65,6 @@ export class NewTradeComponent implements OnInit{
     this.maxDate.setDate(this.minDate.getDate() + 5); 
   }
 
-
   public publishTrade() {
 
     const trade: Trade = {
@@ -79,10 +78,8 @@ export class NewTradeComponent implements OnInit{
       fiatcurrency: this.secondFormGroup.value.fiat,
       cryptocurrency: this.secondFormGroup.value.crypto
     }
-    console.log(trade);
     try {
       const token = this.authService.getToken();
-    
       let headers = new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': token
@@ -92,10 +89,8 @@ export class NewTradeComponent implements OnInit{
       
       this.httpClient.post(environment.apiEndpoint + 'trade', trade, options).subscribe(result => {
         this.router.navigate(['']);
-        console.log("GEILOOO");
     }, error => {
         this._snackBar.open('Error. There are some troubles with this trade. Please try again!', 'Close');
-  
     });
     }catch (e)
     {
@@ -111,10 +106,6 @@ export class NewTradeComponent implements OnInit{
     return value + 'W';
   }
 
-
-  /** ====== Fiat-Auto ====== */
-  //fiatControl = new FormControl();
-  
   fiatFilteredOptions: Observable<string[]> = this.secondFormGroup.controls.fiat.valueChanges
   .pipe(
     startWith(''),
@@ -126,9 +117,7 @@ export class NewTradeComponent implements OnInit{
     this.fiatOptions = ['Euro €', 'US-Dollar $'];
     return this.fiatOptions.filter(option => option.toLowerCase().includes(filterValue));
   }
-  /** ====== Crypto-Auto ====== */
-  //cryptoControl = new FormControl();
-  //this.cryptoOptions = ['Bitcoin', 'Bitcoin Cash'];
+
   cryptoFilteredOptions: Observable<string[]> = this.secondFormGroup.controls.crypto.valueChanges
   .pipe(
     startWith(''),

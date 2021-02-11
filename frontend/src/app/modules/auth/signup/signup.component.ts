@@ -25,7 +25,6 @@ export class SignupComponent {
   minDate = new Date();
   maxDate = new Date();
 
-
   public signupForm: FormGroup = this.formBuilder.group({
     email: [null, [Validators.required, Validators.pattern(this.emailRegx)]],
     firstName: [null, Validators.required],
@@ -46,7 +45,6 @@ export class SignupComponent {
     private router: Router,
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private httpClient: HttpClient
   ) {
     this.maxDate.setFullYear(this.minDate.getFullYear() - 18);
     this.minDate.setFullYear(this.minDate.getFullYear() - 120);
@@ -75,8 +73,6 @@ export class SignupComponent {
         this.authService.login(user.email, user.password).then(() => this.router.navigate(['/']));
     }, error => {
         this._snackBar.open('Error. There are some troubles with the signup!', 'Close');
-
     });
   }
-
 }

@@ -8,11 +8,13 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" >
+      <mat-toolbar-row color="primary" id="normalRow" [style.display]="(visibleSearch == true) ? 'none' : '' ">
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
+
       <a class="navbar-brand" routerLink="/">
         <div class="logo-image">
           <img class="img-fluid" src="assets/images/logo_schmal.png">
@@ -69,6 +71,38 @@
           <mat-icon>person</mat-icon>
         </button>
       </ng-template>
+
+        <button mat-icon-button (click)="openSearch()" (click) = "filterName.value = ''">
+          <span class="material-icons">
+            search
+            </span>
+        </button>
+    </mat-toolbar-row>
+
+    <mat-toolbar-row id="searchRow" [style.display]="(visibleSearch == false) ? 'none' : '' ">
+      <span class="material-icons">
+        search
+        </span>
+        <mat-form-field class="search-full-width">
+          <input [formControl]="control1" [matAutocomplete]="auto" matInput #filterName name="filterName">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of usernamesFilteredOptions | async" [value]="option" [ngClass]="_allowSelection(option)" (click)="userClicked(option)">
+
+                  <ng-container *ngIf="option !='No User was found'">
+                  <span class="material-icons">
+                    launch
+                    </span>
+                  </ng-container> {{ option }}
+            </mat-option>       
+        </mat-autocomplete>
+        </mat-form-field>
+      
+        <button mat-icon-button (click)="closeSearch()">
+        <span class="material-icons">
+          close
+        </span>
+      </button>
+    </mat-toolbar-row>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

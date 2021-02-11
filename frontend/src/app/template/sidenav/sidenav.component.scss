@@ -1,13 +1,13 @@
 .sidenav-container {
-  height: 100%;
+    height: 100%;
 }
 
 .sidenav {
-  width: 200px;
+    width: 200px;
 }
 
 .sidenav .mat-toolbar {
-  background: inherit;
+    background: inherit;
 }
 
 .mat-toolbar.mat-primary {
@@ -17,11 +17,19 @@
 }
 
 .spacer {
-  flex: 1 1 auto;
+    flex: 1 1 auto;
 }
 
 .nav-button {
-  margin-left: 8px;
+    margin-left: 8px;
+}
+
+.search-full-width {
+    width: 100% !important;
+}
+
+.no-data {
+    pointer-events: none;
 }
 
 .logo-image{
