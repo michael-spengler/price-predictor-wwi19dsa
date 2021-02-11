@@ -2,7 +2,7 @@
   <h1 i18n="Welcome to Cointogether @@EntryId">Welcome to Cointogether</h1>
 
   <div fxLayout="row start" fxLayoutAlign="space-around">
-    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let link of links" style="margin-top: 1em;">
+    <div fxFlex="50%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let link of links" style="margin-top: 1em;">
       <a class="btn_animated btn_landing" routerLink="{{link.loc}}" i18n="Link Title @@LandingLink"> {{link.title}} </a>
     </div>
   </div>
