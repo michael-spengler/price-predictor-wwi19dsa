@@ -255,7 +255,7 @@ def loadBlogEntryByID(BlogModel, blogID, abort):
     if result is None:
         abort(404, message="ID not found")
     else:
-        return result.data()
+        return {"data": result.data()}, 200
 
 def loadBlogEntriesByAuthor(BlogModel, blogAuthor):
     result = BlogModel.query.filter_by(author=blogAuthor).all()
@@ -281,8 +281,8 @@ def createTradeEntry(args, TradeModel, db, token, UserModel):
 def loadTradeEntries(TradeModel):
     result = TradeModel.query.all()
     entries = []
-    for blog in result:
-        entries.append(blog.data())       
+    for trade in result:
+        entries.append(trade.data())       
     return {"data": entries}, 200
 
 def loadTradeEntriesByAuthor(TradeModel, tradeAuthor):
