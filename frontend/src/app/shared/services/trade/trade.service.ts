@@ -13,7 +13,7 @@ export class TradeService {
   constructor(private httpClient: HttpClient) { }
 
   public getAllTrades(): Observable<Trade[]> {
-    return this.httpClient.get(environment.apiEndpoint + 'trade').pipe(
+    return this.httpClient.get(environment.apiEndpoint + 'trades').pipe(
       retry(2),
       map((data: any) => {
         return data.data.filter((trade: Trade) => {
