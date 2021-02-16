@@ -1,10 +1,20 @@
 <div fxLayout="row wrap" fxLayoutAlign="space-around stretch" class="profile-header">
-    <mat-card class="profile-card mat-elevation-z4" style="margin: 4px;" fxFlex="calc(36% - 8px)" fxFlex.xs="calc(100% - 8px)">
+    <mat-card class="profile-card mat-elevation-z4" style="margin: 4px;" fxFlex="calc(36% - 8px)"
+        fxFlex.xs="calc(100% - 8px)">
         <div fxLayout="row wrap" fxLayoutAlign="space-around stretch">
             <img class="rounded" src="assets/images/avatar-1299805.svg">
 
             <div>
-                <span class="profile-name">{{ user.username }}</span><br>
+                <div class="with-icon">
+                    <span class="profile-name">{{ user.username }}</span>
+                    <button mat-icon-button color="warn" (click)="changeFollow()">
+                        <!-- <mat-icon *ngIf="user.follows; else elseBlock">favorite</mat-icon>
+                        <ng-template #elseBlock>favorite_border</ng-template> -->
+                        <mat-icon>{{ user.follows ? 'favorite' : 'favorite_border'}}</mat-icon>
+                    </button>
+                </div>
+               <!-- <br> -->
+
                 <span class="profile-text">@{{ user.user_id }}</span><br>
                 <span class="spacer"></span><br>
 
@@ -44,7 +54,8 @@
         </div>
     </mat-card>
 
-    <mat-card class="mat-elevation-z4 fix-bug-class" style="margin: 4px;" fxFlex="calc(32% - 8px)" fxFlex.xs="calc(100% - 8px)">
+    <mat-card class="mat-elevation-z4 fix-bug-class" style="margin: 4px;" fxFlex="calc(32% - 8px)"
+        fxFlex.xs="calc(100% - 8px)">
         <mat-card-title style="text-align: center;">
             Trades
         </mat-card-title>
@@ -52,7 +63,8 @@
             [dynamicResize]="trade_chart.dynamicResize" style="width: 100%;"></google-chart>
     </mat-card>
 
-    <mat-card class="mat-elevation-z4 fix-bug-class" style="margin: 4px;" fxFlex="calc(32% - 8px)" fxFlex.xs="calc(100% - 8px)">
+    <mat-card class="mat-elevation-z4 fix-bug-class" style="margin: 4px;" fxFlex="calc(32% - 8px)"
+        fxFlex.xs="calc(100% - 8px)">
         <mat-card-title style="text-align: center;">
             Portfolio
         </mat-card-title>
