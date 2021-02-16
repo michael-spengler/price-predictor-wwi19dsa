@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ChartType } from 'angular-google-charts';
 import { zip } from 'rxjs';
 import { BlogPostService } from '../../../shared/services/blog-post/blog-post.service';
@@ -36,14 +37,22 @@ export class ProfilePageComponent implements OnInit {
 
   allFeed: (BlogPost | Trade)[] = [];
   tradeFeed: Trade[] = [];
-  blogPostFeed: BlogPost[] = []
+  blogPostFeed: BlogPost[] = [];
+  id: String = "";
 
-  constructor(private blogPostService: BlogPostService, private tradeService: TradeService) {
+  constructor(private route: ActivatedRoute, private blogPostService: BlogPostService, private tradeService: TradeService) {
     this.trade_data = this.genTradeData();
   }
 
   
   ngOnInit(): void {
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      let id = params.get('id');
+      if (id != null) {
+        this.id = id;
+        console.log(this.id);
+      }
+    })
     zip(
       this.tradeService.getTradesByAuthor('test'),
       this.blogPostService.getPostsByAuthor('test')
@@ -62,7 +71,7 @@ export class ProfilePageComponent implements OnInit {
 
   trade_data;
 
-  genTradeData() {
+  private genTradeData() {
     let correct_trades = this.user.correct_trades;
     let wrong_trades = this.user.wrong_trades;
     let open_trades = this.user.trades - correct_trades - wrong_trades;
