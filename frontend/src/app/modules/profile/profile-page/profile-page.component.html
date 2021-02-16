@@ -7,13 +7,10 @@
             <div>
                 <div class="with-icon">
                     <span class="profile-name">{{ user.username }}</span>
-                    <button mat-icon-button color="warn" (click)="changeFollow()">
-                        <!-- <mat-icon *ngIf="user.follows; else elseBlock">favorite</mat-icon>
-                        <ng-template #elseBlock>favorite_border</ng-template> -->
+                    <button *ngIf="user.user_id != id" mat-icon-button color="warn" (click)="changeFollow()">
                         <mat-icon>{{ user.follows ? 'favorite' : 'favorite_border'}}</mat-icon>
                     </button>
                 </div>
-               <!-- <br> -->
 
                 <span class="profile-text">@{{ user.user_id }}</span><br>
                 <span class="spacer"></span><br>
