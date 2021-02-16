@@ -12,8 +12,35 @@ export class TradeService {
 
   constructor(private httpClient: HttpClient) { }
 
+  TRADES_ENDPOINT = 'trades';
+
   public getAllTrades(): Observable<Trade[]> {
-    return this.httpClient.get(environment.apiEndpoint + 'trades').pipe(
+    return this.httpClient.get(environment.apiEndpoint + this.TRADES_ENDPOINT).pipe(
+      retry(2),
+      map((data: any) => {
+        return data.data.filter((trade: Trade) => {
+          try {
+            trade.interface = "trade";
+            trade.date = this.parseToDate(trade.date);
+            trade.startdate = this.parseToDate(trade.startdate);
+            trade.enddate = this.parseToDate(trade.enddate);
+
+            if (!isNaN(trade.date.getTime()) && !isNaN(trade.startdate.getTime()) && !isNaN(trade.enddate.getTime())) {
+              return true
+            } else {
+              return false;
+            }
+          } catch (error) {
+            return false
+          }
+        }
+        );
+      })
+    );
+  }
+
+  public getTradesByAuthor(author: String): Observable<Trade[]> {
+    return this.httpClient.get(environment.apiEndpoint + this.TRADES_ENDPOINT + '/' + author).pipe(
       retry(2),
       map((data: any) => {
         return data.data.filter((trade: Trade) => {
