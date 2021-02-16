@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartType } from 'angular-google-charts';
+import { zip } from 'rxjs';
+import { BlogPostService } from '../../../shared/services/blog-post/blog-post.service';
+import { TradeService } from '../../../shared/services/trade/trade.service';
+import { Trade } from '../../../shared/models/trade.model';
+import { BlogPost } from '../../../shared/models/blog-post.model';
 
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
   styleUrls: ['./profile-page.component.scss']
 })
-export class ProfilePageComponent {
+export class ProfilePageComponent implements OnInit {
 
   user = {
     "username": "Angela Merkel",
@@ -29,8 +34,30 @@ export class ProfilePageComponent {
     ]
   };
 
-  constructor() {
+  allFeed: (BlogPost | Trade)[] = [];
+  tradeFeed: Trade[] = [];
+  blogPostFeed: BlogPost[] = []
+
+  constructor(private blogPostService: BlogPostService, private tradeService: TradeService) {
     this.trade_data = this.genTradeData();
+  }
+
+  
+  ngOnInit(): void {
+    zip(
+      this.tradeService.getTradesByAuthor('test'),
+      this.blogPostService.getPostsByAuthor('test')
+    ).subscribe(([trades, blogPosts]: [Trade[], BlogPost[]]) => {
+      this.blogPostFeed = blogPosts;
+      this.sortByDate(this.blogPostFeed);
+
+      this.tradeFeed = trades;
+      this.sortByDate(this.tradeFeed);
+
+      this.allFeed = this.blogPostFeed;
+      this.allFeed = this.allFeed.concat(this.tradeFeed);
+      this.sortByDate(this.allFeed);
+    });
   }
 
   trade_data;
@@ -53,6 +80,14 @@ export class ProfilePageComponent {
         "value": open_trades,
       }
     ];
+  }
+
+  private sortByDate(feed: (BlogPost | Trade)[]) {
+    feed.sort((a, b) => {
+      if (a.date != undefined && b.date != undefined) {
+        return (a.date > b.date) ? -1 : 1
+      } else return -1;
+    });
   }
 
   trade_chart = {
