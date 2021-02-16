@@ -5,7 +5,7 @@
         </mat-card-title>
         <mat-card-subtitle>
             <div class="card-title">
-                {{ trade.author }} - {{ trade.date | date }}
+                <a [routerLink]="['/profile', trade.author]" class="link">{{ trade.author }}</a> - {{ trade.date | date }}
             </div>
             <mat-chip-list>
                 <mat-chip color="accent">TRADE</mat-chip>
