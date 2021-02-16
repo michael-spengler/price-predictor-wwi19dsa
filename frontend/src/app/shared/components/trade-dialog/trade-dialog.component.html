@@ -4,7 +4,7 @@
 </ng-template>
 <ng-template #isNotLoadingBlock>
     <h1 mat-dialog-title i18n="Expected increase @@expectedIncreaseID">{{ trade.expectedIncrease }}% Increase</h1>
-    <h3 mat-dialog-title>{{ trade.author }} - {{ trade.date | date }}</h3>
+    <h3 mat-dialog-title><a [routerLink]="['/profile', trade.author]" class="link">{{ trade.author }}</a> - {{ trade.date | date }}</h3>
     <mat-dialog-content>
         <span class="with-icon" style="white-space: pre;">
             <mat-icon>date_range</mat-icon> {{ trade.startdate | date }} - {{ trade.enddate | date }}

@@ -13,3 +13,13 @@
     overflow-y: auto;
     text-overflow: ellipsis;
 }
+
+.link {
+    color: grey;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: black;
+}

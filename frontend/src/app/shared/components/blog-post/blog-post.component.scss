@@ -12,3 +12,12 @@
   overflow-y: auto;
   text-overflow: ellipsis;
 }
+
+.link {
+  color: grey;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: black;
+}
