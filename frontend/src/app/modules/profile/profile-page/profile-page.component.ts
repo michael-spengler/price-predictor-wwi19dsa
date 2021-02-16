@@ -41,19 +41,34 @@ export class ProfilePageComponent implements OnInit {
   blogPostFeed: BlogPost[] = [];
   id: String = "";
 
+  COLORS = [
+    '#e65200',
+    '#ef6d00',
+    '#f57d00',
+    '#fb8d00',
+    '#ff9900',
+    '#ffa826',
+    '#ffb84d',
+    '#ffcd80',
+    '#ffe0b2',
+    '#fff3e0',];
+
   constructor(private route: ActivatedRoute, private blogPostService: BlogPostService, private tradeService: TradeService) {
     this.trade_data = this.genTradeData();
   }
 
-  
+
   ngOnInit(): void {
+
+
     this.route.paramMap.subscribe((params: ParamMap) => {
       let id = params.get('id');
       if (id != null) {
         this.id = id;
         console.log(this.id);
       }
-    })
+    });
+
     zip(
       this.tradeService.getTradesByAuthor('test'),
       this.blogPostService.getPostsByAuthor('test')
@@ -68,6 +83,8 @@ export class ProfilePageComponent implements OnInit {
       this.allFeed = this.allFeed.concat(this.tradeFeed);
       this.sortByDate(this.allFeed);
     });
+
+
   }
 
   trade_data;
@@ -99,7 +116,7 @@ export class ProfilePageComponent implements OnInit {
       } else return -1;
     });
   }
-  
+
   public changeFollow() {
     this.user.follows = !this.user.follows;
     console.log(this.user.follows);
@@ -119,12 +136,26 @@ export class ProfilePageComponent implements OnInit {
       ]
     ],
     "options": {
+      "colors": this.COLORS,
+      "bar": {
+        "opacity": 0.2,
+        "stroke-width": 4,
+      },
       "backgroundColor": {
         "fill": "transparent",
       },
       "legend": {
+        "position": "none"
+      },
+      "hAxis": {
+        "baselineColor": '#FFF',
         "textStyle": {
-          "color": "white"
+          "color": "grey"
+        }
+      },
+      "vAxis": {
+        "textStyle": {
+          "color": "grey"
         }
       }
     },
@@ -148,15 +179,18 @@ export class ProfilePageComponent implements OnInit {
       ]
     ],
     "options": {
+      "colors": this.COLORS,
       "backgroundColor": {
         "fill": "transparent",
       },
       "legend": {
         "textStyle": {
-          "color": "white"
+          "color": "grey"
         }
       }
     },
     "dynamicResize": true,
   }
+
+
 }
