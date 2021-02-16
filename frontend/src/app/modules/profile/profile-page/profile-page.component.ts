@@ -17,6 +17,7 @@ export class ProfilePageComponent implements OnInit {
   user = {
     "username": "Angela Merkel",
     "user_id": "bundesregierung",
+    "follows": true,
     "join_date": "2008-02-01",
     "posts": 213,
     "trades": 361,
@@ -97,6 +98,11 @@ export class ProfilePageComponent implements OnInit {
         return (a.date > b.date) ? -1 : 1
       } else return -1;
     });
+  }
+  
+  public changeFollow() {
+    this.user.follows = !this.user.follows;
+    console.log(this.user.follows);
   }
 
   trade_chart = {
