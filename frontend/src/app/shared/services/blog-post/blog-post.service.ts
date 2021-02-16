@@ -12,8 +12,10 @@ export class BlogPostService {
 
   constructor(private httpClient: HttpClient) { }
 
+  BLOG_POST_ENDPOINT = 'blog';
+
   public getAllPosts(): Observable<BlogPost[]> {
-    return this.httpClient.get(environment.apiEndpoint + 'blog').pipe(
+    return this.httpClient.get(environment.apiEndpoint + this.BLOG_POST_ENDPOINT).pipe(
       retry(2),
       map((data: any) => {
         return data.data.filter((post: BlogPost) => {
@@ -36,16 +38,37 @@ export class BlogPostService {
   }
 
   public getPostById(id: number): Observable<BlogPost> {
-    return this.httpClient.get<BlogPost>(environment.apiEndpoint + 'blog/' + id.toString()).pipe(
+    return this.httpClient.get(environment.apiEndpoint + this.BLOG_POST_ENDPOINT + '/' + id.toString()).pipe(
       retry(2),
-      map((post: BlogPost) => {
+      map((data: any) => {
+        let post = data.data;
         post.interface = "blog-post";
         let date = post.date ? post.date : '';
         post.date = new Date(date);
-        if (isNaN(post.date.getTime())) {
-          post.date = new Date();
+        return post;
+      })
+    );
+  }
+
+  public getPostsByAuthor(author: String): Observable<BlogPost[]> {
+    return this.httpClient.get(environment.apiEndpoint + this.BLOG_POST_ENDPOINT + '/' + author).pipe(
+      retry(2),
+      map((data: any) => {
+        return data.data.filter((post: BlogPost) => {
+          try {
+            post.interface = "blog-post";
+            let date = post.date ? post.date : '';
+            post.date = new Date(date);
+            if (!isNaN(post.date.getTime())) {
+              return true
+            } else {
+              return false;
+            }
+          } catch (error) {
+            return false
+          }
         }
-        return post
+        );
       })
     );
   }
