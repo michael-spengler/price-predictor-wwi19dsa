@@ -22,12 +22,12 @@ export class NewsFeedComponent implements OnInit {
     ).subscribe(([trades, blogPosts]: [Trade[], BlogPost[]]) => {
       this.feedList = blogPosts;
       this.feedList = this.feedList.concat(trades);
-      console.log(this.sortByDate());
+      this.sortByDate(this.feedList);
     });
   }
 
-  private sortByDate() {
-    return this.feedList.sort((a, b) => {
+  private sortByDate(feed: (BlogPost | Trade)[]) {
+    feed.sort((a, b) => {
       if (a.date != undefined && b.date != undefined) {
         return (a.date > b.date) ? -1 : 1
       } else return -1;
