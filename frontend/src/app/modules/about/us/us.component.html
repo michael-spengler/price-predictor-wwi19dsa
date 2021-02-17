@@ -2,9 +2,9 @@
   <div class="aboutus-wrapper" style="width: 100%;">
     <h1 i18n="About Us @@usID">About Us</h1>
     <h2 i18n="Services @@servicesID">Services</h2>
-    <div fxLayout="row start" fxLayoutAlign="space-around">
+    <div fxLayout="row start" fxLayoutAlign="space-around stretch">
       <div fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="100%" *ngFor="let service of services" style="margin-top: 1em;">
-        <mat-card>
+        <mat-card style="height: 100%;">
           <mat-card-header>
             <mat-card-title  i18n="Service Name @@ServiceTitle">{{service.title}}</mat-card-title>
           </mat-card-header>
