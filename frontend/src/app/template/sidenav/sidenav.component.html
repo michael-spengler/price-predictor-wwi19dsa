@@ -58,7 +58,7 @@
         </button>
 
         <mat-menu #userMenu="matMenu">
-          <button mat-menu-item routerLink="/">
+          <button mat-menu-item [routerLink]="['/profile', authService.getUser().username]">
             <span> Signed in as
               <strong>
                 {{ authService.getUser().username }}
