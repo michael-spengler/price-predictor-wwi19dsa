@@ -1,6 +1,9 @@
 .link {
     text-decoration: none;
-    color: black;
+}
+
+.link:visited {
+    color: inherit;
 }
 
 .link:hover {

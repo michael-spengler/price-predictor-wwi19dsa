@@ -16,8 +16,11 @@
 
 .link {
     color: grey;
-    font-size: 14px;
     text-decoration: none;
+}
+
+.link:visited {
+    color: grey;
 }
 
 .link:hover {
