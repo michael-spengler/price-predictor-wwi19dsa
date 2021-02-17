@@ -35,7 +35,8 @@ const routes: Routes = [
   {
     path: 'profile/:id',
     loadChildren: () => import('../profile/profile.module')
-      .then(m => m.ProfileModule)
+      .then(m => m.ProfileModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'feed',
