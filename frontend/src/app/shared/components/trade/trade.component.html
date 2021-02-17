@@ -8,12 +8,12 @@
                 <a [routerLink]="['/profile', trade.author]" class="link">{{ trade.author }}</a> - {{ trade.date | date }}
             </div>
             <mat-chip-list>
-                <mat-chip color="accent">TRADE</mat-chip>
+                <mat-chip color="accent" i18n="Trade @@tradeID">TRADE</mat-chip>
                 <div *ngIf="trade.type == 'option_sell'; else buyChipBlock" class="with-icon">
-                    <mat-chip color="accent">SELL</mat-chip>
+                    <mat-chip color="accent" i18n="Sell @@sellID">SELL</mat-chip>
                 </div>
                 <ng-template #buyChipBlock>
-                    <mat-chip color="accent">BUY</mat-chip>
+                    <mat-chip color="accent" i18n="Buy @@buyID">BUY</mat-chip>
                 </ng-template>
             </mat-chip-list>
         </mat-card-subtitle>
@@ -22,19 +22,19 @@
     <mat-card-content class="card-content">
         <span class="with-icon" style="white-space: pre;">
             <mat-icon>date_range</mat-icon>
-            <strong> Time range:</strong>
+            <strong i18n="Time range @@timeRangeID"> Time range:</strong>
             {{ trade.startdate | date }} - {{ trade.enddate | date }}
         </span>
 
         <span class="with-icon" style="white-space: pre;">
             <mat-icon>emoji_objects</mat-icon>
-            <strong> Percentage of Portfolio:</strong> 
+            <strong i18n="Percentage of the Portfolio @@percentageOfPortfolioID"> Percentage of Portfolio:</strong> 
             {{ trade.percent }}% 
         </span>
 
         <span class="with-icon" style="white-space: pre;">
             <mat-icon>account_balance</mat-icon>
-            <strong> Currencies:</strong>
+            <strong i18n="Currencies to exchange @@exchangeCurrenciesID"> Currencies:</strong>
             <div *ngIf="trade.type == 'option_sell'; else buyBlock" class="with-icon">
                 {{ trade.cryptocurrency }}
                 <mat-icon>east</mat-icon>
@@ -49,6 +49,6 @@
     </mat-card-content>
 
     <mat-card-actions>
-        <button mat-stroked-button color="accent" (click)="openDialog()">View</button>
+        <button mat-stroked-button color="accent" (click)="openDialog()" i18n="Open the detailed view @@viewID">View</button>
     </mat-card-actions>
 </mat-card>

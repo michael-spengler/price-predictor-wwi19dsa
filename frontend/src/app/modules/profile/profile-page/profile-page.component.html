@@ -23,19 +23,19 @@
                 </div>
                 <div class="with-icon profile-text">
                     <mat-icon>article</mat-icon>
-                    <span style="font-weight: bold; white-space: pre;">Posts: </span>
+                    <span style="font-weight: bold; white-space: pre;" i18n="Posts @@postsID">Posts: </span>
                     {{ user.posts }}<br>
                 </div>
 
                 <div class="with-icon profile-text">
                     <mat-icon>article</mat-icon>
-                    <span style="font-weight: bold; white-space: pre;">Trades: </span>
+                    <span style="font-weight: bold; white-space: pre;" i18n="Trades @@tradesID">Trades: </span>
                     {{ user.trades }}<br>
                 </div>
 
                 <div class="with-icon profile-text">
                     <mat-icon>person</mat-icon>
-                    <span style="font-weight: bold; white-space: pre;">Follower: </span>
+                    <span style="font-weight: bold; white-space: pre;" i18n="Follower @@followerID">Follower: </span>
                     {{ user.follower }}<br>
                 </div>
 
@@ -53,7 +53,7 @@
 
     <mat-card class="mat-elevation-z4 fix-bug-class" style="margin: 4px;" fxFlex="calc(32% - 8px)"
         fxFlex.xs="calc(100% - 8px)">
-        <mat-card-title style="text-align: center;">
+        <mat-card-title style="text-align: center;" i18n="Trades @@tradesID">
             Trades
         </mat-card-title>
         <google-chart [type]="trade_chart.type" [data]="trade_chart.data" [options]="trade_chart.options"
@@ -62,7 +62,7 @@
 
     <mat-card class="mat-elevation-z4 fix-bug-class" style="margin: 4px;" fxFlex="calc(32% - 8px)"
         fxFlex.xs="calc(100% - 8px)">
-        <mat-card-title style="text-align: center;">
+        <mat-card-title style="text-align: center;" i18n="Portfolio @@portfolioID">
             Portfolio
         </mat-card-title>
         <google-chart [type]="portfolio_chart.type" [data]="portfolio_chart.data" [options]="portfolio_chart.options"
