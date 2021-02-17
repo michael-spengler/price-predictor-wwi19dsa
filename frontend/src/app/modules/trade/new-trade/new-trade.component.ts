@@ -87,7 +87,7 @@ export class NewTradeComponent implements OnInit{
 
       let options = { headers: headers };
       
-      this.httpClient.post(environment.apiEndpoint + 'trade', trade, options).subscribe(result => {
+      this.httpClient.post(environment.apiEndpoint + 'trades', trade, options).subscribe(result => {
         this.router.navigate(['']);
     }, error => {
         this._snackBar.open('Error. There are some troubles with this trade. Please try again!', 'Close');
