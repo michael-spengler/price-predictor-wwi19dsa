@@ -21,11 +21,20 @@
 
     <mat-card-content class="card-content">
         <span class="with-icon" style="white-space: pre;">
-            <mat-icon>date_range</mat-icon> {{ trade.startdate | date }} - {{ trade.enddate | date }}
+            <mat-icon>date_range</mat-icon>
+            <strong> Time range:</strong>
+            {{ trade.startdate | date }} - {{ trade.enddate | date }}
         </span>
 
         <span class="with-icon" style="white-space: pre;">
-            <mat-icon>emoji_objects</mat-icon> {{trade.percent}}% 
+            <mat-icon>emoji_objects</mat-icon>
+            <strong> Percentage of Portfolio:</strong> 
+            {{ trade.percent }}% 
+        </span>
+
+        <span class="with-icon" style="white-space: pre;">
+            <mat-icon>account_balance</mat-icon>
+            <strong> Currencies:</strong>
             <div *ngIf="trade.type == 'option_sell'; else buyBlock" class="with-icon">
                 {{ trade.cryptocurrency }}
                 <mat-icon>east</mat-icon>
