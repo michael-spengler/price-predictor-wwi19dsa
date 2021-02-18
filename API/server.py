@@ -60,13 +60,13 @@ class TradeModel(db.Model):
     percent         = db.Column(db.String, nullable=False)
     fiatcurrency    = db.Column(db.String, nullable=True, default="not set")
     cryptocurrency  = db.Column(db.String, nullable=True, default="not set")
-    motivation      = db.Column(db.String, nullable=False)
     startdate       = db.Column(db.String, nullable=False)
     enddate         = db.Column(db.String, nullable=False)
     expectedIncrease= db.Column(db.String, nullable=False)
+    motivation      = db.Column(db.String, nullable=False)
     description     = db.Column(db.String, nullable=False)
     def data(self):
-        return {"id":self.id, "author":self.author, "date":self.date, "type":self.type, "percent":self.percent, "fiatcurrency":self.fiatcurrency, "cryptocurrency":self.cryptocurrency, "startdate":self.startdate, "enddate":self.enddate, "expectedIncrease":self.expectedIncrease}
+        return {"id":self.id, "author":self.author, "date":self.date, "type":self.type, "percent":self.percent, "fiatcurrency":self.fiatcurrency, "cryptocurrency":self.cryptocurrency, "startdate":self.startdate, "enddate":self.enddate, "expectedIncrease":self.expectedIncrease, "motivation":self.motivation, "description":self.description}
     
 
 #Set Resourcefields for Requestparser
@@ -145,7 +145,7 @@ class Blogauthor(Resource):
     def get(self, blogAuthor):
         return f.loadBlogEntriesByAuthor(BlogModel, blogAuthor)
 
-@api.route("/trades")
+@api.route("/trade")
 class Trade(Resource):
     @api.doc(params={"type":"", "percent":"", "fiatcurrency":"", "cryptocurrency":"", "motivation":"", "startdate":"", "enddate":"", "expectedIncrease":"", "description":""})
     def post(self):
@@ -153,6 +153,8 @@ class Trade(Resource):
         token = request.headers.get("Authorization")
         return f.createTradeEntry(args, TradeModel, db, token, UserModel)
 
+@api.route("/trades")
+class Trade(Resource):
     def get(self):
         return f.loadTradeEntries(TradeModel)
 
@@ -160,6 +162,11 @@ class Trade(Resource):
 class Blogauthor(Resource):
     def get(self, tradeAuthor):
         return f.loadTradeEntriesByAuthor(TradeModel, tradeAuthor)
+
+@api.route("/trades/<int:tradeID>")
+class Blogauthor(Resource):
+    def get(self, tradeID):
+        return f.loadTradeEntriesByID(TradeModel, tradeID)
 
 @api.route("/users")
 class Blogauthor(Resource):
