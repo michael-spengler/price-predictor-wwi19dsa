@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, retry } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import jwt_decode from 'jwt-decode';
 
 import { environment } from 'src/environments/environment';
 import { AccessToken } from 'src/app/shared/models/access-token.model';
 import { User } from '../../models/user.model'; 
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 
 const ACCESS_TOKEN = 'Authorization';
@@ -19,7 +21,13 @@ export class AuthService {
 
   isLoggedIn = new BehaviorSubject(false);
 
-  constructor(private httpClient: HttpClient) { }
+
+
+  constructor(
+    private httpClient: HttpClient,
+    private _snackBar: MatSnackBar,
+  ) { 
+  }
 
   public async login(email: string, password: string) {
     this.httpLogin(email, password).subscribe(resp => {
@@ -54,9 +62,29 @@ export class AuthService {
     }
   }
 
+  public verifyToken() {
+    const token = this.getToken();
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token
+    });
+    let options = { 
+      headers: headers,
+    };
+    let body = {
+      'token': token
+    };
+
+    this.httpClient.post(environment.apiEndpoint + 'verify-token', body, options).subscribe((result: any) => {
+      this.isLoggedIn.next(true);
+    }, error => {
+      this._snackBar.open('Error with the token. Please login again.', 'Close');
+      this.isLoggedIn.next(false);
+    });
+  }
+
   public getUser(): User {
     const user = localStorage.getItem(USER);
-
     if (user == null) {
       throw new Error('No Token Found');
     } else {
@@ -79,7 +107,7 @@ export class AuthService {
 
   public checkAuthentication() {
     if (this.isAuthenticated()) {
-      this.isLoggedIn.next(true);
+      this.verifyToken();
     } else {
       this.isLoggedIn.next(false);
     }
