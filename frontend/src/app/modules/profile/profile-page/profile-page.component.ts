@@ -126,13 +126,13 @@ export class ProfilePageComponent implements OnInit {
     "type": ChartType.ColumnChart,
     "data": [
       [
-        "Correct", 123
+        $localize`:Number of correct trades@@correctTradesID:Correct`, 123
       ],
       [
-        "Wrong", 243
+        $localize`:Number of wrong trades@@wrongTradesID:Wrong`, 243
       ],
       [
-        "Open", 13
+        $localize`:Number of trades that are not evaluated@@openTradesID:Open`, 13
       ]
     ],
     "options": {
