@@ -6,12 +6,12 @@
                 <a [routerLink]="['/profile', trade.author]" class="link">{{ trade.author }}</a> - {{ trade.date | date }}
             </div>
             <mat-chip-list>
-                <mat-chip color="accent" i18n="Trade@@tradeID">TRADE</mat-chip>
+                <mat-chip color="accent" i18n="Trade@@tradeID">Trade</mat-chip>
                 <div *ngIf="trade.type == 'option_sell'; else buyChipBlock" class="with-icon">
-                    <mat-chip color="accent" i18n="Sell@@sellID">SELL</mat-chip>
+                    <mat-chip color="accent" i18n="Sell@@sellID">Sell</mat-chip>
                 </div>
                 <ng-template #buyChipBlock>
-                    <mat-chip color="accent" i18n="Buy@@buyID">BUY</mat-chip>
+                    <mat-chip color="accent" i18n="Buy@@buyID">Buy</mat-chip>
                 </ng-template>
             </mat-chip-list>
         </mat-card-subtitle>
