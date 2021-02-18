@@ -19,22 +19,8 @@ export class TradeService {
       retry(2),
       map((data: any) => {
         return data.data.filter((trade: Trade) => {
-          try {
-            trade.interface = "trade";
-            trade.date = this.parseToDate(trade.date);
-            trade.startdate = this.parseToDate(trade.startdate);
-            trade.enddate = this.parseToDate(trade.enddate);
-
-            if (!isNaN(trade.date.getTime()) && !isNaN(trade.startdate.getTime()) && !isNaN(trade.enddate.getTime())) {
-              return true
-            } else {
-              return false;
-            }
-          } catch (error) {
-            return false
-          }
-        }
-        );
+          return this.isTrade(this.parseToTrade(trade));
+        });
       })
     );
   }
@@ -44,22 +30,8 @@ export class TradeService {
       retry(2),
       map((data: any) => {
         return data.data.filter((trade: Trade) => {
-          try {
-            trade.interface = "trade";
-            trade.date = this.parseToDate(trade.date);
-            trade.startdate = this.parseToDate(trade.startdate);
-            trade.enddate = this.parseToDate(trade.enddate);
-
-            if (!isNaN(trade.date.getTime()) && !isNaN(trade.startdate.getTime()) && !isNaN(trade.enddate.getTime())) {
-              return true
-            } else {
-              return false;
-            }
-          } catch (error) {
-            return false
-          }
-        }
-        );
+          return this.isTrade(this.parseToTrade(trade));
+        })
       })
     );
   }
@@ -68,12 +40,7 @@ export class TradeService {
     return this.httpClient.get(environment.apiEndpoint + this.TRADES_ENDPOINT + '/' + id.toString()).pipe(
       retry(2),
       map((data: any) => {
-        let trade: Trade = data.data;
-        trade.interface = "trade";
-        trade.date = this.parseToDate(trade.date);
-        trade.startdate = this.parseToDate(trade.startdate);
-        trade.enddate = this.parseToDate(trade.enddate);
-        return trade;
+        return this.parseToTrade(data.data);
       })
     );
   }
@@ -82,5 +49,25 @@ export class TradeService {
     let date = new Date(dateString);
     date = date ? date : new Date();
     return date;
+  }
+
+  private parseToTrade(data: any): Trade {
+    data.interface = "trade";
+    data.date = this.parseToDate(data.date);
+    data.startdate = this.parseToDate(data.startdate);
+    data.enddate = this.parseToDate(data.enddate);
+    return data;
+  }
+
+  private isTrade(trade: Trade): Boolean {
+    try {
+      if (!isNaN(this.parseToDate(trade.date).getTime()) && !isNaN(trade.startdate.getTime()) && !isNaN(trade.enddate.getTime())) {
+        return true
+      } else {
+        return false;
+      }
+    } catch (error) {
+      return false
+    }
   }
 }
