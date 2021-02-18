@@ -23,12 +23,12 @@ npm run en
 
 - [Benutzung](#Benutzung)
 - [Vorgeschichte](#Vorgeschichte)
-- [Das ist Coin-2-Gether](#Das ist Coin-2-Gether)
+- [Coin-2-Gether](#Coin-2-Gether)
 - [Business](#Business)
 - [Team](#Team)
 - [Technologien](#Technologien)
 - [Umsetzung](#Umsetzung)
-- [Kritische Betrachtung der Umsetzung](#Kritische Betrachtung der Umsetzung)
+- [Kritik](#Kritik)
 - [Learnings](#Learnings)
 
 
@@ -43,7 +43,7 @@ Für viele ist die Technik und das Prinzip dahinter jedoch noch sehr fern und sc
 Wir haben eine Plattform für jeden Kryptoliebhaber geschaffen, auf der verschiedenste Informationen und News, sowie Investmentempfehlungen bereitgestellt werden. Über Coin2gether kann man auch automatisch sein Depot managen lassen.
 
 
-## Das ist Coin-2-Gether
+## Coin-2-Gether
 
 Mit verschiedenen Herangehensweisen und Zielen, welche sich individuell einstellen lassen, bieten wir eine Lösung für jedermann. Über sichere Altersvorsorge und eine solide jährliche Rendite, bis hin zum reinen Spekulieren und kurzfristigen Daytrading ist alles möglich.
 
@@ -105,7 +105,7 @@ Ein wichtiger Punkt in der Programmierung war die Arbeit mit Branches in GitHub.
 In den letzten Wochen und Tagen haben wir uns zweimal die Woche in einem Meeting getroffen, um schneller auf Fragen und Probleme reagieren zu können. 
 
 
-## Kritische Betrachtung der Umsetzung
+## Kritik
 
 - ...
 
