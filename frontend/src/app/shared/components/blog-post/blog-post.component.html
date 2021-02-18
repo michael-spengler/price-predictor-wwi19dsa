@@ -6,7 +6,7 @@
                 <a [routerLink]="['/profile', post.author]" class="link">{{ post.author }}</a> - {{ post.date | date }}
             </div>
             <mat-chip-list>
-                <mat-chip color="accent">POST</mat-chip>
+                <mat-chip color="accent" i18n="Post@@postID">POST</mat-chip>
             </mat-chip-list>
         </mat-card-subtitle>
     </mat-card-header>
