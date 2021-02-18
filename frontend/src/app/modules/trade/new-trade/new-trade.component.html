@@ -1,56 +1,80 @@
-<h1 class="header-trade">EAT. SLEEP. TRADE. REPEAT.</h1>
+<h1 class="header-trade" i18n="EAT. SLEEP. TRADE. REPEAT.@@newTradeHeaderID">EAT. SLEEP. TRADE. REPEAT.</h1>
 <mat-vertical-stepper [linear]="true" #stepper>
+
     <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel i18n="Your Action@@your_action">Your Action</ng-template>
-            <p i18n="You can either buy new Crypto or sell already existing Crypto.@@description_buy_sell_crypto">You can either buy new Crypto or sell already existing Crypto.</p>
+            <p i18n="You can either buy new Crypto or sell already existing Crypto.@@description_buy_sell_crypto">You
+                can either buy new Crypto or sell already existing Crypto.</p>
             <mat-radio-group aria-label="Select an option" required formControlName="sellOrBuy">
-                <mat-radio-button value="option_sell" i18n="Sell@@sell">Sell</mat-radio-button>
-                <mat-radio-button value="option_buy" i18n="Buy@@buy">Buy</mat-radio-button>
+                <mat-radio-button value="option_sell" i18n="Sell@@sellID">Sell</mat-radio-button>
+                <mat-radio-button value="option_buy" i18n="Buy@@buyID">Buy</mat-radio-button>
             </mat-radio-group>
             <mat-error *ngIf="firstFormGroup.controls.sellOrBuy.touched && firstFormGroup.controls.sellOrBuy.invalid">
-                <span *ngIf="firstFormGroup.controls.sellOrBuy.hasError('required')" i18n="This field is mandatory.@@field_mandatory">This field is mandatory.</span>
+                <span *ngIf="firstFormGroup.controls.sellOrBuy.hasError('required')"
+                i18n="This field is mandatory.@@mandatoryFieldID">This field is mandatory.</span>
             </mat-error>
             <div class="stepper-buttons">
                 <button mat-button matStepperNext i18n="Next@@next">Next</button>
             </div>
         </form>
     </mat-step>
+
     <mat-step [stepControl]="secondFormGroup">
         <ng-template matStepLabel i18n="Trade Information@@tradeInformation">Trade Information</ng-template>
+
         <form [formGroup]="secondFormGroup">
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label i18n="Your motivation@@enter_motivation">Your motivation</mat-label>
-                <input matInput type="text" placeholder="Double your Crypo Net Worth in 5 Month" formControlName="motivation" required>
+                <input matInput type="text" placeholder="Double your Crypo Net Worth in 5 Month"
+                    formControlName="motivation" required>
             </mat-form-field>
+
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label i18n="Please Select a Fiat Currency@@select_fiat">Please Select a Fiat Currency</mat-label>
-                <input id="field2" formControlName="fiat" type="text" placeholder="Fiat" aria-label="Number" matInput [matAutocomplete]="auto1" required>
+                <input id="field2" formControlName="fiat" type="text" placeholder="Fiat" aria-label="Number" matInput
+                    [matAutocomplete]="auto1" required>
                 <mat-autocomplete #auto1="matAutocomplete">
                     <mat-option *ngFor="let option of fiatFilteredOptions | async" [value]="option">
                         {{ option }}
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
+
             <mat-form-field appearance="outline" class="full-width">
-                <mat-label i18n="Please Select a Crypto Currency@@select_crypto">Please Select a Crypto Currency</mat-label>
-                <input id="field2" type="text" placeholder="Crypto" aria-label="Number" matInput formControlName="crypto" [matAutocomplete]="auto2" required>
+                <mat-label i18n="Please Select a Crypto Currency@@select_crypto">Please Select a Crypto Currency
+                </mat-label>
+                <input id="field2" type="text" placeholder="Crypto" aria-label="Number" matInput
+                    formControlName="crypto" [matAutocomplete]="auto2" required>
                 <mat-autocomplete #auto2="matAutocomplete">
                     <mat-option *ngFor="let option of cryptoFilteredOptions | async" [value]="option">
                         {{ option }}
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
+
             <div class="full-width">
-                <p i18n="Please indicate the return you expect to receive:@@indicateExpectedReturn">Please indicate the return you expect to receive:</p> <p i18n="(You can vary by 3-5 per cent.)@@varyPercent">(You can vary by 3-5 per cent.)</p>
-                <mat-slider thumbLabel [displayWith]="formatLabelPercent" tickInterval="10" min="1" max="250" formControlName="percentReturn"></mat-slider>
+                <p i18n="Please indicate the return you expect to receive:@@indicateExpectedReturn">Please indicate the
+                    return you expect to receive:</p>
+                <p i18n="(You can vary by 3-5 per cent.)@@varyPercent">(You can vary by 3-5 per cent.)</p>
+                <mat-slider thumbLabel [displayWith]="formatLabelPercent" tickInterval="10" min="1" max="250"
+                    formControlName="percentReturn"></mat-slider>
             </div>
+
             <div class="full-width">
-                <p i18n="Please indicate the recommended percentage amount that the user should trade with their available buy currency:@@indicateAmountToInvest">Please indicate the recommended percentage amount that the user should trade with their available buy currency:</p> <p i18n="(You can vary by 3-5 per cent.)@@varyPercent">(You can vary by 3-5 per cent.)</p>
-                <mat-slider thumbLabel [displayWith]="formatLabelPercent" tickInterval="10" min="1" max="100" formControlName="percentInvest"></mat-slider>
+                <p
+                    i18n="Please indicate the recommended percentage amount that the user should trade with their available buy currency:@@indicateAmountToInvest">
+                    Please indicate the recommended percentage amount that the user should trade with their available
+                    buy currency:</p>
+                <p i18n="(You can vary by 3-5 per cent.)@@varyPercent">(You can vary by 3-5 per cent.)</p>
+                <mat-slider thumbLabel [displayWith]="formatLabelPercent" tickInterval="10" min="1" max="100"
+                    formControlName="percentInvest"></mat-slider>
             </div>
+
             <mat-form-field class="full-width" appearance="outline">
-                <mat-label i18n="Please indicate the time you expect to receive the return@@indicateExpectedTimeOfReturn">Please indicate the time you expect to receive the return</mat-label>
+                <mat-label
+                    i18n="Please indicate the time you expect to receive the return@@indicateExpectedTimeOfReturn">
+                    Please indicate the time you expect to receive the return</mat-label>
                 <mat-date-range-input [rangePicker]="roiPicker" [min]="minDate">
                     <input matStartDate placeholder="Start date" formControlName="startDate">
                     <input matEndDate placeholder="End date" formControlName="endDate">
@@ -58,28 +82,38 @@
                 <mat-datepicker-toggle matSuffix [for]="roiPicker"></mat-datepicker-toggle>
                 <mat-date-range-picker #roiPicker></mat-date-range-picker>
             </mat-form-field>
+
             <mat-form-field class="full-width" appearance="outline">
                 <mat-label i18n="Description@@enter_description">Your Description</mat-label>
                 <textarea cols="100" rows="15" matInput formControlName="description" required></textarea>
             </mat-form-field>
+
             <div class="stepper-buttons">
                 <button mat-button matStepperPrevious i18n="Back@@Back">Back</button>
                 <button mat-button matStepperNext i18n="Next@@next">Next</button>
             </div>
         </form>
     </mat-step>
+
     <mat-step>
         <ng-template matStepLabel i18n="Done@@Done">Done</ng-template>
+
         <form [formGroup]="thirdFormGroup" (submit)="publishTrade()">
             <div>
-                <mat-checkbox formControlName="acceptTerms" required i18n="I have not read and understood the terms and conditions.@@read_t_c">I have not read and understood the terms and conditions.</mat-checkbox>
+                <mat-checkbox formControlName="acceptTerms" required
+                    i18n="I have not read and understood the terms and conditions.@@read_t_c">I have not read and
+                    understood the terms and conditions.</mat-checkbox>
             </div>
+
             <div class="stepper-buttons">
                 <button mat-button matStepperPrevious i18n="Back@@Back">Back</button>
                 <button mat-button (click)="stepper.reset()" i18n="Reset@@Reset">Reset</button>
             </div>
+
             <button type="submit" mat-button *ngIf="thirdFormGroup.valid" i18n="Publish@@publish">Publish</button>
-            <button type="submit" mat-button *ngIf="!thirdFormGroup.valid" i18n="Publish@@publish" disabled>Publish</button>
+            <button type="submit" mat-button *ngIf="!thirdFormGroup.valid" i18n="Publish@@publish"
+                disabled>Publish</button>
         </form>
+
     </mat-step>
 </mat-vertical-stepper>

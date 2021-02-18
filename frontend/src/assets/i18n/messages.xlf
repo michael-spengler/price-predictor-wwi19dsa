@@ -20,7 +20,7 @@
           <context context-type="sourcefile">src/app/template/sidenav/sidenav.component.html</context>
           <context context-type="linenumber">6</context>
         </context-group>
-        <note priority="1" from="description">Feed </note>
+        <note priority="1" from="description">Feed</note>
       </trans-unit>
       <trans-unit id="newPostID" datatype="html">
         <source>New Post</source>
@@ -28,7 +28,7 @@
           <context context-type="sourcefile">src/app/template/sidenav/sidenav.component.html</context>
           <context context-type="linenumber">70</context>
         </context-group>
-        <note priority="1" from="description">New Post </note>
+        <note priority="1" from="description">New Post</note>
       </trans-unit>
       <trans-unit id="newTradeID" datatype="html">
         <source>New Trade</source>
@@ -36,7 +36,7 @@
           <context context-type="sourcefile">src/app/template/sidenav/sidenav.component.html</context>
           <context context-type="linenumber">73</context>
         </context-group>
-        <note priority="1" from="description">New Trade </note>
+        <note priority="1" from="description">New Trade</note>
       </trans-unit>
       <trans-unit id="logoutID" datatype="html">
         <source>Logout</source>
@@ -44,7 +44,7 @@
           <context context-type="sourcefile">src/app/template/sidenav/sidenav.component.html</context>
           <context context-type="linenumber">76</context>
         </context-group>
-        <note priority="1" from="description">Logout </note>
+        <note priority="1" from="description">Logout</note>
       </trans-unit>
       <trans-unit id="log_in" datatype="html">
         <source>Log In</source>
@@ -386,26 +386,37 @@
         </context-group>
         <note priority="1" from="description">Buy</note>
       </trans-unit>
-      <trans-unit id="7841430672042223267" datatype="html">
+      <trans-unit id="postID" datatype="html">
+        <source>POST</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/blog-post/blog-post.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <note priority="1" from="description">Post</note>
+      </trans-unit>
+      <trans-unit id="correctTradesID" datatype="html">
         <source>Correct</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/profile/profile-page/profile-page.component.ts</context>
           <context context-type="linenumber">129</context>
         </context-group>
+        <note priority="1" from="description">Number of correct trades</note>
       </trans-unit>
-      <trans-unit id="2748884846672363037" datatype="html">
+      <trans-unit id="wrongTradesID" datatype="html">
         <source>Wrong</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/profile/profile-page/profile-page.component.ts</context>
           <context context-type="linenumber">132</context>
         </context-group>
+        <note priority="1" from="description">Number of wrong trades</note>
       </trans-unit>
-      <trans-unit id="7593555694782789615" datatype="html">
+      <trans-unit id="openTradesID" datatype="html">
         <source>Open</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/profile/profile-page/profile-page.component.ts</context>
           <context context-type="linenumber">135</context>
         </context-group>
+        <note priority="1" from="description">Number of trades that are not evaluated</note>
       </trans-unit>
       <trans-unit id="joinDateID" datatype="html">
         <source>Joined on</source>
