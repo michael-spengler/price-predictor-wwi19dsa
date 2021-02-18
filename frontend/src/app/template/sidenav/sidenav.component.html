@@ -3,7 +3,7 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="'dialog'">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item i18n="Feed @@feedID" routerLink="/feed"> Feed </a>
+      <a mat-list-item i18n="Feed@@feedID" routerLink="/feed"> Feed </a>
       <a mat-list-item  routerLink="/about/us"> About Us </a>
       <button mat-icon-button matTooltip="Switch theme" (click)="this.themesService.toggleTheme()">
         <mat-icon>{{
@@ -67,13 +67,13 @@
           </button>
           <mat-divider></mat-divider>
           <button mat-menu-item routerLink="/blog/post">
-            <span i18n="New Post @@newPostID">New Post</span>
+            <span i18n="New Post@@newPostID">New Post</span>
           </button>
           <button mat-menu-item routerLink="/trade/newTrade">
-            <span i18n="New Trade @@newTradeID">New Trade</span>
+            <span i18n="New Trade@@newTradeID">New Trade</span>
           </button>
           <button (click)="authService.logout()" mat-menu-item routerLink="/">
-            <span i18n="Logout @@logoutID">Logout</span>
+            <span i18n="Logout@@logoutID">Logout</span>
           </button>
         </mat-menu>
       </ng-template>
