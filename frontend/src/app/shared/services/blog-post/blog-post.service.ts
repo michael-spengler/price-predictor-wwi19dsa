@@ -19,18 +19,19 @@ export class BlogPostService {
       retry(2),
       map((data: any) => {
         return data.data.filter((post: BlogPost) => {
-          try {
-            post.interface = "blog-post";
-            let date = post.date ? post.date : '';
-            post.date = new Date(date);
-            if (!isNaN(post.date.getTime())) {
-              return true
-            } else {
-              return false;
-            }
-          } catch (error) {
-            return false
-          }
+          return this.isBlogPost(this.parseToBlogPost(post));
+        }
+        );
+      })
+    );
+  }
+
+  public getPostsByAuthor(author: String): Observable<BlogPost[]> {
+    return this.httpClient.get(environment.apiEndpoint + this.BLOG_POST_ENDPOINT + '/' + author).pipe(
+      retry(2),
+      map((data: any) => {
+        return data.data.filter((post: BlogPost) => {
+          return this.isBlogPost(this.parseToBlogPost(post));
         }
         );
       })
@@ -41,35 +42,32 @@ export class BlogPostService {
     return this.httpClient.get(environment.apiEndpoint + this.BLOG_POST_ENDPOINT + '/' + id.toString()).pipe(
       retry(2),
       map((data: any) => {
-        let post = data.data;
-        post.interface = "blog-post";
-        let date = post.date ? post.date : '';
-        post.date = new Date(date);
-        return post;
+        return this.parseToBlogPost(data.data);
       })
     );
   }
 
-  public getPostsByAuthor(author: String): Observable<BlogPost[]> {
-    return this.httpClient.get(environment.apiEndpoint + this.BLOG_POST_ENDPOINT + '/' + author).pipe(
-      retry(2),
-      map((data: any) => {
-        return data.data.filter((post: BlogPost) => {
-          try {
-            post.interface = "blog-post";
-            let date = post.date ? post.date : '';
-            post.date = new Date(date);
-            if (!isNaN(post.date.getTime())) {
-              return true
-            } else {
-              return false;
-            }
-          } catch (error) {
-            return false
-          }
-        }
-        );
-      })
-    );
+  private parseToDate(dateString: any): Date {
+    let date = new Date(dateString);
+    date = date ? date : new Date();
+    return date;
+  }
+
+  private parseToBlogPost(data: any): BlogPost {
+    data.interface = "blog-post";
+    data.date = this.parseToDate(data.date);
+    return data;
+  }
+
+  private isBlogPost(blogPost: BlogPost): Boolean {
+    try {
+      if (!isNaN(this.parseToDate(blogPost.date).getTime())) {
+        return true
+      } else {
+        return false;
+      }
+    } catch (error) {
+      return false
+    }
   }
 }
