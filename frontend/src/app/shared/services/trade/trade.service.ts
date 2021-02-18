@@ -64,6 +64,20 @@ export class TradeService {
     );
   }
 
+  public getTradeById(id: number): Observable<Trade> {
+    return this.httpClient.get(environment.apiEndpoint + this.TRADES_ENDPOINT + '/' + id.toString()).pipe(
+      retry(2),
+      map((data: any) => {
+        let trade: Trade = data.data;
+        trade.interface = "trade";
+        trade.date = this.parseToDate(trade.date);
+        trade.startdate = this.parseToDate(trade.startdate);
+        trade.enddate = this.parseToDate(trade.enddate);
+        return trade;
+      })
+    );
+  }
+
   private parseToDate(dateString: any): Date {
     let date = new Date(dateString);
     date = date ? date : new Date();
