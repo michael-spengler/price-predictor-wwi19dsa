@@ -2,39 +2,36 @@
   <div class="aboutus-wrapper" style="width: 100%;">
     <h1 i18n="About Us@@aboutUsID">About Us</h1>
     <h2 i18n="Services@@servicesID">Services</h2>
-    <div fxLayout="row start" fxLayoutAlign="space-around stretch">
-      <div fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="100%" *ngFor="let service of services" style="margin-top: 1em;">
-        <mat-card style="height: 100%;">
-          <mat-card-header>
-            <mat-card-title>{{service.title}}</mat-card-title>
-          </mat-card-header>
-          <img mat-card-image src="{{service.img}}">
-          <mat-card-content>
-            <p>
-              {{service.text}}
-            </p>
-          </mat-card-content>
-        </mat-card>
-      </div>
+    <div fxLayout="row wrap" fxLayoutAlign="space-around stretch">
+      <mat-card fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="100%" *ngFor="let service of services"
+        style="margin-top: 1em;">
+        <mat-card-header>
+          <mat-card-title>{{service.title}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="{{service.img}}">
+        <mat-card-content>
+          <p>
+            {{service.text}}
+          </p>
+        </mat-card-content>
+      </mat-card>
     </div>
 
     <div class="entwickler_wrapper" style="margin-top: 3em;">
       <h2 i18n="Developer@@developerID">Developer</h2>
-      <div fxLayout="row start" fxLayoutAlign="space-around">
-        <div fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="47.5%" *ngFor="let developer of developers"
+      <div fxLayout="row wrap" fxLayoutAlign="space-around stretch">
+        <mat-card fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="47.5%" *ngFor="let developer of developers"
           style="margin-top: 1em;">
-          <mat-card>
-            <mat-card-header>
-              <mat-card-title>{{developer.name}}</mat-card-title>
-              <mat-card-subtitle>{{developer.position}}</mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image src="{{developer.img}}">
-          </mat-card>
-        </div>
+          <mat-card-header>
+            <mat-card-title>{{developer.name}}</mat-card-title>
+            <mat-card-subtitle>{{developer.position}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="{{developer.img}}">
+        </mat-card>
       </div>
     </div>
 
-    <a i18n="Contact Us@@contactUsID" href="mailto:info@coin2gether.de" subject="Deine%20Nachricht%20an%Coin2Gether" class="btn_animated" style="margin-top: 1em;">Contact Us</a>
-
+    <a i18n="Contact Us@@contactUsID" href="mailto:info@coin2gether.de" subject="Deine%20Nachricht%20an%Coin2Gether"
+      class="btn_animated" style="margin-top: 1em;">Contact Us</a>
   </div>
 </div>
