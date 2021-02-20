@@ -1,18 +1,24 @@
 <form [formGroup]="createPostForm" (submit)="post()" autocomplete="off" novalidate class="createPost-form">
     <mat-form-field appearance="outline" class="login-full-width">
-        <mat-label i18n="Your Title @@enter_title">Your Title</mat-label>
+        <mat-label i18n="Your Title@@enter_title">Your Title</mat-label>
         <input matInput formControlName="title" required>
         <mat-error *ngIf="createPostForm.controls.title.invalid">
-            <span *ngIf="createPostForm.controls.title.hasError('required')" i18n="This field is mandatory. @@field_mandatory">This field is mandatory.</span>
+            <span *ngIf="createPostForm.controls.title.hasError('required')"
+                i18n="This field is mandatory.@@mandatoryFieldID">This field is mandatory.</span>
         </mat-error>
     </mat-form-field>
+
     <mat-form-field appearance="outline" class="login-full-width">
-        <mat-label i18n="Your Content @@enter_content">Your Content</mat-label>
+        <mat-label i18n="Your Content@@enter_content">Your Content</mat-label>
         <textarea cols="100" rows="30" matInput formControlName="content" required></textarea>
         <mat-error *ngIf="createPostForm.controls.content.invalid">
-            <span *ngIf="createPostForm.controls.content.hasError('required')" i18n="This field is mandatory. @@field_mandatory">This field is mandatory.</span>
+            <span *ngIf="createPostForm.controls.content.hasError('required')"
+                i18n="This field is mandatory.@@mandatoryFieldID">This field is mandatory.</span>
         </mat-error>
     </mat-form-field>
-    <button type="submit" mat-button class="login-full-width" *ngIf="createPostForm.valid" i18n="Post @@post">Post</button>
-    <button type="submit" mat-button class="login-full-width" *ngIf="!createPostForm.valid" i18n="Post @@post" disabled>Post</button>
+    
+    <button type="submit" mat-button class="login-full-width" *ngIf="createPostForm.valid"
+        i18n="Post@@postID">Post</button>
+    <button type="submit" mat-button class="login-full-width" *ngIf="!createPostForm.valid" i18n="Post@@postID"
+        disabled>Post</button>
 </form>

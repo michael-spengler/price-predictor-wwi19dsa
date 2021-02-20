@@ -1,6 +1,8 @@
 export interface Trade {
+    interface?: "trade",
     type: string,
     id?: number,
+    date?: Date,
     motivation: string,
     description: string,
     expectedIncrease: number,

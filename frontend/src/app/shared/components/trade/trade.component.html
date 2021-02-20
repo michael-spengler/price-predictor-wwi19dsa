@@ -1,0 +1,48 @@
+<mat-card class="mat-elevation-z4" style="margin: 8px;">
+    <mat-card-header>
+        <mat-card-title class="card-title">{{ trade.expectedIncrease }}%&nbsp;<span i18n="Expected increase@@expectedIncreaseID">Increase</span></mat-card-title>
+        <mat-card-subtitle>
+            <div class="card-title">
+                <a [routerLink]="['/profile', trade.author]" class="link">{{ trade.author }}</a> - {{ trade.date | date }}
+            </div>
+            <mat-chip-list>
+                <mat-chip color="accent" i18n="Trade@@tradeID">Trade</mat-chip>
+                <div *ngIf="trade.type == 'option_sell'; else buyChipBlock" class="with-icon">
+                    <mat-chip color="accent" i18n="Sell@@sellID">Sell</mat-chip>
+                </div>
+                <ng-template #buyChipBlock>
+                    <mat-chip color="accent" i18n="Buy@@buyID">Buy</mat-chip>
+                </ng-template>
+            </mat-chip-list>
+        </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content class="card-content">
+        <span class="with-icon">
+            <mat-icon>date_range</mat-icon>
+            <strong>&nbsp;<span i18n="Time range@@timeRangeID">Time range</span>:&nbsp;</strong>
+            {{ trade.startdate | date }} - {{ trade.enddate | date }}
+        </span>
+
+        <span class="with-icon">
+            <mat-icon>emoji_objects</mat-icon>
+            <strong>&nbsp;<span i18n="Percentage of the Portfolio@@percentageOfPortfolioID">Percentage of Portfolio</span>:&nbsp;</strong> 
+            {{ trade.percent }}% 
+        </span>
+
+        <span class="with-icon">
+            <mat-icon>account_balance</mat-icon>
+            <strong>&nbsp;<span i18n="Currencies to exchange@@exchangeCurrenciesID">Currencies</span>:&nbsp;</strong>
+            <div *ngIf="trade.type == 'option_sell'; else buyBlock" class="with-icon">
+                {{ trade.cryptocurrency }}&nbsp;<mat-icon>east</mat-icon>&nbsp;{{ trade.fiatcurrency }}
+            </div>
+            <ng-template #buyBlock>
+                {{ trade.fiatcurrency }}&nbsp;<mat-icon>east</mat-icon>&nbsp;{{ trade.cryptocurrency }}
+            </ng-template>
+        </span>
+    </mat-card-content>
+
+    <mat-card-actions>
+        <button mat-stroked-button color="accent" (click)="openDialog()" i18n="Open the detailed view@@viewID">View</button>
+    </mat-card-actions>
+</mat-card>

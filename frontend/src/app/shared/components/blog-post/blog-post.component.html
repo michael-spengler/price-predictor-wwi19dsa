@@ -1,12 +1,19 @@
 <mat-card class="mat-elevation-z4 blog-post-card">
     <mat-card-header>
         <mat-card-title class="card-title">{{ post.title }}</mat-card-title>
-        <mat-card-subtitle class="card-title">{{ post.author }} - {{ post.date | date }}</mat-card-subtitle>
+        <mat-card-subtitle>
+            <div class="card-title">
+                <a [routerLink]="['/profile', post.author]" class="link">{{ post.author }}</a> - {{ post.date | date }}
+            </div>
+            <mat-chip-list>
+                <mat-chip color="accent" i18n="Post@@postID">Post</mat-chip>
+            </mat-chip-list>
+        </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content class="card-content">
             {{ post.content }}
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button (click)="openDialog()">View</button>
+        <button mat-stroked-button color="accent" (click)="openDialog()" i18n="Open the detailed view@@viewID">View</button>
       </mat-card-actions>
 </mat-card>

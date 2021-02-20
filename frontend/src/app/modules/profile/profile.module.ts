@@ -1,23 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PostComponent } from './post/post.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { ProfileRoutingModule } from './profile-routing.module';
 import { MaterialModule } from '../../material.module';
-import { BlogRoutingModule } from './blog-routing.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { GoogleChartsModule } from 'angular-google-charts';
 import { SharedModule } from '../../shared/components/shared.module';
 
-
 @NgModule({
-  declarations: [PostComponent],
+  declarations: [ProfilePageComponent],
   imports: [
     CommonModule,
     MaterialModule,
-    BlogRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
+    ProfileRoutingModule,
     FlexLayoutModule,
+    GoogleChartsModule,
     SharedModule
   ]
 })
-export class BlogModule { }
+export class ProfileModule { }

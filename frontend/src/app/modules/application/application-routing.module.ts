@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AnonymousGuard } from 'src/app/shared/guards/anonymous.guard';
 import { AuthGuard } from 'src/app/shared/guards/auth.guard';
+import { NewsFeedComponent } from './news-feed/news-feed.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,16 @@ const routes: Routes = [
     path: 'about',
     loadChildren: () => import('../about/about.module')
       .then(m => m.AboutModule)
+  },
+  {
+    path: 'profile/:id',
+    loadChildren: () => import('../profile/profile.module')
+      .then(m => m.ProfileModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'feed',
+    component: NewsFeedComponent
   }
 ];
 

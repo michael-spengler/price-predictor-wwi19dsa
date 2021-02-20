@@ -2,29 +2,721 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="hi" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="testID" datatype="html">
-        <source> Language Test </source>
+      <trans-unit id="connectionError" datatype="html">
+        <source>Connection Error</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/core/components/sidenav/sidenav.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="sourcefile">src/app/shared/interceptors/http-error.interceptor.ts</context>
+          <context context-type="linenumber">16</context>
         </context-group>
-        <note priority="1" from="description">An test for the language </note>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/interceptors/http-error.interceptor.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <note priority="1" from="description">Error message if client cannot connect</note>
       </trans-unit>
-      <trans-unit id="login" datatype="html">
+      <trans-unit id="feedID" datatype="html">
+        <source> Feed </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/template/sidenav/sidenav.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="description">Feed</note>
+      </trans-unit>
+      <trans-unit id="newPostID" datatype="html">
+        <source>New Post</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/template/sidenav/sidenav.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+        <note priority="1" from="description">New Post</note>
+      </trans-unit>
+      <trans-unit id="newTradeID" datatype="html">
+        <source>New Trade</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/template/sidenav/sidenav.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+        <note priority="1" from="description">New Trade</note>
+      </trans-unit>
+      <trans-unit id="logoutID" datatype="html">
+        <source>Logout</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/template/sidenav/sidenav.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+        <note priority="1" from="description">Logout</note>
+      </trans-unit>
+      <trans-unit id="log_in" datatype="html">
         <source>Log In</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/core/modules/auth/auth-form/auth-form.component.html</context>
+          <context context-type="sourcefile">src/app/modules/auth/auth-form/auth-form.component.html</context>
           <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/login/login.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/login/login.component.html</context>
+          <context context-type="linenumber">25</context>
         </context-group>
         <note priority="1" from="description">Log In</note>
       </trans-unit>
-      <trans-unit id="signin" datatype="html">
+      <trans-unit id="sign_up" datatype="html">
         <source>Sign Up</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/core/modules/auth/auth-form/auth-form.component.html</context>
+          <context context-type="sourcefile">src/app/modules/auth/auth-form/auth-form.component.html</context>
           <context context-type="linenumber">7</context>
         </context-group>
-        <note priority="1" from="description">Sign In</note>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">89</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+        <note priority="1" from="description">Sign Up</note>
+      </trans-unit>
+      <trans-unit id="enter_email" datatype="html">
+        <source>Your Email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/login/login.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+        <note priority="1" from="description">Your email</note>
+      </trans-unit>
+      <trans-unit id="enter_password" datatype="html">
+        <source>Your password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/login/login.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+        <note priority="1" from="description">Your password</note>
+      </trans-unit>
+      <trans-unit id="field_mandatory" datatype="html">
+        <source>This field is mandatory.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/login/login.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/login/login.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/blog/post/post.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/blog/post/post.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <note priority="1" from="description">This field is mandatory.</note>
+      </trans-unit>
+      <trans-unit id="field_invalid" datatype="html">
+        <source>This field is invalid.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/login/login.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+        <note priority="1" from="description">This field is invalid.</note>
+      </trans-unit>
+      <trans-unit id="enter_firstName" datatype="html">
+        <source>First Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="description">First Name</note>
+      </trans-unit>
+      <trans-unit id="enter_lastName" datatype="html">
+        <source>Last Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <note priority="1" from="description">Last Name</note>
+      </trans-unit>
+      <trans-unit id="enter_username" datatype="html">
+        <source>Username</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <note priority="1" from="description">Username</note>
+      </trans-unit>
+      <trans-unit id="enter_birthday" datatype="html">
+        <source>What is your birthday?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <note priority="1" from="description">What is your birthday?</note>
+      </trans-unit>
+      <trans-unit id="enter_country" datatype="html">
+        <source>Country</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <note priority="1" from="description">Country</note>
+      </trans-unit>
+      <trans-unit id="confirm_password" datatype="html">
+        <source>Confirm your password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+        <note priority="1" from="description">Confirm your password</note>
+      </trans-unit>
+      <trans-unit id="read_t_c" datatype="html">
+        <source>I have not read and understood the terms and conditions.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+        <note priority="1" from="description">I have not read and understood the terms and conditions.</note>
+      </trans-unit>
+      <trans-unit id="password_match" datatype="html">
+        <source>Passwords should match.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+        <note priority="1" from="description">Passwords should match.</note>
+      </trans-unit>
+      <trans-unit id="enter_title" datatype="html">
+        <source>Your Title</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/blog/post/post.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <note priority="1" from="description">Your Title</note>
+      </trans-unit>
+      <trans-unit id="enter_content" datatype="html">
+        <source>Your Content</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/blog/post/post.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <note priority="1" from="description">Your Content</note>
+      </trans-unit>
+      <trans-unit id="post" datatype="html">
+        <source>Post</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/blog/post/post.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/blog/post/post.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <note priority="1" from="description">Post</note>
+      </trans-unit>
+      <trans-unit id="expectedIncreaseID" datatype="html">
+        <source>Increase</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/trade-dialog/trade-dialog.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/trade/trade.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <note priority="1" from="description">Expected increase</note>
+      </trans-unit>
+      <trans-unit id="timeRangeID" datatype="html">
+        <source>Time range</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/trade-dialog/trade-dialog.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/trade/trade.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <note priority="1" from="description">Time range</note>
+      </trans-unit>
+      <trans-unit id="percentageOfPortfolioID" datatype="html">
+        <source>Percentage of Portfolio</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/trade-dialog/trade-dialog.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/trade/trade.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <note priority="1" from="description">Percentage of the Portfolio</note>
+      </trans-unit>
+      <trans-unit id="exchangeCurrenciesID" datatype="html">
+        <source>Currencies</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/trade-dialog/trade-dialog.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/trade/trade.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <note priority="1" from="description">Currencies to exchange</note>
+      </trans-unit>
+      <trans-unit id="motivationID" datatype="html">
+        <source>Motivation</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/trade-dialog/trade-dialog.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <note priority="1" from="description">Motivation</note>
+      </trans-unit>
+      <trans-unit id="descriptionID" datatype="html">
+        <source>Description</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/trade-dialog/trade-dialog.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <note priority="1" from="description">Description</note>
+      </trans-unit>
+      <trans-unit id="closeID" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/trade-dialog/trade-dialog.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/blog-dialog/blog-dialog.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <note priority="1" from="description">Close</note>
+      </trans-unit>
+      <trans-unit id="tradeID" datatype="html">
+        <source>TRADE</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/trade/trade.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <note priority="1" from="description">Trade</note>
+      </trans-unit>
+      <trans-unit id="viewID" datatype="html">
+        <source>View</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/trade/trade.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/blog-post/blog-post.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <note priority="1" from="description">Open the detailed view</note>
+      </trans-unit>
+      <trans-unit id="sellID" datatype="html">
+        <source>SELL</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/trade/trade.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <note priority="1" from="description">Sell</note>
+      </trans-unit>
+      <trans-unit id="buyID" datatype="html">
+        <source>BUY</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/trade/trade.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <note priority="1" from="description">Buy</note>
+      </trans-unit>
+      <trans-unit id="postID" datatype="html">
+        <source>POST</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/blog-post/blog-post.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <note priority="1" from="description">Post</note>
+      </trans-unit>
+      <trans-unit id="correctTradesID" datatype="html">
+        <source>Correct</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/profile/profile-page/profile-page.component.ts</context>
+          <context context-type="linenumber">129</context>
+        </context-group>
+        <note priority="1" from="description">Number of correct trades</note>
+      </trans-unit>
+      <trans-unit id="wrongTradesID" datatype="html">
+        <source>Wrong</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/profile/profile-page/profile-page.component.ts</context>
+          <context context-type="linenumber">132</context>
+        </context-group>
+        <note priority="1" from="description">Number of wrong trades</note>
+      </trans-unit>
+      <trans-unit id="openTradesID" datatype="html">
+        <source>Open</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/profile/profile-page/profile-page.component.ts</context>
+          <context context-type="linenumber">135</context>
+        </context-group>
+        <note priority="1" from="description">Number of trades that are not evaluated</note>
+      </trans-unit>
+      <trans-unit id="joinDateID" datatype="html">
+        <source>Joined on</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/profile/profile-page/profile-page.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <note priority="1" from="description">Joined on</note>
+      </trans-unit>
+      <trans-unit id="postsID" datatype="html">
+        <source>Posts</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/profile/profile-page/profile-page.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <note priority="1" from="description">Posts</note>
+      </trans-unit>
+      <trans-unit id="tradesID" datatype="html">
+        <source>Trades</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/profile/profile-page/profile-page.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/profile/profile-page/profile-page.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+        <note priority="1" from="description">Trades</note>
+      </trans-unit>
+      <trans-unit id="followerID" datatype="html">
+        <source>Follower</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/profile/profile-page/profile-page.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <note priority="1" from="description">Follower</note>
+      </trans-unit>
+      <trans-unit id="portfolioID" datatype="html">
+        <source>Portfolio</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/profile/profile-page/profile-page.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+        <note priority="1" from="description">Portfolio</note>
+      </trans-unit>
+      <trans-unit id="EntryId" datatype="html">
+        <source>Welcome to Cointogether</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/landing/landing/landing.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <note priority="1" from="description">Welcome to Cointogether</note>
+      </trans-unit>
+      <trans-unit id="JourneyID" datatype="html">
+        <source>Start your Journey today!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/landing/landing/landing.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <note priority="1" from="description">Start your Journey today!</note>
+      </trans-unit>
+      <trans-unit id="SignUpID" datatype="html">
+        <source> Sign Up </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/landing/landing/landing.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <note priority="1" from="description">SignUp</note>
+      </trans-unit>
+      <trans-unit id="LandingLink" datatype="html">
+        <source> <x id="INTERPOLATION" equiv-text="nk&quot;&gt; {{link.ti"/> </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/landing/landing/landing.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="description">Link Title</note>
+      </trans-unit>
+      <trans-unit id="description_buy_sell_crypto" datatype="html">
+        <source>You can either buy new Crypto or sell already existing Crypto.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="description">You can either buy new Crypto or sell already existing Crypto.</note>
+      </trans-unit>
+      <trans-unit id="sell" datatype="html">
+        <source>Sell</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <note priority="1" from="description">Sell</note>
+      </trans-unit>
+      <trans-unit id="buy" datatype="html">
+        <source>Buy</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <note priority="1" from="description">Buy</note>
+      </trans-unit>
+      <trans-unit id="next" datatype="html">
+        <source>Next</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+        <note priority="1" from="description">Next</note>
+      </trans-unit>
+      <trans-unit id="enter_motivation" datatype="html">
+        <source>Your motivation</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <note priority="1" from="description">Your motivation</note>
+      </trans-unit>
+      <trans-unit id="select_fiat" datatype="html">
+        <source>Please Select a Fiat Currency</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <note priority="1" from="description">Please Select a Fiat Currency</note>
+      </trans-unit>
+      <trans-unit id="select_crypto" datatype="html">
+        <source>Please Select a Crypto Currency</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <note priority="1" from="description">Please Select a Crypto Currency</note>
+      </trans-unit>
+      <trans-unit id="indicateExpectedReturn" datatype="html">
+        <source>Please indicate the return you expect to receive:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <note priority="1" from="description">Please indicate the return you expect to receive:</note>
+      </trans-unit>
+      <trans-unit id="varyPercent" datatype="html">
+        <source>(You can vary by 3-5 per cent.)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+        <note priority="1" from="description">(You can vary by 3-5 per cent.)</note>
+      </trans-unit>
+      <trans-unit id="indicateAmountToInvest" datatype="html">
+        <source>Please indicate the recommended percentage amount that the user should trade with their available buy currency:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+        <note priority="1" from="description">Please indicate the recommended percentage amount that the user should trade with their available buy currency:</note>
+      </trans-unit>
+      <trans-unit id="indicateExpectedTimeOfReturn" datatype="html">
+        <source>Please indicate the time you expect to receive the return</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+        <note priority="1" from="description">Please indicate the time you expect to receive the return</note>
+      </trans-unit>
+      <trans-unit id="enter_description" datatype="html">
+        <source>Your Description</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+        <note priority="1" from="description">Description</note>
+      </trans-unit>
+      <trans-unit id="Back" datatype="html">
+        <source>Back</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+        <note priority="1" from="description">Back</note>
+      </trans-unit>
+      <trans-unit id="Reset" datatype="html">
+        <source>Reset</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+        <note priority="1" from="description">Reset</note>
+      </trans-unit>
+      <trans-unit id="your_action" datatype="html">
+        <source>Your Action</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <note priority="1" from="description">Your Action</note>
+      </trans-unit>
+      <trans-unit id="tradeInformation" datatype="html">
+        <source>Trade Information</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <note priority="1" from="description">Trade Information</note>
+      </trans-unit>
+      <trans-unit id="Done" datatype="html">
+        <source>Done</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+        <note priority="1" from="description">Done</note>
+      </trans-unit>
+      <trans-unit id="publish" datatype="html">
+        <source>Publish</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/trade/new-trade/new-trade.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+        <note priority="1" from="description">Publish</note>
+      </trans-unit>
+      <trans-unit id="usID" datatype="html">
+        <source>About Us</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/about/us/us.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <note priority="1" from="description">About Us</note>
+      </trans-unit>
+      <trans-unit id="servicesID" datatype="html">
+        <source>Services</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/about/us/us.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">Services</note>
+      </trans-unit>
+      <trans-unit id="entwicklerID" datatype="html">
+        <source>Entwickler</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/about/us/us.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <note priority="1" from="description">Entwickler</note>
+      </trans-unit>
+      <trans-unit id="contactID" datatype="html">
+        <source>Contact Us</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/about/us/us.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <note priority="1" from="description">Contact Us</note>
+      </trans-unit>
+      <trans-unit id="ServiceTitle" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="eTitle&quot;&gt;{{service"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/about/us/us.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <note priority="1" from="description">Service Name</note>
+      </trans-unit>
+      <trans-unit id="ServiceText" datatype="html">
+        <source> <x id="INTERPOLATION" equiv-text="              {{"/> </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/about/us/us.component.html</context>
+          <context context-type="linenumber">13,15</context>
+        </context-group>
+        <note priority="1" from="description">Service Text</note>
+      </trans-unit>
+      <trans-unit id="DeveloperName" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="loper Name@@Develo"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/about/us/us.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <note priority="1" from="description">Developer Name</note>
+      </trans-unit>
+      <trans-unit id="DeveloperPosition" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="osition@@DeveloperPosi"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/about/us/us.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <note priority="1" from="description">Developer Position</note>
       </trans-unit>
     </body>
   </file>

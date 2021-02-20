@@ -1,0 +1,28 @@
+.with-icon {
+    display: flex;
+    align-items: center;
+}
+
+.card-title {
+    height: 20px;
+    overflow-y: hidden;
+}
+
+.card-content {
+    height: 100px;
+    overflow-y: auto;
+    text-overflow: ellipsis;
+}
+
+.link {
+    color: grey;
+    text-decoration: none;
+}
+
+.link:visited {
+    color: grey;
+}
+
+.link:hover {
+    color: black;
+}

@@ -1,10 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { map, retry } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { environment } from '../../../../environments/environment';
 import { BlogPost } from '../../models/blog-post.model';
+import { BlogPostService } from '../../services/blog-post/blog-post.service';
 
 @Component({
   selector: 'app-blog-dialog',
@@ -15,27 +12,12 @@ export class BlogDialogComponent implements OnInit {
 
   post = <BlogPost>{};
   isLoading: Boolean = true;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: number, private httpClient: HttpClient) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public id: number, private blogPostService: BlogPostService) { }
 
   ngOnInit() {
-    this.getPost().subscribe(post => {
+    this.blogPostService.getPostById(this.id).subscribe(post => {
       this.post = post;
       this.isLoading = false
     });
   }
-
-  getPost(): Observable<BlogPost> {
-    return this.httpClient.get<BlogPost>(environment.apiEndpoint + 'blog/' + this.data.toString()).pipe(
-      retry(2),
-      map((post: BlogPost) => {
-        let date = post.date ? post.date : '';
-        post.date = new Date(date);
-        if (isNaN(post.date.getTime())) {
-          post.date = new Date();
-        }
-        return post
-      })
-    );
-  }
-
 }

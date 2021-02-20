@@ -22,6 +22,7 @@ api = Api(app)
 class UserModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, nullable=False)
+    #user_id = db.Column(db.String, nullable=True)
     email = db.Column(db.String, nullable=False)
     lastName = db.Column(db.String, nullable=False)
     firstName = db.Column(db.String, nullable=False)
@@ -31,8 +32,16 @@ class UserModel(db.Model):
     country = db.Column(db.String, nullable=True)
     password = db.Column(db.LargeBinary, nullable=False)
     birthdate = db.Column(db.String, nullable=False)
+    #join_date = db.Column(db.String, nullable=True) 
+    #follower = db.Column(db.String, nullable=True)
+    #posts = db.Column(db.String, nullable=True)
+    #trades = db.Column(db.String, nullable=True)
+    #correct_trades = db.Column(db.String, nullable=True)
+    #wrong_trades = db.Column(db.String, nullable=True)
+    #links = db.Column(db.String, nullable=True)
+
     def data(self):
-        return {"id" : self.id, "email" : self.email, "username" : self.username, "firstName" : self.firstName, "lastName": self.lastName, "street" : self.street, "zip" : self.zip, "city" : self.city, "country" : self.country, "birthdate" : self.birthdate}
+        return {"id" : self.id, "user_id" : self.user_id, "email" : self.email, "username" : self.username, "firstName" : self.firstName, "lastName": self.lastName, "street" : self.street, "zip" : self.zip, "city" : self.city, "country" : self.country, "birthdate" : self.birthdate, "join_date": self.join_date, "follower": self.follower, "posts":self.posts, "trades":self.trades, "correct_trades" : self.correct_trades, "wrong_trades": self.wrong_trades, "links":self.links}
 
 class BlogModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -51,13 +60,13 @@ class TradeModel(db.Model):
     percent         = db.Column(db.String, nullable=False)
     fiatcurrency    = db.Column(db.String, nullable=True, default="not set")
     cryptocurrency  = db.Column(db.String, nullable=True, default="not set")
-    motivation      = db.Column(db.String, nullable=False)
     startdate       = db.Column(db.String, nullable=False)
     enddate         = db.Column(db.String, nullable=False)
     expectedIncrease= db.Column(db.String, nullable=False)
+    motivation      = db.Column(db.String, nullable=False)
     description     = db.Column(db.String, nullable=False)
     def data(self):
-        return {"id":self.id, "author":self.author, "date":self.date, "type":self.type, "percent":self.percent, "fiatcurrency":self.fiatcurrency, "cryptocurrency":self.cryptocurrency, "motivation":self.motivation, "startdate":self.startdate, "enddate":self.enddate, "expectedIncrease":self.expectedIncrease, "description":self.description}
+        return {"id":self.id, "author":self.author, "date":self.date, "type":self.type, "percent":self.percent, "fiatcurrency":self.fiatcurrency, "cryptocurrency":self.cryptocurrency, "startdate":self.startdate, "enddate":self.enddate, "expectedIncrease":self.expectedIncrease, "motivation":self.motivation, "description":self.description}
     
 
 #Set Resourcefields for Requestparser
@@ -144,13 +153,20 @@ class Trade(Resource):
         token = request.headers.get("Authorization")
         return f.createTradeEntry(args, TradeModel, db, token, UserModel)
 
+@api.route("/trades")
+class Trade(Resource):
     def get(self):
         return f.loadTradeEntries(TradeModel)
 
-@api.route("/trade/<string:tradeAuthor>")
+@api.route("/trades/<string:tradeAuthor>")
 class Blogauthor(Resource):
     def get(self, tradeAuthor):
         return f.loadTradeEntriesByAuthor(TradeModel, tradeAuthor)
+
+@api.route("/trades/<int:tradeID>")
+class Blogauthor(Resource):
+    def get(self, tradeID):
+        return f.loadTradeEntriesByID(TradeModel, tradeID)
 
 @api.route("/users")
 class Blogauthor(Resource):
@@ -165,6 +181,7 @@ if __name__ == "__main__":
     #    else:
     #        migrate.init_app(app, db)
     #manager.run()
+    # run server.py db init, migrate, upgrade
     hostip = sys.argv[1]
     debugmode = sys.argv[2] == "True"
     app.run(debug=debugmode, host=hostip)

@@ -4,11 +4,11 @@
 </ng-template>
 <ng-template #isNotLoadingBlock>
   <h1 mat-dialog-title>{{ post.title }}</h1>
-  <h3 mat-dialog-title>{{ post.author }} - {{ post.date | date }}</h3>
-  <mat-dialog-content class="mat-typography">
+  <h3 mat-dialog-title><a [routerLink]="['/profile', post.author]" class="link">{{ post.author }}</a> - {{ post.date | date }}</h3>
+  <mat-dialog-content style="max-height: 300px;">
     <span>{{ post.content }}</span>
   </mat-dialog-content>
   <div mat-dialog-actions>
-    <button mat-button mat-dialog-close>Close</button>
+    <button mat-stroked-button color="accent" i18n="Close@@closeID" mat-dialog-close>Close</button>
   </div>
 </ng-template>
