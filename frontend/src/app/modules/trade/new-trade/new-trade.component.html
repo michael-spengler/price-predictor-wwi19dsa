@@ -26,13 +26,13 @@
         <form [formGroup]="secondFormGroup">
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label i18n="Your motivation@@enter_motivation">Your motivation</mat-label>
-                <input matInput type="text" placeholder="Double your Crypo Net Worth in 5 Month"
+                <input matInput type="text" placeholder="Double your Crypo Net Worth in 5 Month" i18n-placeholder="Motivation Placeholder@@motivationPlaceholderID"
                     formControlName="motivation" required>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label i18n="Please Select a Fiat Currency@@select_fiat">Please Select a Fiat Currency</mat-label>
-                <input id="field2" formControlName="fiat" type="text" placeholder="Fiat" aria-label="Number" matInput
+                <input id="field2" formControlName="fiat" type="text" placeholder="Fiat" i18n-placeholder="Fiat Placeholder@@fiatPlaceholderID" aria-label="Number" matInput
                     [matAutocomplete]="auto1" required>
                 <mat-autocomplete #auto1="matAutocomplete">
                     <mat-option *ngFor="let option of fiatFilteredOptions | async" [value]="option">
@@ -44,7 +44,7 @@
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label i18n="Please Select a Crypto Currency@@select_crypto">Please Select a Crypto Currency
                 </mat-label>
-                <input id="field2" type="text" placeholder="Crypto" aria-label="Number" matInput
+                <input id="field2" type="text" placeholder="Crypto" i18n-placeholder="Crypto Placeholder@@cryptoPlaceholderID" aria-label="Number" matInput
                     formControlName="crypto" [matAutocomplete]="auto2" required>
                 <mat-autocomplete #auto2="matAutocomplete">
                     <mat-option *ngFor="let option of cryptoFilteredOptions | async" [value]="option">
@@ -76,8 +76,8 @@
                     i18n="Please indicate the time you expect to receive the return@@indicateExpectedTimeOfReturn">
                     Please indicate the time you expect to receive the return</mat-label>
                 <mat-date-range-input [rangePicker]="roiPicker" [min]="minDate">
-                    <input matStartDate placeholder="Start date" formControlName="startDate">
-                    <input matEndDate placeholder="End date" formControlName="endDate">
+                    <input matStartDate placeholder="Start date" i18n-placeholder="Start date Placeholder@@startDatePlaceholderID" formControlName="startDate">
+                    <input matEndDate placeholder="End date" i18n-placeholder="End date Placeholder@@endDatePlaceholderID" formControlName="endDate">
                 </mat-date-range-input>
                 <mat-datepicker-toggle matSuffix [for]="roiPicker"></mat-datepicker-toggle>
                 <mat-date-range-picker #roiPicker></mat-date-range-picker>

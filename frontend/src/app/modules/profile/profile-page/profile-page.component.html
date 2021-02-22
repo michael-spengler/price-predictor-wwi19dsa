@@ -12,7 +12,7 @@
                     </button>
                 </div>
 
-                <span class="profile-text">@{{ user.user_id }}</span><br>
+                <span class="profile-text">@{{ user.username }}</span><br>
                 <span class="spacer"></span><br>
 
                 <div class="with-icon profile-text">
@@ -65,13 +65,13 @@
 
     <mat-card class="mat-elevation-z4" style="margin: 4px;" fxFlex="calc(100% - 8px)">
         <mat-tab-group mat-align-tabs="start" style="max-height: calc(100vh - 15vh)">
-            <mat-tab label="All">
+            <mat-tab label="All" i18n-label="All Label@@allLabelID">
                 <app-feed [feedList]="allFeed"></app-feed>
             </mat-tab>
-            <mat-tab label="Posts">
+            <mat-tab label="Posts" i18n-label="Posts@@postsID">
                 <app-feed [feedList]="blogPostFeed"></app-feed>
             </mat-tab>
-            <mat-tab label="Trades">
+            <mat-tab label="Trades" i18n-label="Trades@@tradesID">
                 <app-feed [feedList]="tradeFeed"></app-feed>
             </mat-tab>
         </mat-tab-group>

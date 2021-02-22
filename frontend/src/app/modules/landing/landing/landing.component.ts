@@ -11,8 +11,8 @@ import { ThemeService } from 'src/app/shared/services/theme/theme.service';
 export class LandingComponent implements OnInit {
 
   links = [
-    {loc: '/feed', title: 'Blog'},
-    {loc: '/about/us', title: 'About Us'},
+    {loc: '/feed', title: $localize`:Feed@@feedID:Feed`},
+    {loc: '/about/us', title: $localize`:About Us@@aboutUsID:About Us`},
  ];
 
   constructor(
