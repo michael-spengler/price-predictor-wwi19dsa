@@ -119,6 +119,7 @@ export class SidenavComponent implements OnInit{
   }
 
   public userClicked(user: string) {
-    console.log(user); //router
+    this.router.navigate(['profile/' + user]);
+    this.closeSearch();
   }
 }
