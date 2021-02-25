@@ -4,8 +4,11 @@ import { ChartType } from 'angular-google-charts';
 import { zip } from 'rxjs';
 import { BlogPostService } from '../../../shared/services/blog-post/blog-post.service';
 import { TradeService } from '../../../shared/services/trade/trade.service';
+import { UserService } from 'src/app/shared/services/user/user.service';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { Trade } from '../../../shared/models/trade.model';
 import { BlogPost } from '../../../shared/models/blog-post.model';
+import { User } from '../../../shared/models/user.model';
 
 @Component({
   selector: 'app-profile-page',
@@ -14,32 +17,12 @@ import { BlogPost } from '../../../shared/models/blog-post.model';
 })
 export class ProfilePageComponent implements OnInit {
 
-  user = {
-    "username": "Angela Merkel",
-    "user_id": "bundesregierung",
-    "follows": true,
-    "join_date": "2008-02-01",
-    "posts": 213,
-    "trades": 361,
-    "follower": 175,
-    "correct_trades": 123,
-    "wrong_trades": 22,
-    "links": [
-      {
-        "name": "Facebook",
-        "link": "https://www.facebook.com/Bundesregierung/"
-      },
-      {
-        "name": "Twitter",
-        "link": "https:///www.twitter.com/cdumerkel"
-      }
-    ]
-  };
-
   allFeed: (BlogPost | Trade)[] = [];
   tradeFeed: Trade[] = [];
   blogPostFeed: BlogPost[] = [];
-  id: String = "";
+  username: String = "";
+  user: User = <User>{};
+  isLoading: Boolean = true;
 
   COLORS = [
     '#e65200',
@@ -53,60 +36,67 @@ export class ProfilePageComponent implements OnInit {
     '#ffe0b2',
     '#fff3e0',];
 
-  constructor(private route: ActivatedRoute, private blogPostService: BlogPostService, private tradeService: TradeService) {
-    this.trade_data = this.genTradeData();
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private blogPostService: BlogPostService,
+    private tradeService: TradeService,
+    private userService: UserService,
+    public authService: AuthService) { }
 
+  trade_data: any;
+  portfolio_data: any;
 
   ngOnInit(): void {
-
-
     this.route.paramMap.subscribe((params: ParamMap) => {
-      let id = params.get('id');
-      if (id != null) {
-        this.id = id;
-        console.log(this.id);
+      let username = params.get('username');
+      if (username != null) {
+        this.username = username;
+
+        zip(
+          this.userService.getUserByUsername(this.username),
+          this.tradeService.getTradesByAuthor(this.username),
+          this.blogPostService.getPostsByAuthor(this.username)
+        ).subscribe(([user, trades, blogPosts]: [User, Trade[], BlogPost[]]) => {
+          this.user = user;
+          this.trade_data = this.genTradeData();
+          this.portfolio_data = this.user.portfolio;
+
+          this.blogPostFeed = blogPosts;
+          this.sortByDate(this.blogPostFeed);
+
+          this.tradeFeed = trades;
+          this.sortByDate(this.tradeFeed);
+
+          this.allFeed = this.blogPostFeed;
+          this.allFeed = this.allFeed.concat(this.tradeFeed);
+          this.sortByDate(this.allFeed);
+          this.isLoading = false;
+        });
       }
     });
-
-    zip(
-      this.tradeService.getTradesByAuthor('test'),
-      this.blogPostService.getPostsByAuthor('test')
-    ).subscribe(([trades, blogPosts]: [Trade[], BlogPost[]]) => {
-      this.blogPostFeed = blogPosts;
-      this.sortByDate(this.blogPostFeed);
-
-      this.tradeFeed = trades;
-      this.sortByDate(this.tradeFeed);
-
-      this.allFeed = this.blogPostFeed;
-      this.allFeed = this.allFeed.concat(this.tradeFeed);
-      this.sortByDate(this.allFeed);
-    });
-
-
   }
 
-  trade_data;
 
-  private genTradeData() {
-    let correct_trades = this.user.correct_trades;
-    let wrong_trades = this.user.wrong_trades;
-    let open_trades = this.user.trades - correct_trades - wrong_trades;
-    return [
-      {
-        "name": "Correct",
-        "value": correct_trades,
-      },
-      {
-        "name": "Wrong",
-        "value": wrong_trades,
-      },
-      {
-        "name": "Open",
-        "value": open_trades,
-      }
-    ];
+  genTradeData() {
+    if (this.user.correct_trades != null && this.user.wrong_trades != null && this.user.trades != null) {
+      let correct_trades = this.user.correct_trades;
+      let wrong_trades = this.user.wrong_trades;
+      let open_trades = this.user.trades - correct_trades - wrong_trades;
+      return [
+        [
+          $localize`:Number of correct trades@@correctTradesID:Correct`, correct_trades
+        ],
+        [
+          $localize`:Number of wrong trades@@wrongTradesID:Wrong`, wrong_trades
+        ],
+        [
+          $localize`:Number of trades that are not evaluated@@openTradesID:Open`, open_trades
+        ]
+      ];
+    } else {
+      return [];
+    }
+
   }
 
   private sortByDate(feed: (BlogPost | Trade)[]) {
@@ -117,24 +107,20 @@ export class ProfilePageComponent implements OnInit {
     });
   }
 
-  public changeFollow() {
-    this.user.follows = !this.user.follows;
-    console.log(this.user.follows);
+  async changeFollow() {
+    if (this.user.follows) {
+      this.userService.unfollowUser(this.user.username).subscribe(res => {
+        this.user.follows = false;
+      });
+    } else {
+      this.userService.followUser(this.user.username).subscribe(res => {
+        this.user.follows = true;
+      });
+    }
   }
 
   trade_chart = {
     "type": ChartType.ColumnChart,
-    "data": [
-      [
-        $localize`:Number of correct trades@@correctTradesID:Correct`, 123
-      ],
-      [
-        $localize`:Number of wrong trades@@wrongTradesID:Wrong`, 243
-      ],
-      [
-        $localize`:Number of trades that are not evaluated@@openTradesID:Open`, 13
-      ]
-    ],
     "options": {
       "colors": this.COLORS,
       "bar": {
@@ -164,20 +150,6 @@ export class ProfilePageComponent implements OnInit {
 
   portfolio_chart = {
     "type": ChartType.PieChart,
-    "data": [
-      [
-        "BTC", 32100
-      ],
-      [
-        "ETH", 4200
-      ],
-      [
-        "USD", 10123.23
-      ],
-      [
-        "EUR", 5012.123
-      ]
-    ],
     "options": {
       "colors": this.COLORS,
       "backgroundColor": {

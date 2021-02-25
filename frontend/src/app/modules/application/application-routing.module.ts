@@ -33,7 +33,7 @@ const routes: Routes = [
       .then(m => m.AboutModule)
   },
   {
-    path: 'profile/:id',
+    path: 'profile/:username',
     loadChildren: () => import('../profile/profile.module')
       .then(m => m.ProfileModule),
     canActivate: [AuthGuard]
