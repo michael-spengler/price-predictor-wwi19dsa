@@ -203,9 +203,18 @@ def loadUsername(args, UserModel):
     return result.username
 
 def createUser(args, UserModel, db, abort):
+    import datetime
+    import json
     abortIfEmailIsInDB(args, UserModel, abort, "Email is already registered...")
     hashedPassword = createHashAndSalt(args.password)
     args.password = hashedPassword
+    args.join_date = str(datetime.datetime.today())
+    args.follower = json.dumps([])
+    args.following = json.dumps([])
+    args.correct_trades = json.dumps([])
+    args.wrong_trades = json.dumps([])
+    args.links = json.dumps([])
+    args.portfolio = json.dumps([])
     user = UserModel(**args)
     db.session.add(user)
     db.session.commit()
@@ -258,10 +267,13 @@ def loadBlogEntryByID(BlogModel, blogID, abort):
         return {"data": result.data()}, 200
 
 def loadBlogEntriesByAuthor(BlogModel, blogAuthor):
-    result = BlogModel.query.filter_by(author=blogAuthor).all()
-    entries = []
-    for blog in result:
-        entries.append(blog.data())
+    try:
+        result = BlogModel.query.filter_by(author=blogAuthor).all()
+        entries = []
+        for blog in result:
+            entries.append(blog.data())
+    except:
+        entries = []
     return {"data": entries}, 200
 
 def createTradeEntry(args, TradeModel, db, token, UserModel):
@@ -289,12 +301,51 @@ def loadTradeEntries(TradeModel):
     return {"data": entries}, 200
 
 def loadTradeEntriesByAuthor(TradeModel, tradeAuthor):
-    result = TradeModel.query.filter_by(author=tradeAuthor).all()
-    entries = []
-    for entry in result:
-        entries.append(entry.data())
+    try:
+        result = TradeModel.query.filter_by(author=tradeAuthor).all()
+        entries = []
+        for entry in result:
+            entries.append(entry.data())
+    except:
+        entries = []
     return {"data": entries}, 200
 
 def loadTradeEntriesByID(TradeModel, tradeID):
     result = TradeModel.query.filter_by(id=tradeID).first()
     return {"data": result.data()}, 200
+
+def loadUserByUsername(UserModel, username, requestor, TradeModel, BlogModel):
+    import json
+    user = UserModel.query.filter_by(username=username).first()
+    result = user.data()
+    result["follower"] = json.loads(result["follower"])
+    if requestor in result["follower"]:
+        result["follows"] = True
+    else:
+        result["follows"] = False
+    result["follower"] = len(result["follower"])
+    result["following"] = len(json.loads(result["following"]))
+    result["trades"] = len(loadTradeEntriesByAuthor(TradeModel, username)[0]["data"])
+    result["posts"] = len(loadBlogEntriesByAuthor(BlogModel, username)[0]["data"])
+    return {"data" : result}, 201
+
+def follow(UserModel, Username, requestor, db):
+    follower = UserModel.query.filter_by(username=requestor).first()
+    follower.addFollowing(Username)
+    following = UserModel.query.filter_by(username = Username).first()
+    following.addFollower(requestor)
+    db.session.commit()
+    return 201
+
+def unfollow(UserModel, Username, requestor, db):
+    follower = UserModel.query.filter_by(username=requestor).first()
+    follower.delFollowing(Username)
+    following = UserModel.query.filter_by(username = Username).first()
+    following.delFollower(requestor)
+    db.session.commit()
+    return 201
+
+def getCurrencies():
+    crypto = ["Ethereum (ETH)", "Litecoin (LTC)", "Cardano (ADA)", "Polkadot (DOT)", "Bitcoin Cash (BCH)", "Stellar (XLM)", "Chainlink", "Binance Coin (BNB)", "Tether (USDT)", "Ripple (XRP)", "Bitcoin (BTC)", "Tether (USDT)"]
+    fiat = ["Japanese Yen (JPY)", "U.S. Dollar (USD)", "Korean won (KRW)", "Euro (EUR)", "Australian Dollar (AUD)", "Canadian Dollar (CAD)", "Chinese Yuan Renminbi (CNY)", "Pound Sterling (GBP)"]
+    return {"data": {"Crypto":crypto, "Fiat":fiat}}, 200

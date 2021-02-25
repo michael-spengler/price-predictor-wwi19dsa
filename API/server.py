@@ -7,6 +7,7 @@ import uuid
 from flask_cors import CORS, cross_origin
 
 import sys
+import json
 #import f from lib/f.py
 from pylib import functions as f
 
@@ -20,9 +21,8 @@ api = Api(app)
 
 #Set DataBase Setup
 class UserModel(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, nullable=False)
-    #user_id = db.Column(db.String, nullable=True)
     email = db.Column(db.String, nullable=False)
     lastName = db.Column(db.String, nullable=False)
     firstName = db.Column(db.String, nullable=False)
@@ -32,16 +32,42 @@ class UserModel(db.Model):
     country = db.Column(db.String, nullable=True)
     password = db.Column(db.LargeBinary, nullable=False)
     birthdate = db.Column(db.String, nullable=False)
-    #join_date = db.Column(db.String, nullable=True) 
-    #follower = db.Column(db.String, nullable=True)
-    #posts = db.Column(db.String, nullable=True)
-    #trades = db.Column(db.String, nullable=True)
-    #correct_trades = db.Column(db.String, nullable=True)
-    #wrong_trades = db.Column(db.String, nullable=True)
-    #links = db.Column(db.String, nullable=True)
+    join_date = db.Column(db.String, nullable=True) 
+    follower = db.Column(db.String, nullable=True)
+    following = db.Column(db.String, nullable=True)
+    posts = db.Column(db.String, nullable=True)
+    trades = db.Column(db.String, nullable=True)
+    correct_trades = db.Column(db.String, nullable=True)
+    wrong_trades = db.Column(db.String, nullable=True)
+    links = db.Column(db.String, nullable=True)
+    portfolio = db.Column(db.String, nullable=True)
 
     def data(self):
-        return {"id" : self.id, "user_id" : self.user_id, "email" : self.email, "username" : self.username, "firstName" : self.firstName, "lastName": self.lastName, "street" : self.street, "zip" : self.zip, "city" : self.city, "country" : self.country, "birthdate" : self.birthdate, "join_date": self.join_date, "follower": self.follower, "posts":self.posts, "trades":self.trades, "correct_trades" : self.correct_trades, "wrong_trades": self.wrong_trades, "links":self.links}
+        return {"user_id" : self.user_id, "email" : self.email, "username" : self.username, "firstName" : self.firstName, "lastName": self.lastName, "street" : self.street, "zip" : self.zip, "city" : self.city, "country" : self.country, "birthdate" : self.birthdate, "join_date": self.join_date, "follower": self.follower, "following": self.following, "posts":self.posts, "trades":self.trades, "correct_trades" : self.correct_trades, "wrong_trades": self.wrong_trades, "links":self.links, "portfolio":self.portfolio}
+    def addFollower(self, someuser):
+        follower = json.loads(self.follower)
+        if someuser not in follower:
+            follower.append(someuser)
+        self.follower = json.dumps(follower)
+    def delFollower(self, someuser):
+        follower = json.loads(self.follower)
+        if someuser in follower:
+            follower.remove(someuser)
+        self.follower = json.dumps(follower)
+    def addFollowing(self, someuser):
+        following = json.loads(self.following)
+        if someuser not in following:
+            following.append(someuser)
+        self.following = json.dumps(following)
+    def delFollowing(self, someuser):
+        following = json.loads(self.following)
+        if someuser in following:
+            following.remove(someuser)
+        self.following = json.dumps(following)
+    
+
+
+
 
 class BlogModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -58,8 +84,8 @@ class TradeModel(db.Model):
     date            = db.Column(db.String, nullable=False)
     type            = db.Column(db.String, nullable=False)
     percent         = db.Column(db.String, nullable=False)
-    fiatcurrency    = db.Column(db.String, nullable=True, default="not set")
-    cryptocurrency  = db.Column(db.String, nullable=True, default="not set")
+    fiatcurrency    = db.Column(db.String, nullable=False)
+    cryptocurrency  = db.Column(db.String, nullable=False)
     startdate       = db.Column(db.String, nullable=False)
     enddate         = db.Column(db.String, nullable=False)
     expectedIncrease= db.Column(db.String, nullable=False)
@@ -68,7 +94,6 @@ class TradeModel(db.Model):
     def data(self):
         return {"id":self.id, "author":self.author, "date":self.date, "type":self.type, "percent":self.percent, "fiatcurrency":self.fiatcurrency, "cryptocurrency":self.cryptocurrency, "startdate":self.startdate, "enddate":self.enddate, "expectedIncrease":self.expectedIncrease, "motivation":self.motivation, "description":self.description}
     
-
 #Set Resourcefields for Requestparser
 SignUpFields = f.loadSignUpFields(fields)
 BlogFields = f.loadBlogFields(fields)
@@ -173,6 +198,40 @@ class Blogauthor(Resource):
     def get(self):
         return f.loadUsers(UserModel)
 
+@api.route("/user/<string:username>")
+class Blogauthor(Resource):
+    def get(self, username):
+        try:
+            token = request.headers.get("Authorization")
+            requestor = f.getUsernameFromToken(token, UserModel)
+        except:
+            requestor = " "
+        return f.loadUserByUsername(UserModel, username, requestor, TradeModel, BlogModel)
+
+@api.route("/user/<string:username>/follow")
+class Blogauthor(Resource):
+    @api.doc(description="valid Token needs to be provided in the header")
+    def get(self, username):
+        token = request.headers.get("Authorization")
+        if token is None:
+            abort(400, "False token")
+        requestor = f.getUsernameFromToken(token, UserModel)
+        return f.follow(UserModel, username, requestor, db)
+
+@api.route("/user/<string:username>/unfollow")
+class Blogauthor(Resource):
+    @api.doc(description="valid Token needs to be provided in the header")
+    def get(self, username):
+        token = request.headers.get("Authorization")
+        if token is None:
+            abort(400, "False token")
+        requestor = f.getUsernameFromToken(token, UserModel)
+        return f.unfollow(UserModel, username, requestor, db)
+
+@api.route("/getCurrencies")
+class getCurrencies(Resource):
+    def get(self):
+        return f.getCurrencies()
 
 if __name__ == "__main__":
     #with app.app_context():
