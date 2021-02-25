@@ -57,7 +57,6 @@ export class AuthService {
     if (user == null) {
       throw new Error('No Token Found');
     } else {
-      console.log(user.username)
       localStorage.setItem(USER, JSON.stringify(user));
     }
   }
