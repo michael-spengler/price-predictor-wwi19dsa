@@ -326,7 +326,10 @@ def loadUserByUsername(UserModel, username, requestor, TradeModel, BlogModel):
     result["trades"] = len(loadTradeEntriesByAuthor(TradeModel, username)[0]["data"])
     result["posts"] = len(loadBlogEntriesByAuthor(BlogModel, username)[0]["data"])
     result["portfolio"] = [["BTC", 32100], ["ETH", 4200],["USD", 2300],["EUR", 5012.123]]
-    return {"data" : result}, 201
+    result["correct_trades"] = int(result["trades"]*0.4)
+    result["wrong_trades"] = int(result["trades"]*0.3)
+    print(result)
+    return {"data" : result}, 200
 
 def follow(UserModel, Username, requestor, db):
     follower = UserModel.query.filter_by(username=requestor).first()
@@ -334,14 +337,14 @@ def follow(UserModel, Username, requestor, db):
     follower.addFollowing(Username)
     following.addFollower(requestor)
     db.session.commit()
-    return 201
+    return 200
 
 def unfollow(UserModel, Username, requestor, db):
     follower = UserModel.query.filter_by(username=requestor).first()
     following = UserModel.query.filter_by(username = Username).first()
     if follower.delFollowing(Username) and following.delFollower(requestor):
         db.session.commit()
-        return 201
+        return 200
     else:
         return 404
     

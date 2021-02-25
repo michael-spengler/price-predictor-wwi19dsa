@@ -1,14 +1,8 @@
 import requests
 
-Base = "http://127.0.0.1:5000/"
+Base = "http://3.131.4.23:5000/"
 
-response = requests.post(Base + "signup", {"email": "ferdi1@muth.de", "password": "Test1", "username":"femu1", "lastName":"Muth", "firstName":"Ferdi", "country":"Deutschland", "birthdate": "10022000", "zip": "61476"})
-print(response)
-print(response.json())
-
-input()
-
-response = requests.post(Base + "signin", {"email": "ferdi1@muth.de", "password": "Test1"})
+response = requests.post(Base + "signin", {"email": "bungesregierung@gmbh.de", "password": "Kanzlerin05!"})
 print(response.headers)
 print(response.json())
 print(response.headers)
@@ -27,21 +21,21 @@ print(response.json())
 #print(response.json())
 
 input("follow")
-response = requests.get(Base + "user/femu/follow", headers={"Authorization" : token})
+response = requests.get(Base + "user/Ronho/follow", headers={"Authorization" : token})
 print(response.json())
 
 input("loadUser")
-response = requests.get(Base + "user/femu", headers={"Authorization" : token})
+response = requests.get(Base + "user/Ronho", headers={"Authorization" : token})
 print(response.json())
-response = requests.get(Base + "user/femu1", headers={"Authorization" : token})
+response = requests.get(Base + "user/Ronho", headers={"Authorization" : token})
 print(response.json())
 
 input("unfollow")
-response = requests.get(Base + "user/femu/unfollow", headers={"Authorization" : token})
+response = requests.get(Base + "user/Ronho/unfollow", headers={"Authorization" : token})
 print(response.json())
 
 input("loadUser")
-response = requests.get(Base + "user/femu", headers={"Authorization" : token})
+response = requests.get(Base + "user/Ronho", headers={"Authorization" : token})
 print(response.json())
-response = requests.get(Base + "user/femu1", headers={"Authorization" : token})
+response = requests.get(Base + "user/Ronho", headers={"Authorization" : token})
 print(response.json())

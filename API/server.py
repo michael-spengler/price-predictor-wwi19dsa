@@ -70,10 +70,6 @@ class UserModel(db.Model):
             return True
         else:
             return False
-    
-
-
-
 
 class BlogModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
