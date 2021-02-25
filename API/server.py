@@ -43,7 +43,7 @@ class UserModel(db.Model):
     portfolio = db.Column(db.String, nullable=True)
 
     def data(self):
-        return {"user_id" : self.user_id, "email" : self.email, "username" : self.username, "firstName" : self.firstName, "lastName": self.lastName, "street" : self.street, "zip" : self.zip, "city" : self.city, "country" : self.country, "birthdate" : self.birthdate, "join_date": self.join_date, "follower": self.follower, "following": self.following, "posts":self.posts, "trades":self.trades, "correct_trades" : self.correct_trades, "wrong_trades": self.wrong_trades, "links":self.links, "portfolio":self.portfolio}
+        return {"user_id" : self.user_id, "email" : self.email, "username" : self.username, "firstName" : self.firstName, "lastName": self.lastName, "street" : self.street, "zip" : self.zip, "city" : self.city, "country" : self.country, "birthdate" : self.birthdate, "join_date": self.join_date, "follower": json.loads(self.follower), "following": json.loads(self.following), "posts":self.posts, "trades":self.trades, "correct_trades" : json.loads(self.correct_trades), "wrong_trades": json.loads(self.wrong_trades), "links":self.links, "portfolio": json.loads(self.portfolio)}
     def addFollower(self, someuser):
         follower = json.loads(self.follower)
         if someuser not in follower:

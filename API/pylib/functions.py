@@ -315,18 +315,17 @@ def loadTradeEntriesByID(TradeModel, tradeID):
     return {"data": result.data()}, 200
 
 def loadUserByUsername(UserModel, username, requestor, TradeModel, BlogModel):
-    import json
     user = UserModel.query.filter_by(username=username).first()
     result = user.data()
-    result["follower"] = json.loads(result["follower"])
     if requestor in result["follower"]:
         result["follows"] = True
     else:
         result["follows"] = False
     result["follower"] = len(result["follower"])
-    result["following"] = len(json.loads(result["following"]))
+    result["following"] = len(result["following"])
     result["trades"] = len(loadTradeEntriesByAuthor(TradeModel, username)[0]["data"])
     result["posts"] = len(loadBlogEntriesByAuthor(BlogModel, username)[0]["data"])
+    result["portfolio"] = [["BTC", 32100], ["ETH", 4200],["USD", 2300],["EUR", 5012.123]]
     return {"data" : result}, 201
 
 def follow(UserModel, Username, requestor, db):
