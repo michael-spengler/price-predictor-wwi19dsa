@@ -330,19 +330,21 @@ def loadUserByUsername(UserModel, username, requestor, TradeModel, BlogModel):
 
 def follow(UserModel, Username, requestor, db):
     follower = UserModel.query.filter_by(username=requestor).first()
-    follower.addFollowing(Username)
     following = UserModel.query.filter_by(username = Username).first()
+    follower.addFollowing(Username)
     following.addFollower(requestor)
     db.session.commit()
     return 201
 
 def unfollow(UserModel, Username, requestor, db):
     follower = UserModel.query.filter_by(username=requestor).first()
-    follower.delFollowing(Username)
     following = UserModel.query.filter_by(username = Username).first()
-    following.delFollower(requestor)
-    db.session.commit()
-    return 201
+    if follower.delFollowing(Username) and following.delFollower(requestor):
+        db.session.commit()
+        return 201
+    else:
+        return 404
+    
 
 def getCurrencies():
     crypto = ["Ethereum (ETH)", "Litecoin (LTC)", "Cardano (ADA)", "Polkadot (DOT)", "Bitcoin Cash (BCH)", "Stellar (XLM)", "Chainlink", "Binance Coin (BNB)", "Tether (USDT)", "Ripple (XRP)", "Bitcoin (BTC)", "Tether (USDT)"]

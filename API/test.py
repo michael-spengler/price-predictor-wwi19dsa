@@ -26,14 +26,22 @@ print(response.json())
 #response = requests.post(Base + "trade", {"type":"test", "percent":"test", "fiatcurrency":"test", "cryptocurrency":"test", "motivation":"test", "startdate":"test", "enddate":"test", "expectedIncrease":"test", "description":"test"}, headers={"Authorization" : token})
 #print(response.json())
 
-input("loadUser")
-response = requests.get(Base + "user/femu", headers={"Authorization" : token})
-print(response.json())
-
 input("follow")
 response = requests.get(Base + "user/femu/follow", headers={"Authorization" : token})
 print(response.json())
 
 input("loadUser")
 response = requests.get(Base + "user/femu", headers={"Authorization" : token})
+print(response.json())
+response = requests.get(Base + "user/femu1", headers={"Authorization" : token})
+print(response.json())
+
+input("unfollow")
+response = requests.get(Base + "user/femu/unfollow", headers={"Authorization" : token})
+print(response.json())
+
+input("loadUser")
+response = requests.get(Base + "user/femu", headers={"Authorization" : token})
+print(response.json())
+response = requests.get(Base + "user/femu1", headers={"Authorization" : token})
 print(response.json())

@@ -48,22 +48,28 @@ class UserModel(db.Model):
         follower = json.loads(self.follower)
         if someuser not in follower:
             follower.append(someuser)
-        self.follower = json.dumps(follower)
+            self.follower = json.dumps(follower)
     def delFollower(self, someuser):
         follower = json.loads(self.follower)
         if someuser in follower:
             follower.remove(someuser)
-        self.follower = json.dumps(follower)
+            self.follower = json.dumps(follower)
+            return True
+        else:
+            return False
     def addFollowing(self, someuser):
         following = json.loads(self.following)
         if someuser not in following:
             following.append(someuser)
-        self.following = json.dumps(following)
+            self.following = json.dumps(following)
     def delFollowing(self, someuser):
         following = json.loads(self.following)
         if someuser in following:
             following.remove(someuser)
-        self.following = json.dumps(following)
+            self.following = json.dumps(following)
+            return True
+        else:
+            return False
     
 
 
