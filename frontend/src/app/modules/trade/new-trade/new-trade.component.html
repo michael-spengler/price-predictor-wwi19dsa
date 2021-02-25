@@ -1,5 +1,5 @@
 <h1 class="header-trade" i18n="EAT. SLEEP. TRADE. REPEAT.@@newTradeHeaderID">EAT. SLEEP. TRADE. REPEAT.</h1>
-<mat-vertical-stepper [linear]="true" #stepper>
+<mat-vertical-stepper *ngIf="getCurrencies | async; else loading" [linear]="true" #stepper>
 
     <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
@@ -117,3 +117,8 @@
 
     </mat-step>
 </mat-vertical-stepper>
+
+
+<ng-template #loading>
+    Loading User...
+  </ng-template>

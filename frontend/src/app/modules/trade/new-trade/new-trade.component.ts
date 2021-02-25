@@ -9,6 +9,7 @@ import { AuthService } from '../../../shared/services/auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { TradeService } from 'src/app/shared/services/trade/trade.service';
 
 function autocompleteStringValidator(validOptions: Array<string>): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
@@ -25,48 +26,76 @@ function autocompleteStringValidator(validOptions: Array<string>): ValidatorFn {
   templateUrl: './new-trade.component.html',
   styleUrls: ['./new-trade.component.scss']
 })
-export class NewTradeComponent implements OnInit{
+export class NewTradeComponent implements OnInit {
 
   public fiatOptions: string[] = ['Euro €', 'US-Dollar $'];
   public cryptoOptions: string[] = ['Bitcoin', 'Bitcoin Cash'];
 
   minDate = new Date();
   maxDate = new Date();
-  //maxDate.setDate();// this.minDate   .setDate(date.getDate() + days);
 
-  firstFormGroup: FormGroup = this.formBuilder1.group({
-    sellOrBuy: ['', Validators.required]
-  });
-  secondFormGroup: FormGroup = this.formBuilder2.group({
-    fiat: new FormControl('', [Validators.required, autocompleteStringValidator(this.fiatOptions)]),
-    crypto: new FormControl('', [Validators.required, autocompleteStringValidator(this.cryptoOptions)]),
-    percentReturn:  ['', Validators.required],
-    motivation:  ['', Validators.required],
-    percentInvest:  ['', Validators.required],
-    startDate: ['', Validators.required], //new FormControl('', [Validators.required]),
-    endDate: ['', Validators.required],
-    description: ['', Validators.required] //new FormControl('', [Validators.required])
-  });;
-  thirdFormGroup: FormGroup = this.formBuilder3.group({
-    acceptTerms: new FormControl('', [Validators.required])
-  });;
+  firstFormGroup: FormGroup = <FormGroup>{};
+  secondFormGroup: FormGroup = <FormGroup>{};
+  thirdFormGroup: FormGroup = <FormGroup>{};
+  cryptoFilteredOptions: Observable<string[]> = <Observable<string[]>>{};
+  fiatFilteredOptions: Observable<string[]> = <Observable<string[]>>{};
+  getCurrencies: Observable<any> = <Observable<any>>{};
 
   constructor(
     private formBuilder1: FormBuilder,
     private formBuilder2: FormBuilder,
     private formBuilder3: FormBuilder,
     private authService: AuthService,
+    private tradeService: TradeService,
     private httpClient: HttpClient,
     private _snackBar: MatSnackBar,
     private router: Router
   ) { }
 
-  ngOnInit() { 
-    this.maxDate.setDate(this.minDate.getDate() + 5); 
+  ngOnInit() {
+    this.maxDate.setDate(this.minDate.getDate() + 5);
+
+    this.getCurrencies = this.tradeService.getCurrencies();
+
+    this.getCurrencies.subscribe(resp => {
+      this.fiatOptions = resp.Fiat;
+      this.cryptoOptions = resp.Crypto;
+      this.setFormGroups();
+    });
+  }
+
+  private setFormGroups() {
+    this.firstFormGroup = this.formBuilder1.group({
+      sellOrBuy: ['', Validators.required]
+    });
+    this.secondFormGroup = this.formBuilder2.group({
+      fiat: new FormControl('', [Validators.required, autocompleteStringValidator(this.fiatOptions)]),
+      crypto: new FormControl('', [Validators.required, autocompleteStringValidator(this.cryptoOptions)]),
+      percentReturn: ['', Validators.required],
+      motivation: ['', Validators.required],
+      percentInvest: ['', Validators.required],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
+      description: ['', Validators.required]
+    });;
+    this.thirdFormGroup = this.formBuilder3.group({
+      acceptTerms: new FormControl('', [Validators.required])
+    });;
+
+    this.cryptoFilteredOptions = this.secondFormGroup.controls.crypto.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => this.cryptoFilter(value))
+    );
+
+    this.fiatFilteredOptions = this.secondFormGroup.controls.fiat.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => this.fiatFilter(value))
+    );
   }
 
   public publishTrade() {
-
     const trade: Trade = {
       type: this.firstFormGroup.value.sellOrBuy,
       motivation: this.secondFormGroup.value.motivation,
@@ -86,14 +115,13 @@ export class NewTradeComponent implements OnInit{
       });
 
       let options = { headers: headers };
-      
+
       this.httpClient.post(environment.apiEndpoint + 'trade', trade, options).subscribe(result => {
         this.router.navigate(['']);
-    }, error => {
+      }, error => {
         this._snackBar.open('Error. There are some troubles with this trade. Please try again!', 'Close');
-    });
-    }catch (e)
-    {
+      });
+    } catch (e) {
       this._snackBar.open('Error. No authorization token found. Please login again!', 'Close');
     }
   }
@@ -106,23 +134,10 @@ export class NewTradeComponent implements OnInit{
     return value + 'W';
   }
 
-  fiatFilteredOptions: Observable<string[]> = this.secondFormGroup.controls.fiat.valueChanges
-  .pipe(
-    startWith(''),
-    map(value => this.fiatFilter(value))
-  );
-
   private fiatFilter(value: string): string[] {
     const filterValue = value.toLowerCase();
-    this.fiatOptions = ['Euro €', 'US-Dollar $'];
     return this.fiatOptions.filter(option => option.toLowerCase().includes(filterValue));
   }
-
-  cryptoFilteredOptions: Observable<string[]> = this.secondFormGroup.controls.crypto.valueChanges
-  .pipe(
-    startWith(''),
-    map(value => this.cryptoFilter(value))
-  );
 
   private cryptoFilter(value: string): string[] {
     const filterValue = value.toLowerCase();
