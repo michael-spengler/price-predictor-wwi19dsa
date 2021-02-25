@@ -1,11 +1,26 @@
 export interface User {
-    id?: number,
+    user_id?: number,
     username: string,
     email: string,
     firstName: string,
     lastName: string,
+    street?: string,
     zip?: number,
+    city?: string,
     country: string,
     password: string,
-    birthdate: string
+    birthdate: Date,
+    join_date?: Date,
+    follower?: number,
+    following?: number,
+    posts?: number,
+    trades?: number,
+    correct_trades?: number,
+    wrong_trades?: number,
+    links?: {
+        name: string,
+        link: string,
+    }[],
+    portfolio?: Object,
+    follows?: Boolean
 }
