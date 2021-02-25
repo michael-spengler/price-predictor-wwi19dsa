@@ -13,6 +13,15 @@ export class TradeService {
   constructor(private httpClient: HttpClient) { }
 
   TRADES_ENDPOINT = 'trades';
+  
+  public getCurrencies(): Observable<any> {
+    return this.httpClient.get(environment.apiEndpoint + '/getCurrencies').pipe(
+      retry(2),
+      map((data: any) => {
+        return data.data
+      })
+    );
+  }
 
   public getAllTrades(): Observable<Trade[]> {
     return this.httpClient.get(environment.apiEndpoint + this.TRADES_ENDPOINT).pipe(
