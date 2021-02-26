@@ -49,7 +49,7 @@ export class NewTradeComponent implements OnInit {
     private tradeService: TradeService,
     private httpClient: HttpClient,
     private _snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -62,6 +62,24 @@ export class NewTradeComponent implements OnInit {
       this.cryptoOptions = resp.Crypto;
       this.setFormGroups();
     });
+
+    let headers;
+    headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    let options = { headers: headers };
+    this.httpClient.get(environment.apiEndpoint + 'getCurrencies', options).subscribe((result: any) => {
+      try {
+        this.cryptoOptions = result.data.Crypto;
+        this.fiatOptions = result.data.Fiat;
+      } catch {
+        this._snackBar.open('Error. There are some troubles with loading the users. Please try again!', 'Close');
+      }
+    }, error => {
+      this._snackBar.open('Error. There are some troubles with reaching the server. Please contact our Admin!', 'Close');
+    });
+
   }
 
   private setFormGroups() {
