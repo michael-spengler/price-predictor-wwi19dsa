@@ -2,13 +2,15 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AnonymousGuard } from 'src/app/shared/guards/anonymous.guard';
 import { AuthGuard } from 'src/app/shared/guards/auth.guard';
+import { AuthGuardContent } from 'src/app/shared/guards/auth.guardContent';
 import { NewsFeedComponent } from './news-feed/news-feed.component';
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('../landing/landing.module')
-      .then(m => m.LandingModule)
+      .then(m => m.LandingModule),
+    canActivate: [AuthGuardContent]
   },
   {
     path: 'blog',
