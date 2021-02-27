@@ -12,7 +12,7 @@
                 <div>
                     <div class="with-icon">
                         <span class="profile-name">{{ user.firstName }} {{ user.lastName }}</span>
-                        <button *ngIf="user.username != authService.getUser().username" mat-icon-button color="warn" (click)="changeFollow()">
+                        <button *ngIf="user.username != authService.getUsername()" mat-icon-button color="warn" (click)="changeFollow()">
                             <mat-icon>{{ user.follows ? 'favorite' : 'favorite_border'}}</mat-icon>
                         </button>
                     </div>

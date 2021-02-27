@@ -75,12 +75,12 @@ export class AuthService {
     });
   }
 
-  public getUser(): User {
+  public getUsername() {
     const user = localStorage.getItem(USER);
     if (user == null) {
       throw new Error('No Token Found');
     } else {
-      return JSON.parse(user) as User;
+      return JSON.parse(user);
     }
   }
 

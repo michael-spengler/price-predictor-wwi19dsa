@@ -19,7 +19,7 @@ export class AuthGuardContent implements CanActivate {
             console.log("Hier");
             return true;
         } else {
-            const username = this.authService.getUser().username;
+            const username = this.authService.getUsername();
             this.router.navigate(['profile/' + username]);
             console.log("Dort");
             return false;

@@ -59,10 +59,10 @@
           </button>
 
           <mat-menu #userMenu="matMenu">
-            <button mat-menu-item [routerLink]="['/profile', authService.getUser().username]">
+            <button mat-menu-item [routerLink]="['/profile', authService.getUsername()]">
               <span><span i18n="Signed in as@@signedInID">Signed in as</span>
                 <strong>
-                  {{ authService.getUser().username }}
+                  {{ authService.getUsername() }}
                 </strong>
               </span>
             </button>
