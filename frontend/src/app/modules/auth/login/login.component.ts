@@ -41,16 +41,15 @@ export class LoginComponent {
     
     this.authService
       .login(email, password)
-      .then((result: any) => {
-        this.router.navigate(['/feed']);
-      })
-      .catch((error) => {
-        if (error.status >= 400 && error.status < 500) {
-          this._snackBar.open('Error. Credentials are invalid!', 'Close');
-      
+      .subscribe(() => {
+        if (this.authService.isLoggedIn.getValue() == true) {
+          this.router.navigate(['/feed']);
         }
+      }, error => {
+          if (error.status >= 400 && error.status < 500) {
+            this._snackBar.open('Error. Credentials are invalid!', 'Close');
+          }
       });
     }
-    
   }
 }

@@ -29,20 +29,13 @@ export class AuthService {
   ) { 
   }
 
-  public async login(email: string, password: string) {
-    this.httpLogin(email, password).subscribe(resp => {
-      const token = resp.headers.get(ACCESS_TOKEN);
-      this.setAccessToken(token);
-      this.setUser(resp.body.data)
-      this.isLoggedIn.next(true);
-    });
-  }
-
-  public httpLogin(email: string, password: string) {
+  public login(email: string, password: string) {
     const body = { 'email': email, 'password': password };
     return this.httpClient.post(environment.apiEndpoint + 'signin', body, { observe: 'response' }).pipe(retry(2), map((resp: any) => {
-      const user = {'username': resp.body.username} as User | null;
-      resp.body.data = user;
+      const token = resp.headers.get(ACCESS_TOKEN);
+      this.setAccessToken(token);
+      this.setUser(resp.body.username)
+      this.isLoggedIn.next(true);
       return resp
     }));
   }
