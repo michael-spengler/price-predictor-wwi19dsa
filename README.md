@@ -151,7 +151,7 @@ In den letzten Wochen und Tagen haben wir uns zweimal die Woche in einem Meeting
 Durch die Arbeit im Team und die Verwendung neuer und unbekannter Technologien haben wir auch einige Punkte als Learnings mitgenommen.
 
 - Bei neuen Technologien ist Vorsicht geboten. Fehler können sehr schnell passieren und mitunter gravierende Folgen haben
-- Testen ist das A und O!
+- Testen ist das A und O! (intensive UATs)
 - Fremdbibliotheken sind nicht immer so gut wie man denkt
 - Auch bei Standardbibliotheken kann man vorsichtig sein (bspw. war die Nutzung von MatGridList als Komponente nicht zu empfehlen, sodass wir auf die Flex-Komponente umgestiegen sind, um die Applikation responsive zu gestalten)
 - Die Kommunikation im Team lief mit Verlauf des Projektes immer besser
