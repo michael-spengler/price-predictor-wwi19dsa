@@ -71,7 +71,7 @@ Nachfolgende Links zeigen tiefgehendere Informationen zu unserem Businessmodell
 
 - [Businessplan]()
 - [Business-Model-Canvas](https://github.com/michael-spengler/price-predictor-wwi19dsa/blob/develop/business/business-model-canvas.png)
-
+- []()
 
 ## Team
 
@@ -97,12 +97,8 @@ Coin2gether ist es sehr wichtig, den latest Shit als Technologie zu verwenden. W
 
 Wichtig war uns zum einen, dass die Seite responsiv ist, sodass sie von allen Endgeräten aufgerufen kann. Egal ob zuhause am PC oder unterwegs vom Handy, alle Inhalte sind perfekt dargestellt.
 
-<div class="pull-left">
-![Responsive1](img/c2g_3.png)
-</div>
-<div class="pull-right">
-![Responsive2](img/c2g_4)
-</div>
+<img src="img/c2g_3" alt="Responsive1" style="width: 50%;" />
+<img src="img/c2g_4" alt="Responsive2" style="width: 50%;" />
 
 
 Zudem haben wir einen Dark Mode inkludiert, um immer den neuesten Trends zu entsprechen.
