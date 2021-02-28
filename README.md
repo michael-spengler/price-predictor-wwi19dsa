@@ -196,5 +196,4 @@ Durch die Arbeit im Team und die Verwendung neuer und unbekannter Technologien h
 #### Branch System
 ![branch_sytem](img/branch_system.jpeg) -->
 
-[Inhaltsverzeichnis](#Inhaltsverzeichnis)
 
