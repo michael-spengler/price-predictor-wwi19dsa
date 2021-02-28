@@ -155,6 +155,8 @@ Durch die Arbeit im Team und die Verwendung neuer und unbekannter Technologien h
 - Fremdbibliotheken sind nicht immer so gut wie man denkt
 - Auch bei Standardbibliotheken kann man vorsichtig sein (bspw. war die Nutzung von MatGridList als Komponente nicht zu empfehlen, sodass wir auf die Flex-Komponente umgestiegen sind, um die Applikation responsive zu gestalten)
 - Die Kommunikation im Team lief mit Verlauf des Projektes immer besser
+- lieber ein Commit zu viel, als ein Commit zu wenig
+- häufiger ist es besser Komponenten selber zu entwickeln, als bereits existierende Packages dafür zu nutzen. Beispiel: Suchleiste
 
 
 
