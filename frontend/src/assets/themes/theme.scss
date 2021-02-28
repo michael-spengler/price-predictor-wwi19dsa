@@ -6,31 +6,71 @@ $pp-primary: mat-palette($mat-light-blue);
 $pp-accent: mat-palette($mat-light-green);
 $pp-warn: mat-palette($mat-red);
 $pp-theme: mat-light-theme($pp-primary, $pp-accent, $pp-warn);
-
 @mixin mix-app-theme($pp-theme) {
-  $primary: map-get($pp-theme, primary);
-  $warn: mat-color(map-get($pp-theme, warn));
-  $warn-text: mat-color(map-get($pp-theme, warn), default-contrast);
-
-  .inputContainer .mat-stroked-button {
-      background-color: mat-color($primary);
-      color: $light-primary-text;
-  }
-
-  .mat-button-toggle-checked {
-    background-color: mat-color($primary);
-
-    .mat-button-toggle-label-content{
+    $primary: map-get($pp-theme, primary);
+    $warn: mat-color(map-get($pp-theme, warn));
+    $warn-text: mat-color(map-get($pp-theme, warn), default-contrast);
+    .mat-button {
+        background-color: mat-color($primary);
         color: $light-primary-text;
+        margin: 0.5em !important
     }
-  }
-  .error {
-    color: $warn-text;
-    background-color: $warn;
-  }
-  .error .mat-simple-snackbar-action {
-    color: $warn-text;
-  }
+    .mat-button-toggle-checked {
+        background-color: mat-color($primary);
+        .mat-button-toggle-label-content {
+            color: $light-primary-text;
+        }
+    }
+    .error {
+        color: $warn-text;
+        background-color: $warn;
+    }
+    .error .mat-simple-snackbar-action {
+        color: $warn-text;
+    }
+
+    .btn_animated{
+      position: relative;
+      display: block;
+      color: $dark-primary-text;
+      text-decoration: none;
+      margin: auto;
+      border: 2px solid mat-color($primary);
+      padding: 0.5em 2em;
+      text-transform: uppercase;
+      overflow: auto;
+      transition: 1s all ease;
+      text-align: center;
+      font-weight: bold !important;
+      font-size: 24px !important;
+      z-index: 1000 !important;
+      max-width: 50% !important;
+    }
+
+    .btn_animated:hover {
+      color: $light-primary-text;
+    }
+    
+    .btn_animated::before{
+      background: mat-color($primary);
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      z-index: -1;
+      transition: all 0.6s ease;
+      width: 0;
+      height: 100%;
+    }
+    
+    .btn_animated:hover::before{
+      width: 100%;
+    }
+
+    .btn_landing {
+      color: $light-primary-text;
+    }
 }
 
 @include angular-material-theme($pp-theme);
@@ -40,6 +80,48 @@ $pp-accent-dark: mat-palette($mat-yellow);
 $pp-warn-dark: mat-palette($mat-red);
 $pp-theme-dark: mat-dark-theme( $pp-primary-dark, $pp-accent-dark, $pp-warn-dark);
 .dark-theme-mode {
-  @include angular-material-theme($pp-theme-dark);
-  @include mix-app-theme($pp-theme-dark);
+    @include angular-material-theme($pp-theme-dark);
+    @include mix-app-theme($pp-theme-dark);
+    .mat-button {
+      color: $dark-primary-text;
+    }
+
+    .btn_animated{
+      color: $light-primary-text;
+    }
+    .btn_animated:hover{
+      color: $dark-primary-text;
+    }
+
+    .btn_animated:hover {
+      color: $dark-primary-text;
+    }
 }
+
+/* Typographie Added 02-01-2020 Fa */
+h1, h2, h3, h4 {
+  text-align: center;
+  font-weight: bold !important;
+}
+
+h1 {
+  font-size: 36px !important;
+  margin-bottom: 2em !important;
+}
+
+h2 {
+  font-size: 24px !important;
+}
+
+h3 {
+  font-size: 20px !important;
+}
+
+p {
+  font-size: 20px !important;
+}
+
+.body-wrap {
+  margin: 2em 1.5em;
+}
+

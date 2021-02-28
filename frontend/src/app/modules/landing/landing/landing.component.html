@@ -1,1 +1,14 @@
-<p>landing works!</p>
+<div class="landing_bg" [ngClass]="{ 'dark-theme-mode': this.themesService.getIsDarkTheme() }">
+  <h1 i18n="Welcome to Coin2gether@@entryId">Welcome to Coin2gether</h1>
+
+  <div fxLayout="row start" fxLayoutAlign="space-around">
+    <div fxFlex="50%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let link of links" style="margin-top: 1em;">
+      <a class="btn_animated btn_landing" routerLink="{{link.loc}}"> {{link.title}} </a>
+    </div>
+  </div>
+
+  <div class="landing-blue-banner" style="margin-top: 15%;">
+    <h2 i18n="Start your Journey today!@@JourneyID">Start your Journey today!</h2>
+    <a class="btn_animated btn_landing" routerLink="/auth" i18n="Sign Up@@signUpID">Sign Up</a>
+  </div>
+</div>

@@ -33,21 +33,22 @@ export class LoginComponent {
   }
 
   public submit() {
-
     if(!this.loginForm?.valid) {
       this._snackBar.open('Please provide vaild values.', 'Close');
     } else {
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
+    
     this.authService
       .login(email, password)
-      .then((result) => {
-        this.router.navigate(['']);
-      })
-      .catch((error) => {
-        if (error.status >= 400 && error.status < 500) {
-          this._snackBar.open('Error. Credentials are invalid!', 'Close');
+      .subscribe(() => {
+        if (this.authService.isLoggedIn.getValue() == true) {
+          this.router.navigate(['/feed']);
         }
+      }, error => {
+          if (error.status >= 400 && error.status < 500) {
+            this._snackBar.open('Error. Credentials are invalid!', 'Close');
+          }
       });
     }
   }

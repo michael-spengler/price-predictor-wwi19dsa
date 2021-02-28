@@ -19,7 +19,7 @@ chrome-profiler-events*.json
 speed-measure-plugin*.json
 
 # IDEs and editors
-/.idea
+frontend/.idea
 .project
 .classpath
 .c9/
@@ -53,3 +53,8 @@ API/pylib/__pycache__/functions.cpython-38.pyc
 API/tmp/database.db
 API/tmp/database.db
 API/pylib/test.py
+API/pylib/test.py
+API/test.py
+API/migrations/alembic.ini
+API/migrations/*
+API/test.py

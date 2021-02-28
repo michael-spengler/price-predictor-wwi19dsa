@@ -1,0 +1,11 @@
+<div fxLayout="row wrap" fxLayoutAlign="space-around stretch">
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.md="33%" *ngFor="let listTile of feedList">
+        <div *ngIf="listTile.interface === 'blog-post'; then blogPostBlock else tradeBlock"></div>
+        <ng-template #blogPostBlock>
+            <app-blog-post [post]="$any(listTile)"></app-blog-post> <!-- any is needed to prevent errors because of strict type checking -->
+        </ng-template>
+        <ng-template #tradeBlock>
+            <app-trade [trade]="$any(listTile)"></app-trade> <!-- any is needed to prevent errors because of strict type checking -->
+        </ng-template>
+    </div>
+</div>

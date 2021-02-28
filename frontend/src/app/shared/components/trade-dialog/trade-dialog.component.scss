@@ -1,0 +1,17 @@
+.with-icon {
+    display: flex;
+    align-items: center;
+}
+
+.link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.link:visited {
+    color: inherit;
+}
+
+.link:hover {
+    color: grey;
+}

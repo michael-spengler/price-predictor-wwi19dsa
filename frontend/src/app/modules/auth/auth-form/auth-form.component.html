@@ -2,28 +2,20 @@
     <div class="card-content">
 
         <mat-card-header>
-            <mat-button-toggle-group #group="matButtonToggleGroup" name="fontStyle" aria-label="Font Style" value="optionLogin">
-                <mat-button-toggle value="optionLogin" i18n="Log In@@log_in">Log In</mat-button-toggle>
-                <mat-button-toggle value="optionSignup" i18n="Sign Up@@sign_up">Sign Up</mat-button-toggle>
+            <mat-button-toggle-group #group="matButtonToggleGroup" name="fontStyle" aria-label="Font Style"
+                value="optionLogin">
+                <mat-button-toggle value="optionLogin" i18n="Log In@@logInID">Log In</mat-button-toggle>
+                <mat-button-toggle value="optionSignup" i18n="Sign Up@@signUpID">Sign Up</mat-button-toggle>
             </mat-button-toggle-group>
         </mat-card-header>
-
-
-
 
         <div class="inputContainer" *ngIf=" group.value === 'optionLogin'">
             <app-login></app-login>
         </div>
 
-
         <div class="inputContainer" *ngIf="group.value === 'optionSignup'">
             <app-signup></app-signup>
         </div>
-
-
-
-
+        
     </div>
-
-
 </mat-card>

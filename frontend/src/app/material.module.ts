@@ -15,6 +15,17 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatChipsModule } from '@angular/material/chips';
+
 
 const MaterialComponents = [
     MatButtonModule,
@@ -30,7 +41,17 @@ const MaterialComponents = [
     MatSnackBarModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatGridListModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    MatStepperModule,
+    MatRadioModule,
+    MatSliderModule,
+    MatAutocompleteModule,
+    MatDividerModule,
+    MatTabsModule,
+    MatChipsModule
 ];
 
 @NgModule({

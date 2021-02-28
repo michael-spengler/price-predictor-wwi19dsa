@@ -1,0 +1,87 @@
+<div *ngIf="this.isLoading; then isLoadingBlock else isNotLoadingBlock"></div>
+<ng-template #isLoadingBlock>
+    <mat-spinner style="margin: 45vh auto; "></mat-spinner>
+</ng-template>
+<ng-template #isNotLoadingBlock>
+    <div fxLayout="row wrap" fxLayoutAlign="space-around stretch" class="profile-header">
+        <mat-card class="profile-card mat-elevation-z4" style="margin: 4px;" fxFlex="calc(36% - 8px)"
+            fxFlex.xs="calc(100% - 8px)">
+            <div fxLayout="row wrap" fxLayoutAlign="space-around stretch">
+                <img class="rounded" src="assets/images/avatar-1299805.svg">
+
+                <div>
+                    <div class="with-icon">
+                        <span class="profile-name">{{ user.firstName }} {{ user.lastName }}</span>
+                        <button *ngIf="user.username != authService.getUsername()" mat-icon-button color="warn" (click)="changeFollow()">
+                            <mat-icon>{{ user.follows ? 'favorite' : 'favorite_border'}}</mat-icon>
+                        </button>
+                    </div>
+
+                    <span class="profile-text">@{{ user.username }}</span><br>
+                    <span class="spacer"></span><br>
+
+                    <div class="with-icon profile-text">
+                        <mat-icon>today</mat-icon>
+                        <span i18n="Joined on@@joinDateID">Joined on</span>&nbsp;{{ user.join_date | date }}
+                    </div>
+                    <div class="with-icon profile-text">
+                        <mat-icon>article</mat-icon>
+                        <span style="font-weight: bold;"><span i18n="Posts@@postsID">Posts</span>:&nbsp;</span>
+                        {{ user.posts }}<br>
+                    </div>
+
+                    <div class="with-icon profile-text">
+                        <mat-icon>article</mat-icon>
+                        <span style="font-weight: bold;"><span i18n="Trades@@tradesID">Trades</span>:&nbsp;</span>
+                        {{ user.trades }}<br>
+                    </div>
+
+                    <div class="with-icon profile-text">
+                        <mat-icon>person</mat-icon>
+                        <span style="font-weight: bold;"><span i18n="Follower@@followerID">Follower</span>:&nbsp;</span>
+                        {{ user.follower }}<br>
+                    </div>
+
+                    <div class="with-icon profile-text" *ngFor="let link of user.links">
+                        <mat-icon>link</mat-icon>
+                        <a href="{{ link.link }}" target="_blank" style="text-decoration-color: grey;">
+                            <span class="profile-text">
+                                {{ link.name }}
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+
+        <mat-card class="mat-elevation-z4 fix-bug-class" style="margin: 4px;" fxFlex="calc(32% - 8px)"
+            fxFlex.xs="calc(100% - 8px)">
+            <mat-card-title style="text-align: center;" i18n="Trades@@tradesID">Trades</mat-card-title>
+
+            <google-chart [type]="trade_chart.type" [data]="trade_data" [options]="trade_chart.options"
+                [dynamicResize]="trade_chart.dynamicResize" style="width: 100%;"></google-chart>
+        </mat-card>
+
+        <mat-card class="mat-elevation-z4 fix-bug-class" style="margin: 4px;" fxFlex="calc(32% - 8px)"
+            fxFlex.xs="calc(100% - 8px)">
+            <mat-card-title style="text-align: center;" i18n="Portfolio@@portfolioID">Portfolio</mat-card-title>
+            <google-chart [type]="portfolio_chart.type" [data]="portfolio_data"
+                [options]="portfolio_chart.options" [dynamicResize]="portfolio_chart.dynamicResize"
+                style="width: 100%;"></google-chart>
+        </mat-card>
+
+        <mat-card class="mat-elevation-z4" style="margin: 4px;" fxFlex="calc(100% - 8px)">
+            <mat-tab-group mat-align-tabs="start" style="max-height: calc(100vh - 15vh)">
+                <mat-tab label="All" i18n-label="All Label@@allLabelID">
+                    <app-feed [feedList]="allFeed"></app-feed>
+                </mat-tab>
+                <mat-tab label="Posts" i18n-label="Posts@@postsID">
+                    <app-feed [feedList]="blogPostFeed"></app-feed>
+                </mat-tab>
+                <mat-tab label="Trades" i18n-label="Trades@@tradesID">
+                    <app-feed [feedList]="tradeFeed"></app-feed>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card>
+    </div>
+</ng-template>

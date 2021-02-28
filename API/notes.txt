@@ -1,0 +1,9 @@
+
+    follower = db.Column(db.String, nullable=True)
+    following = db.Column(db.String, nullable=True)
+    posts = db.Column(db.String, nullable=True)
+    trades = db.Column(db.String, nullable=True)
+    correct_trades = db.Column(db.String, nullable=True)
+    wrong_trades = db.Column(db.String, nullable=True)
+    links = db.Column(db.String, nullable=True)
+    portfolio = db.Column(db.String, nullable=True)
