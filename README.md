@@ -74,7 +74,8 @@ Nachfolgende Links zeigen tiefgehendere Informationen zu unserem Businessmodell
 - [Value-Proposition-Canvas](business/ValuePropositionCanvas_PricePredictor.png)
 - [Geschäftspräsentation](business/Masterslide.pptx)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/vgI1jMHJQTM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/vgI1jMHJQTM/0.jpg)](https://www.youtube.com/watch?v=vgI1jMHJQTM&feature=youtu.be)
 
 ## Team
 
