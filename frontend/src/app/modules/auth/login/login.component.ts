@@ -43,7 +43,13 @@ export class LoginComponent {
       .login(email, password)
       .subscribe(() => {
         if (this.authService.isLoggedIn.getValue() == true) {
-          this.router.navigate(['/feed']);
+          
+          if (this.authService.redirectUrl != "") {
+            this.router.navigate([this.authService.redirectUrl]);
+            this.authService.redirectUrl = "";
+          }else {
+            this.router.navigate(['/feed']);
+          }
         }
       }, error => {
           if (error.status >= 400 && error.status < 500) {

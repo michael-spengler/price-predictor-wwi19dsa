@@ -20,7 +20,7 @@ const USER = 'Username'
 export class AuthService {
 
   isLoggedIn = new BehaviorSubject(false);
-
+  public redirectUrl: string = "";
 
 
   constructor(
