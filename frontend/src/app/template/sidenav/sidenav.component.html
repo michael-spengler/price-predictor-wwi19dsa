@@ -77,16 +77,15 @@
               <span i18n="Logout@@logoutID">Logout</span>
             </button>
           </mat-menu>
+          <button mat-icon-button (click)="openSearch()" (click)="filterName.value = ''">
+            <mat-icon>search</mat-icon>
+          </button>
         </ng-template>
         <ng-template #notLoggedInBlock>
           <button mat-icon-button routerLink="/auth">
             <mat-icon>person</mat-icon>
           </button>
         </ng-template>
-
-        <button mat-icon-button (click)="openSearch()" (click)="filterName.value = ''">
-          <mat-icon>search</mat-icon>
-        </button>
       </mat-toolbar-row>
 
       <mat-toolbar-row id="searchRow" [style.display]="(visibleSearch == false) ? 'none' : '' ">
