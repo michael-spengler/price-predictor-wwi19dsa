@@ -69,9 +69,16 @@ export class SignupComponent {
     };
     
     this.userService.createUser(user).subscribe(result => {
-        console.log(result);
         console.log(user.username);
-        this.authService.login(user.email, user.password).subscribe(() => this.router.navigate(['/feed']));
+        this.authService.login(user.email, user.password).subscribe(() => {
+        
+        if (this.authService.redirectUrl != "") {
+          this.router.navigate([this.authService.redirectUrl]);
+          this.authService.redirectUrl = "";
+        }else {
+          this.router.navigate(['/profile/' + user.username]);
+        }
+        });
     }, error => {
         this._snackBar.open('Error. There are some troubles with the signup!', 'Close');
     });
