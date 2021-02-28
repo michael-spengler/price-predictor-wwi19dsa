@@ -73,7 +73,7 @@ Nachfolgende Links zeigen tiefgehendere Informationen zu unserem Businessmodell
 - [Business-Model-Canvas](business/business-model-canvas.png)
 - [Value-Proposition-Canvas](business/ValuePropositionCanvas_PricePredictor.png)
 - [Geschäftspräsentation](business/Masterslide.pptx)
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/vgI1jMHJQTM/0.jpg)](https://www.youtube.com/watch?v=vgI1jMHJQTM&feature=youtu.be)
+- <iframe width="560" height="315" src="https://www.youtube.com/embed/vgI1jMHJQTM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Team
 
