@@ -97,8 +97,10 @@ Coin2gether ist es sehr wichtig, den latest Shit als Technologie zu verwenden. W
 
 Wichtig war uns zum einen, dass die Seite responsiv ist, sodass sie von allen Endgeräten aufgerufen kann. Egal ob zuhause am PC oder unterwegs vom Handy, alle Inhalte sind perfekt dargestellt.
 
+<div>
 <img src="img/c2g_3.png" width="49%" alt="Responsive-1" />
 <img src="img/c2g_4.png" width="49%" alt="Responsive-2" />
+</div>
 
 Zudem haben wir einen Dark Mode inkludiert, um immer den neuesten Trends zu entsprechen.
 
