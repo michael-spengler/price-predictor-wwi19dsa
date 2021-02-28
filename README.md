@@ -27,6 +27,7 @@ npm run en
 - [Vorgeschichte](#Vorgeschichte)
 - [Coin-2-Gether](#Coin-2-Gether)
 - [Business](#Business)
+- [Video](#Video)
 - [Team](#Team)
 - [Technologien](#Technologien)
 - [Umsetzung](#Umsetzung)
@@ -44,6 +45,7 @@ Für viele ist die Technik und das Prinzip dahinter jedoch noch sehr fern und sc
 
 Wir haben eine Plattform für jeden Kryptoliebhaber geschaffen, auf der verschiedenste Informationen und News, sowie Investmentempfehlungen bereitgestellt werden. Über Coin2gether kann man auch automatisch sein Depot managen lassen.
 
+[Inhaltsverzeichnis](#Inhaltsverzeichnis)
 
 ## Coin-2-Gether
 
@@ -53,6 +55,7 @@ Unsere Empfehlungen und Prognosen erhalten wir von unabhängigen Krypto Experten
 
 Neue Trends und Entwicklungen versuchen wir somit früh genug zu identifizieren und unseren Usern weiter zu geben.
 
+[Inhaltsverzeichnis](#Inhaltsverzeichnis)
 
 ## Funktion und Datenstruktur
 
@@ -64,6 +67,8 @@ Zudem das ER-Modell unserer Datenstruktur:
 
 ![ER_Modell](img/ER_Modell.png)
 
+[Inhaltsverzeichnis](#Inhaltsverzeichnis)
+
 
 ## Business
 
@@ -74,10 +79,14 @@ Nachfolgende Links zeigen tiefgehendere Informationen zu unserem Businessmodell
 - [Value-Proposition-Canvas](business/ValuePropositionCanvas_PricePredictor.png)
 - [Geschäftspräsentation](business/Masterslide.pptx)
 
+[Inhaltsverzeichnis](#Inhaltsverzeichnis)
+
+
 ## Video
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/vgI1jMHJQTM/0.jpg)](https://www.youtube.com/watch?v=vgI1jMHJQTM&feature=youtu.be)
 
+[Inhaltsverzeichnis](#Inhaltsverzeichnis)
 
 ## Team
 
@@ -88,6 +97,7 @@ Nachfolgende Links zeigen tiefgehendere Informationen zu unserem Businessmodell
 - [Tomke Blach](https://github.com/tomkeblach)
 - [Fabian Heidger](https://github.com/FHeidger)
 
+[Inhaltsverzeichnis](#Inhaltsverzeichnis)
 
 ## Technologien
 ![Amazon AWS](https://img.shields.io/badge/Technology-AWS-blue?style=flat&logo=amazon%20aws)
@@ -113,6 +123,7 @@ Zudem haben wir einen Dark Mode inkludiert, um immer den neuesten Trends zu ents
 
 ![Dark-Mode](img/c2g_1.png)
 
+[Inhaltsverzeichnis](#Inhaltsverzeichnis)
 
 ## Umsetzung
 
@@ -140,6 +151,7 @@ Ein wichtiger Punkt in der Programmierung war die Arbeit mit Branches in GitHub.
 
 In den letzten Wochen und Tagen haben wir uns zweimal die Woche in einem Meeting getroffen, um schneller auf Fragen und Probleme reagieren zu können. 
 
+[Inhaltsverzeichnis](#Inhaltsverzeichnis)
 
 ## Kritik
 
@@ -147,6 +159,7 @@ In den letzten Wochen und Tagen haben wir uns zweimal die Woche in einem Meeting
 - Die Dokumentation hätte von Anfang an stärker in den Fokus rücken müssen (Gerade im Hinblick auf Funktionsweisen und Datenstrukturen)
 - Für die Zukunft sollte nicht weiterhin Whatsapp als Channel verwendet werden, da hier keine ausreichende Übersicht geboten wird
 
+[Inhaltsverzeichnis](#Inhaltsverzeichnis)
 
 ## Learnings
 
@@ -160,7 +173,7 @@ Durch die Arbeit im Team und die Verwendung neuer und unbekannter Technologien h
 - lieber ein Commit zu viel, als ein Commit zu wenig
 - häufiger ist es besser Komponenten selber zu entwickeln, als bereits existierende Packages dafür zu nutzen. Beispiel: Suchleiste
 
-
+[Inhaltsverzeichnis](#Inhaltsverzeichnis)
 
 
 
@@ -170,11 +183,18 @@ Durch die Arbeit im Team und die Verwendung neuer und unbekannter Technologien h
 #### Coding
 - follow guidelines of Uncle Bob's [Clean Code](http://blog.cleancoder.com/)
 
+[Inhaltsverzeichnis](#Inhaltsverzeichnis)
+
 #### Commiting Rules
 - translation for an element: ```added translations lang={ de/en/all } for { element }```
     > added translations lang=de for signin
 - typos: ```"fixed typos in <destination>"```
 - connect frontend with backend: ```connect fronend w/ backend => { element }```
 
+[Inhaltsverzeichnis](#Inhaltsverzeichnis)
+
 #### Branch System
 ![branch_sytem](img/branch_system.jpeg) -->
+
+[Inhaltsverzeichnis](#Inhaltsverzeichnis)
+
