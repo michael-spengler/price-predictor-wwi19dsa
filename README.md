@@ -1,4 +1,4 @@
-![Logo](https://github.com/michael-spengler/price-predictor-wwi19dsa/blob/develop/img/logo_schmal.png)
+![Logo](img/logo_schmal.png)
 
 # Dokumentation "Price Predictor"
 
@@ -16,6 +16,13 @@ Im Anschluss daran, kann das Projekt gestartet werden. Dazu muss, wieder im Ordn
 
 ```bash
 npm run en
+```
+
+Zur vollen Funktionsfähigkeit der Applikation kann sich mit einem Testuser angemeldet werden:
+
+```html
+User: demo@test.de
+PW: Test1
 ```
 
 
@@ -52,6 +59,17 @@ Unsere Empfehlungen und Prognosen erhalten wir von unabhängigen Krypto Experten
 Neue Trends und Entwicklungen versuchen wir somit früh genug zu identifizieren und unseren Usern weiter zu geben.
 
 
+## Funktion und Datenstruktur
+
+Nachfolgend ist ein Ablaufdiagramm abgebildet, welches den Prozess eines neuen Trades zeigt.
+
+![New_Trade](img/Ablauf_Trade.png)
+
+Zudem das ER-Modell unserer Datenstruktur:
+
+![ER_Modell](img/ER_Modell.png)
+
+
 ## Business
 
 Nachfolgende Links zeigen tiefgehendere Informationen zu unserem Businessmodell
@@ -71,10 +89,13 @@ Nachfolgende Links zeigen tiefgehendere Informationen zu unserem Businessmodell
 
 
 ## Technologien
-
+![Amazon AWS](https://img.shields.io/badge/Technology-AWS-blue?style=flat&logo=amazon%20aws)
+![Angular](https://img.shields.io/badge/Technology-Angular-blue?style=flat&logo=angular)
 ![NPM](https://img.shields.io/badge/Packages-NPM-blue?style=flat&logo=npm)
 ![JS](https://img.shields.io/badge/Language-JavaScript-blue?style=flat&logo=JavaScript)
 ![TS](https://img.shields.io/badge/Language-TypeScript-blue?style=flat&logo=Typescript)
+![HTML](https://img.shields.io/badge/Language-HTML5-blue?style=flat&logo=HTML5)
+![SCSS](https://img.shields.io/badge/Language-SCSS-blue?style=flat&logo=CSS3)
 ![MYSQL](https://img.shields.io/badge/Database-MySQL-blue?style=flat&logo=mysql)
 
 Coin2gether ist es sehr wichtig, den latest Shit als Technologie zu verwenden. Wie bereits beschrieben, ist der Markt für Crypto-Trades am boomen, weshalb es uns sehr wichtig ist, dass die von uns ausgewählte Technologie auch skalierbar auf Enterpriseebene ist. Unter diesen Voraussetzungen haben wir uns für Angular als Frontend-Framework und Flask als Backend-Framework entschiedenen. Beide Frameworks sind in ihrem jeweiligen Gebiet das State-of-the-Art und in der Community sehr beliebt. Sowohl Backend, als auch Frontend werden auf einer AWS-Instanz gehostet. Über eine CI/CD-Pipeline werden Änderungen sofort in die Produktion-Umgebung übernommen und können intensiven UATs unterzogen. Natürlich wurden alle möglichen Sicherheitsvorkehrungen für die Instanz innerhalb AWS getroffen. Die Kommunikation zwischen Frontend und Backend läuft über eine tokenbasierte RESTful-API. Das Design basiert auf Material-Komponenten, da diese unserer Meinung nach die auf dem Markt ausgereiftesten und best-getesteten sind. Jedoch haben wir uns bei den Diagrammen für die Google-Charts entschieden. Grund dafür ist, dass man diese Charts einfach frei konfigurieren und designen kann. Die Daten werden in einer relationalen Datenbank gespeichert, die in AWS liegen. Die Wahl einer relationalen Datenbank ist vorerst temporär. In der nahen Zukunft sollten und werden wir aber auf eine No-SQL-Datenbank wechseln, um das Businessmodel um den datengetriebenen Ansatz zu erweitern.
@@ -100,6 +121,8 @@ Zur Planung und Übersichtlichkeit haben wir mit den Möglichkeiten von GitHub g
 
 Zudem haben wir Issues benutzt, um direkte Probleme und Bugs einzelnenen Teammitgliedern und Gruppen zuzuweisen.
 
+![branch_sytem](img/branch_system.jpeg)
+
 Ein wichtiger Punkt in der Programmierung war die Arbeit mit Branches in GitHub. Dementsprechen haben wir einige Features ausgelagert und nach fertiger Überprüfung wieder mit dem Develop-Branch gemerged. Dies diente dazu, dass die einzelnen Mitglieder unabhängig voneinander arbeiten konnten.
 
 In den letzten Wochen und Tagen haben wir uns zweimal die Woche in einem Meeting getroffen, um schneller auf Fragen und Probleme reagieren zu können. 
@@ -107,14 +130,20 @@ In den letzten Wochen und Tagen haben wir uns zweimal die Woche in einem Meeting
 
 ## Kritik
 
-- ...
+- Die Vollständigkeit bei Meetings hätte teilweise besser sein können
+- Die Dokumentation hätte von Anfang an stärker in den Fokus rücken müssen (Gerade im Hinblick auf Funktionsweisen und Datenstrukturen)
+- Für die Zukunft sollte nicht weiterhin Whatsapp als Channel verwendet werden, da hier keine ausreichende Übersicht geboten wird
 
 
-## Learning
+## Learnings
 
-Durch die Arbeit im Team und die Verwendung neuer und unbekannter Technologien haben wir auch einige Punkte als Learning mitgenommen.
+Durch die Arbeit im Team und die Verwendung neuer und unbekannter Technologien haben wir auch einige Punkte als Learnings mitgenommen.
 
-- ...
+- Bei neuen Technologien ist Vorsicht geboten. Fehler können sehr schnell passieren und mitunter gravierende Folgen haben
+- Testen ist das A und O!
+- Fremdbibliotheken sind nicht immer so gut wie man denkt
+- Auch bei Standardbibliotheken kann man vorsichtig sein (bspw. war die Nutzung von MatGridList als Komponente nicht zu empfehlen, sodass wir auf die Flex-Komponente umgestiegen sind, um die Applikation responsive zu gestalten)
+- Die Kommunikation im Team lief mit Verlauf des Projektes immer besser
 
 
 
