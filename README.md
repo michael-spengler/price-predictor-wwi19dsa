@@ -26,6 +26,7 @@ npm run en
 - [Benutzung](#Benutzung)
 - [Vorgeschichte](#Vorgeschichte)
 - [Coin-2-Gether](#Coin-2-Gether)
+- [Aufbau](#Aufbau)
 - [Business](#Business)
 - [Video](#Video)
 - [Team](#Team)
@@ -56,6 +57,14 @@ Unsere Empfehlungen und Prognosen erhalten wir von unabhängigen Krypto Experten
 Neue Trends und Entwicklungen versuchen wir somit früh genug zu identifizieren und unseren Usern weiter zu geben.
 
 [Inhaltsverzeichnis](#Inhaltsverzeichnis)
+
+
+## Aufbau
+
+![Aufbau](c2g_aufbau.jpg)
+
+[Inhaltsverzeichnis](#Inhaltsverzeichnis)
+
 
 ## Funktion und Datenstruktur
 
@@ -100,15 +109,16 @@ Nachfolgende Links zeigen tiefgehendere Informationen zu unserem Businessmodell
 [Inhaltsverzeichnis](#Inhaltsverzeichnis)
 
 ## Technologien
-![Amazon AWS](https://img.shields.io/badge/Technology-AWS-blue?style=flat&logo=amazon%20aws)
-![Angular](https://img.shields.io/badge/Technology-Angular-blue?style=flat&logo=angular)
-![Flask](https://img.shields.io/badge/Technology-Flask-blue?style=flat&logo=flask)
-![NPM](https://img.shields.io/badge/Packages-NPM-blue?style=flat&logo=npm)
 ![JS](https://img.shields.io/badge/Language-JavaScript-blue?style=flat&logo=JavaScript)
 ![TS](https://img.shields.io/badge/Language-TypeScript-blue?style=flat&logo=Typescript)
 ![HTML](https://img.shields.io/badge/Language-HTML5-blue?style=flat&logo=HTML5)
 ![SCSS](https://img.shields.io/badge/Language-SCSS-blue?style=flat&logo=CSS3)
 ![SQLite](https://img.shields.io/badge/Language-SQLite-blue?style=flat&logo=SQLite)
+<br />
+![Amazon AWS](https://img.shields.io/badge/Technology-AWS-blue?style=flat&logo=amazon%20aws)
+![Angular](https://img.shields.io/badge/Technology-Angular-blue?style=flat&logo=angular)
+![Flask](https://img.shields.io/badge/Technology-Flask-blue?style=flat&logo=flask)
+![NPM](https://img.shields.io/badge/Packages-NPM-blue?style=flat&logo=npm)
 
 Coin2gether ist es sehr wichtig, den latest Shit als Technologie zu verwenden. Wie bereits beschrieben, ist der Markt für Crypto-Trades am boomen, weshalb es uns sehr wichtig ist, dass die von uns ausgewählte Technologie auch skalierbar auf Enterpriseebene ist. Unter diesen Voraussetzungen haben wir uns für Angular als Frontend-Framework und Flask als Backend-Framework entschiedenen. Beide Frameworks sind in ihrem jeweiligen Gebiet das State-of-the-Art und in der Community sehr beliebt. Sowohl Backend, als auch Frontend werden auf einer AWS-Instanz gehostet. Über eine CI/CD-Pipeline werden Änderungen sofort in die Produktion-Umgebung übernommen und können intensiven UATs unterzogen. Natürlich wurden alle möglichen Sicherheitsvorkehrungen für die Instanz innerhalb AWS getroffen. Die Kommunikation zwischen Frontend und Backend läuft über eine tokenbasierte RESTful-API. Das Design basiert auf Material-Komponenten, da diese unserer Meinung nach die auf dem Markt ausgereiftesten und best-getesteten sind. Jedoch haben wir uns bei den Diagrammen für die Google-Charts entschieden. Grund dafür ist, dass man diese Charts einfach frei konfigurieren und designen kann. Die Daten werden in einer relationalen Datenbank gespeichert, die in AWS liegen. Die Wahl einer relationalen Datenbank ist vorerst temporär. In der nahen Zukunft sollten und werden wir aber auf eine No-SQL-Datenbank wechseln, um das Businessmodel um den datengetriebenen Ansatz zu erweitern.
 
