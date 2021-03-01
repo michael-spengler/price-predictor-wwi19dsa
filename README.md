@@ -83,10 +83,17 @@ Zudem das ER-Modell unserer Datenstruktur:
 
 Nachfolgende Links zeigen tiefgehendere Informationen zu unserem Businessmodell
 
-- [Businessplan]()
-- [Business-Model-Canvas](business/business-model-canvas.png)
-- [Value-Proposition-Canvas](business/ValuePropositionCanvas_PricePredictor.png)
+### Businessplan
+- [Businessplan](business/businessplan.md)
+
+### Geschäftspräsentation
 - [Geschäftspräsentation](business/Masterslide.pptx)
+
+### Business-Model-Canvas
+![ER_Modell](business/business-model-canvas.png)
+
+### Value-Proposition-Canvas
+![ER_Modell](business/ValuePropositionCanvas_PricePredictor.png)
 
 [Inhaltsverzeichnis](#Inhaltsverzeichnis)
 
