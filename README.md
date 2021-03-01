@@ -61,7 +61,7 @@ Neue Trends und Entwicklungen versuchen wir somit früh genug zu identifizieren 
 
 ## Aufbau
 
-![Aufbau](c2g_aufbau.jpg)
+![Aufbau](img/c2g_aufbau.jpg)
 
 [Inhaltsverzeichnis](#Inhaltsverzeichnis)
 
