@@ -24,11 +24,16 @@ npm run en
 ## Inhaltsverzeichnis
 
 - [Benutzung](#Benutzung)
-- [Vorgeschichte](#Vorgeschichte)
+- [Einführung](#Einführung)
 - [Coin-2-Gether](#Coin-2-Gether)
 - [Aufbau](#Aufbau)
+- [Funktion und Datenstruktur](#function)
 - [Business](#Business)
-- [Video](#Video)
+-- [Businessplan](#Businessplan)
+-- [Geschäftspräsentation](#Geschäftspräsentation)
+-- [Business-Model-Canvas](#Business-Model-Canvas)
+-- [Value-Proposition-Canvas](#Value-Proposition-Canvas)
+-- [Video](#Video)
 - [Team](#Team)
 - [Technologien](#Technologien)
 - [Umsetzung](#Umsetzung)
@@ -66,6 +71,7 @@ Neue Trends und Entwicklungen versuchen wir somit früh genug zu identifizieren 
 [Inhaltsverzeichnis](#Inhaltsverzeichnis)
 
 
+<a name="function"></a>
 ## Funktion und Datenstruktur
 
 Nachfolgend ist ein Ablaufdiagramm abgebildet, welches den Prozess eines neuen Trades zeigt.
@@ -95,14 +101,12 @@ Nachfolgende Links zeigen tiefgehendere Informationen zu unserem Businessmodell
 ### Value-Proposition-Canvas
 ![ER_Modell](business/ValuePropositionCanvas_PricePredictor.png)
 
-[Inhaltsverzeichnis](#Inhaltsverzeichnis)
-
-
-## Video
+### Video
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/vgI1jMHJQTM/0.jpg)](https://www.youtube.com/watch?v=vgI1jMHJQTM&feature=youtu.be)
 
 [Inhaltsverzeichnis](#Inhaltsverzeichnis)
+
 
 ## Team
 
